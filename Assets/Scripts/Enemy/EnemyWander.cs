@@ -1,28 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyWander : MonoBehaviour
 {
     [SerializeField] protected LayerMask _enemyMask;
+    [SerializeField] protected float circleRadius;
     protected RaycastHit2D line1, line2, line3, line4;
     protected Vector2 yCords;
     private Vector2 target;
+    private Vector2 currV;
 
     void Start(){
         FindRoomSize();
         Target();
     }
 
-    void Update()
-    {
+    void Update(){
+         if (new Vector2(transform.position.x, transform.position.y) == target){
+            Debug.Log("Target Reached");
+            Target();
+        }
         FindRoomSize();
     }
 
     protected void Target(){
-        target = new(Random.Range(line3.point.x, line4.point.x), Random.Range(line1.point.y, line2.point.y));
+        target = new(Random.Range(line3.point.x+circleRadius, line4.point.x-circleRadius), 
+                     Random.Range(line1.point.y-circleRadius, line2.point.y+circleRadius));
         
-        Debug.Log($"Target location x: {target.x}, y: {target.y}");
+        Debug.Log($"Target location {target}");
     }
 
     protected void FindRoomSize(){
@@ -30,8 +34,7 @@ public class EnemyWander : MonoBehaviour
         line2 = Physics2D.Raycast(transform.position, Vector2.down, Mathf.Infinity ,_enemyMask);
         line3 = Physics2D.Raycast(transform.position, Vector2.left, Mathf.Infinity ,_enemyMask);
         line4 = Physics2D.Raycast(transform.position, Vector2.right, Mathf.Infinity ,_enemyMask);
-        transform.position = Vector2.Lerp(transform.position, target, Time.deltaTime*2);
-        
+        transform.position = Vector2.SmoothDamp(transform.position, target, ref currV, Time.deltaTime, 5f);
     }
 
     void OnDrawGizmos(){
