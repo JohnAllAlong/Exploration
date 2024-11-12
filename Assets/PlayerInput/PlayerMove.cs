@@ -5,15 +5,17 @@ using CustomInput.Events;
 
 public class PlayerMove : MonoBehaviour
 {
-    public void KeyboardMove(Values input)
+    [SerializeField] private float _moveSpeed;
+
+    public void VecKeyboardMove(Values input)
     {
         print(input.vector);
-        transform.position += (Vector3)input.vector / 20;
+        transform.position += (Vector3)input.vector * Time.deltaTime * _moveSpeed;
     }
 
-    public void GamepadMove(Values input)
+    public void VecGamepadMove(Values input)
     {
         print(input.vector);
-        transform.position += (Vector3)input.vector / 20;
+        transform.position += (Vector3)input.vector * Time.deltaTime * _moveSpeed;
     }
 }
