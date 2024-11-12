@@ -27,14 +27,14 @@ public class CameraController : MonoBehaviour
     {
         if (currentCam == roomCam)
         {
-            currentCam.transform.position = new Vector3(newPosition.x, newPosition.y, newPosition.z - 10);
+            roomCam.transform.position = new Vector3(newPosition.x, newPosition.y, newPosition.z - 10);
             roomCam.gameObject.SetActive(true);
             leapfrogCam.gameObject.SetActive(false);
             currentCam = leapfrogCam;
         }
         else
         {
-            currentCam.transform.position = new Vector3(newPosition.x, newPosition.y, newPosition.z - 10);
+            leapfrogCam.transform.position = new Vector3(newPosition.x, newPosition.y, newPosition.z - 10);
             leapfrogCam.gameObject.SetActive(true);
             roomCam.gameObject.SetActive(false);
             currentCam = roomCam;
@@ -54,6 +54,7 @@ public class CameraController : MonoBehaviour
         {
             followCam.gameObject.SetActive(false);
             roomCam.gameObject.SetActive(true);
+            leapfrogCam.gameObject.SetActive(false);
         }
     }
 }
