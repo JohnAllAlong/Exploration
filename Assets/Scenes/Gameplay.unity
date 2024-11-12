@@ -1188,7 +1188,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.8, y: 0, z: -10}
+  m_LocalPosition: {x: 3.2, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1239,6 +1239,10 @@ PrefabInstance:
     - target: {fileID: 7340536726295397243, guid: 558872e4a85d95a4f803af16809dcc34, type: 3}
       propertyPath: m_Name
       value: Player(J)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7340536726295397243, guid: 558872e4a85d95a4f803af16809dcc34, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8002445384179690243, guid: 558872e4a85d95a4f803af16809dcc34, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1856,7 +1860,7 @@ MonoBehaviour:
   m_Priority: 1
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 1416863668}
+  m_Follow: {fileID: 1186430661}
   m_Lens:
     FieldOfView: 60
     OrthographicSize: 6
@@ -1885,7 +1889,7 @@ Transform:
   m_GameObject: {fileID: 741509650}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.8, y: 0, z: -10}
+  m_LocalPosition: {x: 3.2, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3014,9 +3018,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1607838309230691194, guid: 408bde33ebe66424583ece411ce5c1fb, type: 3}
+      propertyPath: camController
+      value: 
+      objectReference: {fileID: 1450878109}
     - target: {fileID: 8534787742090680248, guid: 408bde33ebe66424583ece411ce5c1fb, type: 3}
       propertyPath: m_Name
       value: TestGO
+      objectReference: {fileID: 0}
+    - target: {fileID: 8534787742090680248, guid: 408bde33ebe66424583ece411ce5c1fb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3251,10 +3263,10 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1121490754}
   m_CullTransparentMesh: 1
---- !u!4 &1416863668 stripped
+--- !u!4 &1186430661 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 8002445384179690243, guid: 558872e4a85d95a4f803af16809dcc34, type: 3}
-  m_PrefabInstance: {fileID: 555337837}
+  m_CorrespondingSourceObject: {fileID: 822591465421618726, guid: 408bde33ebe66424583ece411ce5c1fb, type: 3}
+  m_PrefabInstance: {fileID: 1061274388}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1450878105
 GameObject:
