@@ -6,12 +6,15 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public CinemachineVirtualCamera roomCam;
+    public CinemachineVirtualCamera leapfrogCam;
     public CinemachineVirtualCamera followCam;
+
+    private CinemachineVirtualCamera currentCam;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        currentCam = roomCam;
     }
 
     // Update is called once per frame
@@ -22,7 +25,21 @@ public class CameraController : MonoBehaviour
 
     public void RelocateCamera(Vector3 newPosition)
     {
-        roomCam.transform.position = new Vector3(newPosition.x, newPosition.y, newPosition.z - 10);
+        if (currentCam == roomCam)
+        {
+            currentCam.transform.position = new Vector3(newPosition.x, newPosition.y, newPosition.z - 10);
+            roomCam.gameObject.SetActive(true);
+            leapfrogCam.gameObject.SetActive(false);
+            currentCam = leapfrogCam;
+        }
+        else
+        {
+            currentCam.transform.position = new Vector3(newPosition.x, newPosition.y, newPosition.z - 10);
+            leapfrogCam.gameObject.SetActive(true);
+            roomCam.gameObject.SetActive(false);
+            currentCam = roomCam;
+        }
+        
     }
 
     public void SetFollowCamera(bool follow)
@@ -31,6 +48,7 @@ public class CameraController : MonoBehaviour
         { 
             followCam.gameObject.SetActive(true);
             roomCam.gameObject.SetActive(false);
+            leapfrogCam.gameObject.SetActive(false);
         }
         else
         {
