@@ -10,10 +10,8 @@ public class ScrollingDialogue : MonoBehaviour
 {
     [Header("Properties:")]
     [SerializeField] [Range(0f, 20f)] private float scrollSpeed;
-    [SerializeField] private string mainText;
-    [SerializeField] private Color mainTextColor;
-    [SerializeField] private string translatedText;
-    [SerializeField] private Color translatedTextColor;
+    [SerializeField] private string dialogueText;
+    [SerializeField] private Color textColor;
 
     private float timer;
 
@@ -23,14 +21,14 @@ public class ScrollingDialogue : MonoBehaviour
 
     private void Update() {
         GetComponent<Text>().text = "";
-        int dialogueLength = mainText.Length;
+        int dialogueLength = dialogueText.Length;
 
         if (timer < dialogueLength) timer += Time.deltaTime * scrollSpeed;
         int numChars = (int)Mathf.Floor(timer);
 
         for (int i = 0; i < numChars; i++) {
-            GetComponent<Text>().color = mainTextColor;
-            GetComponent<Text>().text += mainText[i];
+            GetComponent<Text>().color = textColor;
+            GetComponent<Text>().text += dialogueText[i];
         }
 
     }

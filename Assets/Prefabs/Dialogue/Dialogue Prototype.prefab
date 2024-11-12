@@ -93,4 +93,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollSpeed: 10
-  targetText: The TExt hufhqefeqieqh.p
+  dialogueText: qefqef qefeqfeqe qe . p
+  textColor: {r: 1, g: 0.8258381, b: 0, a: 1}
