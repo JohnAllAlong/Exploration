@@ -9,27 +9,28 @@ using UnityEngine.UI;
 public class ScrollingDialogue : MonoBehaviour
 {
     [Header("Properties:")]
-    [SerializeField]
-    [Range(0f, 20f)] private float scrollSpeed;
+    [SerializeField] [Range(0f, 20f)] private float scrollSpeed;
+    [SerializeField] private string mainText;
+    [SerializeField] private Color mainTextColor;
+    [SerializeField] private string translatedText;
+    [SerializeField] private Color translatedTextColor;
 
     private float timer;
 
-    private string dialogueText;
-
     private void OnEnable() {
-        dialogueText = GetComponent<Text>().text;
         timer = 0f;
     }
 
     private void Update() {
         GetComponent<Text>().text = "";
-        int dialogueLength = dialogueText.Length;
-        int numChars = (int)Mathf.Floor(timer);
+        int dialogueLength = mainText.Length;
 
         if (timer < dialogueLength) timer += Time.deltaTime * scrollSpeed;
+        int numChars = (int)Mathf.Floor(timer);
 
         for (int i = 0; i < numChars; i++) {
-            GetComponent<Text>().text += dialogueText[i];
+            GetComponent<Text>().color = mainTextColor;
+            GetComponent<Text>().text += mainText[i];
         }
 
     }

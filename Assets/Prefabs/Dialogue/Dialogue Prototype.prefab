@@ -79,7 +79,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: THE TEXT HAHAHAHAHAHAHAp
+  m_Text: 
 --- !u!114 &514734660914311916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,3 +93,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollSpeed: 10
+  targetText: The TExt hufhqefeqieqh.p
