@@ -28,4 +28,12 @@ public class SimpleCollider : MonoBehaviour
             camController.SetFollowCamera(true);
         }
     }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Room"))
+        {
+
+        }
+    }
 }

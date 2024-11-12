@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public CinemachineVirtualCamera roomCam;
-    public CinemachineVirtualCamera leapfrogCam;
+    public CinemachineVirtualCamera leapfrogCam1;
+    public CinemachineVirtualCamera leapfrogCam2;
     public CinemachineVirtualCamera followCam;
 
     private CinemachineVirtualCamera currentCam;
@@ -14,7 +14,7 @@ public class CameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentCam = roomCam;
+        currentCam = leapfrogCam1;
     }
 
     // Update is called once per frame
@@ -25,21 +25,20 @@ public class CameraController : MonoBehaviour
 
     public void RelocateCamera(Vector3 newPosition)
     {
-        if (currentCam == roomCam)
+        if (currentCam == leapfrogCam1)
         {
-            roomCam.transform.position = new Vector3(newPosition.x, newPosition.y, newPosition.z - 10);
-            roomCam.gameObject.SetActive(true);
-            leapfrogCam.gameObject.SetActive(false);
-            currentCam = leapfrogCam;
+            currentCam = leapfrogCam2;
+            leapfrogCam1.transform.position = new Vector3(newPosition.x, newPosition.y, newPosition.z - 10);
+            leapfrogCam2.gameObject.SetActive(false);
+            leapfrogCam1.gameObject.SetActive(true);
         }
-        else
+        else if (currentCam == leapfrogCam2)
         {
-            leapfrogCam.transform.position = new Vector3(newPosition.x, newPosition.y, newPosition.z - 10);
-            leapfrogCam.gameObject.SetActive(true);
-            roomCam.gameObject.SetActive(false);
-            currentCam = roomCam;
+            currentCam = leapfrogCam1;
+            leapfrogCam2.transform.position = new Vector3(newPosition.x, newPosition.y, newPosition.z - 10);
+            leapfrogCam1.gameObject.SetActive(false);
+            leapfrogCam2.gameObject.SetActive(true);
         }
-        
     }
 
     public void SetFollowCamera(bool follow)
@@ -47,14 +46,17 @@ public class CameraController : MonoBehaviour
         if (follow) 
         { 
             followCam.gameObject.SetActive(true);
-            roomCam.gameObject.SetActive(false);
-            leapfrogCam.gameObject.SetActive(false);
+            leapfrogCam1.gameObject.SetActive(false);
+            leapfrogCam2.gameObject.SetActive(false);
         }
         else
         {
             followCam.gameObject.SetActive(false);
-            roomCam.gameObject.SetActive(true);
-            leapfrogCam.gameObject.SetActive(false);
         }
+    }
+
+    public void SetCameraPriority()
+    {
+
     }
 }
