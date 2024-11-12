@@ -7,10 +7,8 @@ using UnityEngine.InputSystem;
 
 public class InputHandler : CustomInputEventManager
 {
-
-    [SerializeField] private PlayerMove _playerMove;
-    [SerializeField] private PlayerGrapple _playerGrapple;
     private InputDevice currentDevice;
+    [SerializeField] private PlayerMove _playerMove;
 
     private void OnEnable()
     {
@@ -86,7 +84,7 @@ public class InputHandler : CustomInputEventManager
     Con - means the event is continously ran even if no input is detected
     Btn - means the event value is a type of Button, and will only return a bool
     Vec - means the event value is a type of Axis, and will only return a vector
-    Once - means the event is ran once at the timev of the input being true
+    Once - means the event is ran once at the time of the input being true
 
      */
 
@@ -95,64 +93,13 @@ public class InputHandler : CustomInputEventManager
     {
         Debugger.Print($"<color=#03d7fc>[InputHandler]</color>\n<color=#0dff00>Loading gamepad events</color>");
         List<CustomInputEvent> gamepadEvents = new();
-
-        //movement (no mod)
-        CustomInputEvent GamepadMove = new()
+        //
+        CustomInputEvent gamepadMove = new()
         {
             actionName = "GamepadMove",
-            performed = _playerMove.VecHandleGamepadMovement,
-            canceled = _playerMove.VecHandleGamepadMovement,
+            performed = _playerMove.GamepadMove,
         };
-        gamepadEvents.Add(GamepadMove);
-
-        //jumping
-        CustomInputEvent GamepadJump = new()
-        {
-            actionName = "GamepadJump",
-            modifier = new()
-            {
-                isButton = true,
-                once = true
-            },
-            performed = _playerMove.OnceBtnHandleGamepadJump
-        };
-        gamepadEvents.Add(GamepadJump);
-
-        //grapple
-        CustomInputEvent GamepadGrapple = new()
-        {
-            actionName = "GamepadGrapple",
-            modifier = new()
-            {
-                once = true
-            },
-            performed = _playerGrapple.VecOnceHandleGamepadGrapple
-        };
-        gamepadEvents.Add(GamepadGrapple);
-
-        //grapple shrink
-        CustomInputEvent GamepadGrappleShrink = new()
-        {
-            actionName = "GamepadGrappleShrink",
-            modifier = new()
-            {
-                isButton = true
-            },
-            performed = _playerGrapple.BtnHandleGamepadGrappleShrink
-        };
-        gamepadEvents.Add(GamepadGrappleShrink);
-
-        //grapple stop (only gamepad)
-        CustomInputEvent GamepadGrappleStop = new()
-        {
-            actionName = "GamepadGrappleStop",
-            modifier = new()
-            {
-                isButton = true
-            },
-            performed = _playerGrapple.BtnHandleGamepadGrappleStop
-        };
-        gamepadEvents.Add(GamepadGrappleStop);
+        gamepadEvents.Add(gamepadMove);
 
         AddCustomInputEvents(gamepadEvents, this);
         Debugger.Print($"<color=#03d7fc>[InputHandler]</color>\n<color=#aaff00>Loaded gamepad events!</color>");
@@ -163,53 +110,13 @@ public class InputHandler : CustomInputEventManager
     {
         Debugger.Print($"<color=#03d7fc>[InputHandler]</color>\n<color=#0dff00>Loading keyboard/mouse events</color>");
         List<CustomInputEvent> keyboardEvents = new();
-
-        //movement (no mod)
-        CustomInputEvent KeyboardMove = new()
+        //
+        CustomInputEvent keyboardMove = new()
         {
             actionName = "KeyboardMove",
-            performed = _playerMove.VecHandleKeyboardMovement,
-            canceled = _playerMove.VecHandleKeyboardMovement
+            performed = _playerMove.KeyboardMove,
         };
-        keyboardEvents.Add(KeyboardMove);
-
-        //jumping
-        CustomInputEvent KeyboardJump = new()
-        {
-            actionName = "KeyboardJump",
-            modifier = new()
-            {
-                isButton = true,
-                once = true
-            },
-            performed = _playerMove.OnceBtnHandleKeyboardJump
-        };
-        keyboardEvents.Add(KeyboardJump);
-
-        //grapple
-        CustomInputEvent MouseGrapple = new()
-        {
-            actionName = "MouseGrapple",
-            modifier = new()
-            {
-                isButton = true,
-                once = true
-            },
-            performed = _playerGrapple.OnceBtnHandleMouseGrapple
-        };
-        keyboardEvents.Add(MouseGrapple);
-
-        //grapple shrink
-        CustomInputEvent MouseGrappleShrink = new()
-        {
-            actionName = "MouseGrappleShrink",
-            modifier = new()
-            {
-                isButton = true,
-            },
-            performed = _playerGrapple.BtnHandleMouseGrappleShrink
-        };
-        keyboardEvents.Add(MouseGrappleShrink);
+        keyboardEvents.Add(keyboardMove);
 
         AddCustomInputEvents(keyboardEvents, this);
         Debugger.Print($"<color=#03d7fc>[InputHandler]</color>\n<color=#aaff00>Loaded keyboard events!</color>");
