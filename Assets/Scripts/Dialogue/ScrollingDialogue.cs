@@ -1,35 +1,62 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
 /// Attaching this class to a dialogue game object will make the text scroll from left to right.
 /// </summary>
-
-[RequireComponent(typeof(Text))]
 public class ScrollingDialogue : MonoBehaviour
 {
     [Header("Properties:")]
     [SerializeField] [Range(0f, 20f)] private float scrollSpeed;
-    [SerializeField] private string dialogueText;
-    [SerializeField] private Color textColor;
+    [SerializeField] [Range(0f, 10f)] private float delayBetweenDialogues;
 
-    private float timer;
+    private float currentTextTimer;
+    private float currentDelayTimer;
+    private List<string> dialogueTexts;
+    private List<Text> dialogues;
 
-    private void OnEnable() {
-        timer = 0f;
+    private int numActiveDialogues;
+
+    private void Start() {
+        numActiveDialogues = 1;
+        currentDelayTimer = 0f;
+        currentTextTimer = 0f;
+        dialogueTexts = new List<string>();
+        dialogues = new List<Text>();
+
+        foreach (Text dialogue in transform.GetComponentsInChildren<Text>()) {
+            dialogues.Add(dialogue);
+            dialogueTexts.Add(dialogue.text);
+            dialogue.text = "";
+        }
     }
 
     private void Update() {
-        GetComponent<Text>().text = "";
-        int dialogueLength = dialogueText.Length;
 
-        if (timer < dialogueLength) timer += Time.deltaTime * scrollSpeed;
-        int numChars = (int)Mathf.Floor(timer);
+            if (numActiveDialogues <= dialogues.Count) {
+                if (currentTextTimer < dialogueTexts[numActiveDialogues-1].Length) {
+                    currentTextTimer += Time.deltaTime * scrollSpeed;
 
-        for (int i = 0; i < numChars; i++) {
-            GetComponent<Text>().color = textColor;
-            GetComponent<Text>().text += dialogueText[i];
+                    dialogues[numActiveDialogues-1].text = "";
+                    int numCharsToPrint = (int)Mathf.Floor(currentTextTimer);
+
+                    for (int chars = 0; chars < numCharsToPrint; chars++) {
+                        dialogues[numActiveDialogues-1].text += dialogueTexts[numActiveDialogues-1][chars];
+                    }   
+                } else {
+                    currentDelayTimer += Time.deltaTime;
+                }
+            }
+
+        
+        if (currentDelayTimer >= delayBetweenDialogues) {
+            dialogues[numActiveDialogues-1].text = "";
+            numActiveDialogues++;
+            currentTextTimer = 0f;
+            currentDelayTimer = 0f;
         }
-
     }
 }
