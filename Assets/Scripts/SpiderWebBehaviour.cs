@@ -15,17 +15,18 @@ public class SpiderWebBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        distance = Vector3.Distance(transform.position, victim.transform.position);
-        pullForce = Mathf.Max(0, maxDistance - distance);
+        
 
-        if (isTrapped)
+        if (isTrapped && movement != null)
         {
+            distance = Vector3.Distance(transform.position, victim.transform.position);
+            pullForce = Mathf.Max(0, maxDistance - distance);
             movement._moveSpeed = pullForce;
             if (movement._moveSpeed == 0)
             {
