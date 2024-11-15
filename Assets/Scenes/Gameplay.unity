@@ -3067,6 +3067,10 @@ PrefabInstance:
       propertyPath: camController
       value: 
       objectReference: {fileID: 1450878109}
+    - target: {fileID: 7298962699920527916, guid: 408bde33ebe66424583ece411ce5c1fb, type: 3}
+      propertyPath: _bulletSpeed
+      value: 400
+      objectReference: {fileID: 0}
     - target: {fileID: 8534787742090680248, guid: 408bde33ebe66424583ece411ce5c1fb, type: 3}
       propertyPath: m_Name
       value: TestGO

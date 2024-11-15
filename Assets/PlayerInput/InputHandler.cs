@@ -3,12 +3,14 @@ using CustomInput.Events;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 
 public class InputHandler : CustomInputEventManager
 {
     private InputDevice currentDevice;
     [SerializeField] private PlayerMove _playerMove;
+    [SerializeField] private GoGoGadgetGun _goGoGadgetGun;
 
     private void OnEnable()
     {
@@ -101,6 +103,25 @@ public class InputHandler : CustomInputEventManager
         };
         gamepadEvents.Add(gamepadMove);
 
+        CustomInputEvent GamepadFire = new()
+        {
+            actionName = "GamepadFire",
+            performed = _goGoGadgetGun.OnceBtnGamepadFire,
+            modifier = new()
+            {
+                isButton = true,
+                once = true,
+            }
+        };
+        gamepadEvents.Add(GamepadFire);
+
+        CustomInputEvent GamepadAim = new()
+        {
+            actionName = "GamepadAim",
+            performed = _goGoGadgetGun.VecGamepadAim,
+        };
+        gamepadEvents.Add(GamepadAim);
+
         AddCustomInputEvents(gamepadEvents, this);
         Debugger.Print($"<color=#03d7fc>[InputHandler]</color>\n<color=#aaff00>Loaded gamepad events!</color>");
     }
@@ -110,13 +131,25 @@ public class InputHandler : CustomInputEventManager
     {
         Debugger.Print($"<color=#03d7fc>[InputHandler]</color>\n<color=#0dff00>Loading keyboard/mouse events</color>");
         List<CustomInputEvent> keyboardEvents = new();
-        //
+        
         CustomInputEvent keyboardMove = new()
         {
             actionName = "KeyboardMove",
             performed = _playerMove.VecKeyboardMove,
         };
         keyboardEvents.Add(keyboardMove);
+
+        CustomInputEvent MouseFire = new()
+        {
+            actionName = "MouseFire",
+            performed = _goGoGadgetGun.OnceBtnMouseFire,
+            modifier = new()
+            {
+                isButton = true,
+                once = true,
+            }
+        };
+        keyboardEvents.Add(MouseFire);
 
         AddCustomInputEvents(keyboardEvents, this);
         Debugger.Print($"<color=#03d7fc>[InputHandler]</color>\n<color=#aaff00>Loaded keyboard events!</color>");
