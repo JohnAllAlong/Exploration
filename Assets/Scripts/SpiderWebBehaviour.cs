@@ -11,10 +11,11 @@ public class SpiderWebBehaviour : MonoBehaviour
     [SerializeField]
     private bool isTrapped;
     private float pullForce;
+    [SerializeField]
     private float maxDistance = 2.0f;
     private float distance;
     public float pullScaler = 0.01f;
-    public float stretchScaler = 0.25f;
+    public float stretchScaler = 0.20f;
     private LineRenderer lineRenderer;
 
     // Start is called before the first frame update
@@ -67,7 +68,8 @@ public class SpiderWebBehaviour : MonoBehaviour
     {
         if (isTrapped)
         {
-            transform.localScale = new Vector3(defaultScale.x + Mathf.Abs(victim.transform.position.x - transform.position.x) * stretchScaler, defaultScale.y + Mathf.Abs(victim.transform.position.y - transform.position.y) * stretchScaler, 0);
+            transform.localScale = defaultScale + defaultScale * distance * -stretchScaler;
+            //transform.localScale = new Vector3(defaultScale.x + Mathf.Abs(victim.transform.position.x - transform.position.x) * -stretchScaler, defaultScale.y + Mathf.Abs(victim.transform.position.y - transform.position.y) * -stretchScaler, 0);
         }
     }
 
