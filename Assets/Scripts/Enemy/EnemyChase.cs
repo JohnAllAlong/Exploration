@@ -6,6 +6,7 @@ public class EnemyChase : MonoBehaviour
     [SerializeField] protected float alertRadius, delay;
     [SerializeField] protected LayerMask _enemyMask;
     [SerializeField] protected bool chase;
+    [SerializeField] protected float distFromPlayer;
     protected float timer;
     protected Color col;
     protected RaycastHit2D alertRange;
@@ -36,9 +37,15 @@ public class EnemyChase : MonoBehaviour
 
     public void Chase(){
         PlayerDetected();
+        float target;
         if(chase){
-            transform.position = Vector2.SmoothDamp(transform.position, alertRange.point,
-                                 ref currV, Time.deltaTime, 5f);
+            target = alertRange.point.x < transform.position.x ? alertRange.point.x + distFromPlayer: 
+                                                                 alertRange.point.x - distFromPlayer;
+
+            transform.position = Vector2.SmoothDamp(transform.position, 
+                                                    new Vector2(target, alertRange.point.y),
+                                                    ref currV, Time.deltaTime, 5f
+                                                    );
         }
     }
 

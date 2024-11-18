@@ -36,12 +36,9 @@ public class EnemyWander : MonoBehaviour
         
         target = new(Random.Range(line3.point.x, line4.point.x), 
                      Random.Range(line1.point.y, line2.point.y));
-        
-        Debug.Log($"Target location {target}");
     }
     
     protected void OnCollisionStay2D(Collision2D collision){
-        Debug.Log(collision.transform.name);
         if(collision.transform.name == "Walls"){
            FindValidLocation();
         }
