@@ -87,6 +87,7 @@ public class Timers
 
 /// <summary>
 /// Creates a timer when constructed. Must be started with StartTimer()
+/// You can choose to identify a timer if needed, otherwise it will be anonymous
 /// </summary>
 public class Timer : Timers
 {
@@ -102,16 +103,17 @@ public class Timer : Timers
     private Action _runAtEnd = null; //end action
     private Action<float> _update = null; //update action
 
-    public Timer(float time, string timerName)
+    public Timer(float time, string timerName = null)
     {
         this._time = time; //set time
 
         //check if timer with name already exists
-        if (GetTimers().Find(t => t.timerName == timerName) != null)
-        {
-            Debug.LogWarning("[TimerController] Timer with name of " + timerName + " already exists!");
-            return;
-        }
+        if (timerName != null)
+            if (GetTimers().Find(t => t.timerName == timerName) != null)
+            {
+                Debug.LogWarning("[TimerController] Timer with id of " + timerName + " already exists!");
+                return;
+            }
         //set name and add timer
         this.timerName = timerName;
         AddTimer(this);
