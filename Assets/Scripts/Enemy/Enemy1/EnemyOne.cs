@@ -13,6 +13,7 @@ public class EnemyOne : EnemyWander
     }
 
     void Update(){
+        enemyChaseScript.GetMagnitude();
         if(!enemyChaseScript.GetChaseState()){
             Move();
             enemyChaseScript.PlayerDetected();

@@ -1,5 +1,3 @@
-
-using System;
 using UnityEngine;
 
 public class EnemyChase : MonoBehaviour
@@ -32,7 +30,6 @@ public class EnemyChase : MonoBehaviour
     public void CountDownToChase(){
         timer+=Time.deltaTime;
         if(timer > delay){
-            Debug.Log("Chasing");
             chase = true;
         }
     }
@@ -43,6 +40,17 @@ public class EnemyChase : MonoBehaviour
             transform.position = Vector2.SmoothDamp(transform.position, alertRange.point,
                                  ref currV, Time.deltaTime, 5f);
         }
+    }
+
+    public float GetMagnitude(){
+        /*
+            return Math.sqrt((this.x-other.x)*(this.x-other.x) + 
+                     (this.y-other.y)*(this.y-other.y));
+        
+        Debug.Log(Mathf.Sqrt((transform.position.x-alertRange.point.x)*(transform.position.x-alertRange.point.x) + 
+                             (transform.position.y-alertRange.point.y)*(transform.position.y-alertRange.point.y)));
+        */
+        return 0;
     }
 
     //Visualizes circle cast
