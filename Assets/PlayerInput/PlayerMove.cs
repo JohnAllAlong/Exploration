@@ -5,7 +5,7 @@ using CustomInput.Events;
 
 public class PlayerMove : MonoBehaviour
 {
-    [SerializeField] private float _moveSpeed;
+    [SerializeField] public float _moveSpeed;
 
     public void VecKeyboardMove(Values input)
     {
