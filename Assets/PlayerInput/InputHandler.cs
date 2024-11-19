@@ -3,7 +3,6 @@ using CustomInput.Events;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 
 
 public class InputHandler : CustomInputEventManager
@@ -12,6 +11,7 @@ public class InputHandler : CustomInputEventManager
     [SerializeField] private PlayerMove _playerMove;
     [SerializeField] private GoGoGadgetGun _goGoGadgetGun;
     [SerializeField] private PlayerCollectibleController _collectibleController;
+    public static System.Action<Values> OnceBtnOnInteractionUse;
 
     protected void OnEnable()
     {
@@ -101,6 +101,7 @@ public class InputHandler : CustomInputEventManager
         {
             actionName = "GamepadMove",
             performed = _playerMove.VecGamepadMove,
+            canceled = _playerMove.VecMovementCancled
         };
         gamepadEvents.Add(gamepadMove);
 
@@ -135,6 +136,41 @@ public class InputHandler : CustomInputEventManager
         };
         gamepadEvents.Add(GamepadPickupItem);
 
+        CustomInputEvent GamepadScrollInventory = new()
+        {
+            actionName = "GamepadScrollInventory",
+            performed = _collectibleController.OnceVecScrollInventory,
+            modifier = new()
+            {
+                once = true
+            }
+        };
+        gamepadEvents.Add(GamepadScrollInventory);
+
+        CustomInputEvent GamepadDropItem = new()
+        {
+            actionName = "GamepadDropItem",
+            performed = _collectibleController.OnceBtnDropItem,
+            modifier = new()
+            {
+                isButton = true,
+                once = true
+            }
+        };
+        gamepadEvents.Add(GamepadDropItem);
+
+        CustomInputEvent GamepadUseItem = new()
+        {
+            actionName = "GamepadUseItem",
+            performed = OnceBtnOnInteractionUse,
+            modifier = new()
+            {
+                isButton = true,
+                once = true,
+            }
+        };
+        gamepadEvents.Add(GamepadUseItem);
+
         AddCustomInputEvents(gamepadEvents, this);
         Debugger.Print($"<color=#03d7fc>[InputHandler]</color>\n<color=#aaff00>Loaded gamepad events!</color>");
     }
@@ -149,6 +185,7 @@ public class InputHandler : CustomInputEventManager
         {
             actionName = "KeyboardMove",
             performed = _playerMove.VecKeyboardMove,
+            canceled = _playerMove.VecMovementCancled
         };
         keyboardEvents.Add(keyboardMove);
 
@@ -175,6 +212,41 @@ public class InputHandler : CustomInputEventManager
             }
         };
         keyboardEvents.Add(KeyboardPickupItem);
+
+        CustomInputEvent KeyboardScrollInventory = new()
+        {
+            actionName = "KeyboardScrollInventory",
+            performed = _collectibleController.OnceVecScrollInventory,
+            modifier = new()
+            {
+                once = true
+            }
+        };
+        keyboardEvents.Add(KeyboardScrollInventory);
+
+        CustomInputEvent KeyboardDropItem = new()
+        {
+            actionName = "KeyboardDropItem",
+            performed = _collectibleController.OnceBtnDropItem,
+            modifier = new()
+            {
+                isButton = true,
+                once = true
+            }
+        };
+        keyboardEvents.Add(KeyboardDropItem);
+
+        CustomInputEvent KeyboardUseItem = new()
+        {
+            actionName = "KeyboardUseItem",
+            performed = OnceBtnOnInteractionUse,
+            modifier = new()
+            {
+                isButton = true,
+                once = true
+            }
+        };
+        keyboardEvents.Add(KeyboardUseItem);
 
         AddCustomInputEvents(keyboardEvents, this);
         Debugger.Print($"<color=#03d7fc>[InputHandler]</color>\n<color=#aaff00>Loaded keyboard events!</color>");
