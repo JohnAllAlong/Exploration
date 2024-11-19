@@ -10,6 +10,11 @@ public class EnemyWander : MonoBehaviour
     protected Vector2 yCords;
     protected Vector2 target;
     protected Vector2 currV;
+    protected Transform enemySprite, enemyWeapon; 
+
+    protected void GetTransforms(){
+        enemySprite = GetComponent<Transform>();
+    }
 
     protected bool Timer(){
         timer+=Time.deltaTime;
@@ -19,9 +24,8 @@ public class EnemyWander : MonoBehaviour
         } else return false;
     }
 
-    protected void Move(){     
+    protected void Move(){ 
         transform.position = Vector2.SmoothDamp(transform.position, target, ref currV, Time.deltaTime, 5f);
-
         if(new Vector2(transform.position.x, transform.position.y) == target){
             if(Timer()) FindValidLocation();
         }
@@ -36,10 +40,19 @@ public class EnemyWander : MonoBehaviour
         
         target = new(Random.Range(line3.point.x, line4.point.x), 
                      Random.Range(line1.point.y, line2.point.y));
+
+        transform.rotation = target.x > transform.position.x ? new Quaternion(0, 0, 180f, 0): 
+                                                               new Quaternion(0, 0, 0, 0);
     }
     
     protected void OnCollisionStay2D(Collision2D collision){
         if(collision.transform.name == "Walls"){
+           FindValidLocation();
+        }
+    }
+
+    protected void OnTriggerExit2D(Collider2D collider){
+        if(collider.transform.name == "Doors"){
            FindValidLocation();
         }
     }
