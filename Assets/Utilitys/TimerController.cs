@@ -7,12 +7,12 @@ using UnityEngine;
 [ExecuteAlways]
 public class TimerController : MonoBehaviour
 {
-    private void Awake()
+    protected void Awake()
     {
         Timers.Wipe();
     }
 
-    private void Update()
+    protected void Update()
     {
         //update timers
         Timers.UpdateTimers();
