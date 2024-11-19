@@ -15,15 +15,15 @@ public class SaveTest : MonoBehaviour
         //get data from a seperate save (ADVANCED)
 
             //register all the saves in the save directory
-        SaveFramework.RegisterAllSaves();
+        //SaveFramework.RegisterAllSaves();
             //using the list of registered save data, try to get a certian data piece from them. Returns the first save to have this data name (if more than one)
-        print(SaveFramework.TryGetRegisteredSaveData<SaveableVector3>("TestingPos"));
+        //print(SaveFramework.TryGetRegisteredSaveData<SaveableVector3>("TestingPos"));
 
 
-        //get data from the current save (easy pz)
+        //get data from the current save (EASY)
 
             //simply request the data as so
-        print(SaveFramework.GetSaveData<SaveableVector3>("TestingPos"));
+        //print(SaveFramework.GetSaveData<SaveableVector3>("TestingPos"));
 
 
         //create a custom save
