@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using CustomInput.Events;
 using System;
+using Saveables;
+using Saving;
 
 public class PlayerCollectibleController : MonoBehaviour
 {
