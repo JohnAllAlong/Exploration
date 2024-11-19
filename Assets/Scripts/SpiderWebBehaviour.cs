@@ -24,6 +24,9 @@ public class SpiderWebBehaviour : MonoBehaviour
         isTrapped = false;
         defaultScale = transform.localScale;
         lineRenderer = GetComponent<LineRenderer>();
+        victim = GameObject.FindGameObjectWithTag("Player");
+        movement = victim.GetComponent<PlayerMove>();
+        defaultSpeed = movement._moveSpeed;
 
     }
 
@@ -37,10 +40,6 @@ public class SpiderWebBehaviour : MonoBehaviour
                 PlayerTrapped();
                 StretchWeb();
             }
-            else
-            {
-                WebDestroyed();
-            }
         }
         
     }
@@ -49,9 +48,6 @@ public class SpiderWebBehaviour : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            victim = collision.gameObject;
-            movement = collision.GetComponent<PlayerMove>();
-            defaultSpeed = movement._moveSpeed;
             isTrapped = true;
         }
     }
@@ -69,16 +65,14 @@ public class SpiderWebBehaviour : MonoBehaviour
 
     public void WebDestroyed()
     {
+        isTrapped = false;
         movement._moveSpeed = defaultSpeed;
         transform.localScale = defaultScale;
     }
 
     public void StretchWeb()
     {
-        if (isTrapped)
-        {
-            transform.localScale = defaultScale + defaultScale * distance * -stretchScaler;
-        }
+        transform.localScale = defaultScale + defaultScale * distance * -stretchScaler;
     }
 
 }
