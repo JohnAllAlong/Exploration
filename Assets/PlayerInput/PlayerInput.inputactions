@@ -61,7 +61,7 @@
                 },
                 {
                     "name": "GamepadFire",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "f3f926ee-28ac-4406-8b8a-20ef99eb6f75",
                     "expectedControlType": "Button",
                     "processors": "",
@@ -76,6 +76,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "GamepadPickupItem",
+                    "type": "Button",
+                    "id": "9cd28e4c-9872-4dbf-90b7-e6af6e7fa5ad",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "KeyboardPickupItem",
+                    "type": "Button",
+                    "id": "3882d357-413d-4ae4-a9f3-2af21faee4ca",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -274,6 +292,28 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "GamepadAim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f2c552be-844b-4084-a5b1-9291e7e0da31",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "GamepadPickupItem",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "84606a3b-bbba-42b2-98ca-c550dcc92189",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "KeyboardPickupItem",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

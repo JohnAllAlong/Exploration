@@ -11,8 +11,9 @@ public class InputHandler : CustomInputEventManager
     private InputDevice currentDevice;
     [SerializeField] private PlayerMove _playerMove;
     [SerializeField] private GoGoGadgetGun _goGoGadgetGun;
+    [SerializeField] private PlayerCollectibleController _collectibleController;
 
-    private void OnEnable()
+    protected void OnEnable()
     {
         //set onDeviceChange
         InputSystem.onDeviceChange += OnDeviceChanged;
@@ -27,7 +28,7 @@ public class InputHandler : CustomInputEventManager
         InitKeyboardEvents();
     }
 
-    private void OnDisable()
+    protected void OnDisable()
     {
         //de-set onDeviceChange
         InputSystem.onDeviceChange -= OnDeviceChanged;
@@ -122,6 +123,18 @@ public class InputHandler : CustomInputEventManager
         };
         gamepadEvents.Add(GamepadAim);
 
+        CustomInputEvent GamepadPickupItem = new()
+        {
+            actionName = "GamepadPickupItem",
+            performed = _collectibleController.OnceBtnPickupItem,
+            modifier = new()
+            {
+                isButton = true,
+                once = true,
+            }
+        };
+        gamepadEvents.Add(GamepadPickupItem);
+
         AddCustomInputEvents(gamepadEvents, this);
         Debugger.Print($"<color=#03d7fc>[InputHandler]</color>\n<color=#aaff00>Loaded gamepad events!</color>");
     }
@@ -131,7 +144,7 @@ public class InputHandler : CustomInputEventManager
     {
         Debugger.Print($"<color=#03d7fc>[InputHandler]</color>\n<color=#0dff00>Loading keyboard/mouse events</color>");
         List<CustomInputEvent> keyboardEvents = new();
-        
+        //
         CustomInputEvent keyboardMove = new()
         {
             actionName = "KeyboardMove",
@@ -150,6 +163,18 @@ public class InputHandler : CustomInputEventManager
             }
         };
         keyboardEvents.Add(MouseFire);
+
+        CustomInputEvent KeyboardPickupItem = new()
+        {
+            actionName = "KeyboardPickupItem",
+            performed = _collectibleController.OnceBtnPickupItem,
+            modifier = new()
+            {
+                isButton = true,
+                once = true,
+            }
+        };
+        keyboardEvents.Add(KeyboardPickupItem);
 
         AddCustomInputEvents(keyboardEvents, this);
         Debugger.Print($"<color=#03d7fc>[InputHandler]</color>\n<color=#aaff00>Loaded keyboard events!</color>");
