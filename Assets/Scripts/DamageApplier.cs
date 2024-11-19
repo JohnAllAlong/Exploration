@@ -36,7 +36,8 @@ public class DamageApplier : MonoBehaviour
             if (damageable != null)
             {
                 damageable.TakeDamage(damage);
-                Destroy(this.gameObject);
+                //Destroy is for projectiles.
+                //Destroy(this.gameObject);
             }
         }
     }
