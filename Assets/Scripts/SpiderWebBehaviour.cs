@@ -9,7 +9,7 @@ public class SpiderWebBehaviour : MonoBehaviour
     private float defaultSpeed;
     private Vector3 defaultScale;
     [SerializeField]
-    private bool isTrapped;
+    public bool isTrapped;
     private float pullForce;
     [SerializeField]
     private float maxDistance = 2.0f;
@@ -34,20 +34,12 @@ public class SpiderWebBehaviour : MonoBehaviour
         {
             if (isTrapped)
             {
-                lineRenderer.enabled = true;
-                lineRenderer.positionCount = 2;
-                lineRenderer.SetPosition(0, transform.position);
-                lineRenderer.SetPosition(1, victim.transform.position);
-                distance = Vector3.Distance(transform.position, victim.transform.position);
-                pullForce = Mathf.Max(0.01f, maxDistance - distance);
-                movement._moveSpeed = pullForce;
+                PlayerTrapped();
                 StretchWeb();
-                
             }
             else
             {
-                movement._moveSpeed = defaultSpeed;
-                transform.localScale = defaultScale;
+                WebDestroyed();
             }
         }
         
@@ -64,12 +56,28 @@ public class SpiderWebBehaviour : MonoBehaviour
         }
     }
 
+    public void PlayerTrapped()
+    {
+        lineRenderer.enabled = true;
+        lineRenderer.positionCount = 2;
+        lineRenderer.SetPosition(0, transform.position);
+        lineRenderer.SetPosition(1, victim.transform.position);
+        distance = Vector3.Distance(transform.position, victim.transform.position);
+        pullForce = Mathf.Max(0.01f, maxDistance - distance);
+        movement._moveSpeed = pullForce;
+    }
+
+    public void WebDestroyed()
+    {
+        movement._moveSpeed = defaultSpeed;
+        transform.localScale = defaultScale;
+    }
+
     public void StretchWeb()
     {
         if (isTrapped)
         {
             transform.localScale = defaultScale + defaultScale * distance * -stretchScaler;
-            //transform.localScale = new Vector3(defaultScale.x + Mathf.Abs(victim.transform.position.x - transform.position.x) * -stretchScaler, defaultScale.y + Mathf.Abs(victim.transform.position.y - transform.position.y) * -stretchScaler, 0);
         }
     }
 
