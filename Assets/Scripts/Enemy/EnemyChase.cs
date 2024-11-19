@@ -8,13 +8,15 @@ public class EnemyChase : MonoBehaviour
     [SerializeField] protected LayerMask _enemyMask;
     [SerializeField] protected bool chase, overrideChase;
     [SerializeField] protected float distFromPlayer;
+    [SerializeField] protected Transform playerPos;
+    [SerializeField] protected float chaseSpeed;
+    
     protected float timer;
     protected Color col;
     protected RaycastHit2D alertRange;
     protected Vector2 currV;
 
-    [SerializeField]
-    protected Transform playerPos;
+    
 
     private void Awake(){
         overrideChase = false;
@@ -27,13 +29,13 @@ public class EnemyChase : MonoBehaviour
         return chase;
     }
 
-    public void OverrideChaseState(bool state = false){
+    public void OverrideChaseState(bool state = true){
         overrideChase = state;
     }
     
     public void PlayerDetected(){
         alertRange = Physics2D.CircleCast(new Vector2(transform.position.x, transform.position.y),
-                                            alertRadius, Vector2.down, 0f, _enemyMask);
+                                            alertRadius, Vector2.zero, 0f, _enemyMask);
         
         if(!overrideChase){    
             if(alertRange.collider!=null){
@@ -76,12 +78,12 @@ public class EnemyChase : MonoBehaviour
         transform.position = Vector2.SmoothDamp(
                                                 transform.position, 
                                                 new Vector2(target, playerPos.position.y),
-                                                ref currV, Time.deltaTime, 5f
+                                                ref currV, Time.deltaTime, chaseSpeed
                                                 );
     }
 
     //Visualizes circle cast
-    void OnDrawGizmos(){
+    protected void OnDrawGizmos(){
         col = alertRange.collider!=null ? Color.red: Color.blue;
         Gizmos.color = col;
         Gizmos.DrawWireSphere(transform.position, alertRadius);
