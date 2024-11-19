@@ -39,6 +39,7 @@ public class PlayerCollectibleController : MonoBehaviour
     /// <param name="removeFromInventory">if set to true will drop item but NOT remove it from the inventory</param>
     public void DropCollectible(Collectible col, bool removeFromInventory = true, bool removeCompletely = false)
     {
+        if (col == null) return; 
         Collectible tryFindCollectible = _inventory.Find(c => c.collectibleRID == col.collectibleRID);
         if (tryFindCollectible != null)
         {
