@@ -251,10 +251,10 @@ public class Timer : Timers
     /**
     <summary>if true it loops the timer when it ends</summary>
     */
-    public bool Loop(bool loop)
+    public Timer Loop(bool loop)
     {
         this._loop = loop;
-        return this._loop;
+        return this;
     }
 
     /**

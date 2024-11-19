@@ -1,3 +1,12 @@
+/* 
+    Aiden C. Desjarlais
+     Saving Framework
+
+A framework that makes saving for basic games easy.
+Uses XML to save to disk.
+ 
+ */
+
 using System;
 using System.Collections.Generic;
 using System.IO;
