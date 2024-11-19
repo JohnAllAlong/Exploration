@@ -2,18 +2,18 @@ public class EnemyOne : EnemyWander
 {   
     private EnemyChase enemyChaseScript;
 
-    private void Awake(){
+    private protected void Awake(){
+        GetTransforms();
         if(enemyChaseScript ==null){
             enemyChaseScript = GetComponent<EnemyChase>();
         }
     }
 
-    void Start(){
+    protected void Start(){
         FindValidLocation();
     }
 
-    void Update(){
-        enemyChaseScript.GetMagnitude();
+    protected void Update(){
         if(!enemyChaseScript.GetChaseState()){
             Move();
             enemyChaseScript.PlayerDetected();
