@@ -290,7 +290,7 @@ namespace CustomInput.Events
         }
 
 
-        private void Update()
+        protected void Update()
         {
             foreach (CustomInputEvent @event in CustomInputEvents)
             {

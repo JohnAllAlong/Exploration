@@ -7,12 +7,12 @@ using UnityEngine;
 [ExecuteAlways]
 public class TimerController : MonoBehaviour
 {
-    private void Awake()
+    protected void Awake()
     {
         Timers.Wipe();
     }
 
-    private void Update()
+    protected void Update()
     {
         //update timers
         Timers.UpdateTimers();
@@ -251,10 +251,10 @@ public class Timer : Timers
     /**
     <summary>if true it loops the timer when it ends</summary>
     */
-    public bool Loop(bool loop)
+    public Timer Loop(bool loop)
     {
         this._loop = loop;
-        return this._loop;
+        return this;
     }
 
     /**
