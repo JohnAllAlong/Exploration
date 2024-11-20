@@ -13,7 +13,7 @@ public class EnemyChase : MonoBehaviour
     public int enemyId;
 
     //please link this to death when its added santiago - aiden
-    public bool isAlive; //true if alive false if dead
+    public bool isAlive = true; //true if alive false if dead
     
     protected float timer;
     protected Color col;
@@ -25,6 +25,8 @@ public class EnemyChase : MonoBehaviour
         if(playerPos == null){
             playerPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         }
+
+        //easy anti cheat?!?!?!!? no way?!?!?!?
         EAC = GetComponentInChildren<EnemyanimatorController>();
     }
 

@@ -28,7 +28,7 @@ namespace CustomInput.Debug
 {
     public static class Debugger
     {
-        public static bool debugInput = true;
+        public static bool debugInput = false;
         public static void Print(object msg)
         {
             if (!debugInput) return;

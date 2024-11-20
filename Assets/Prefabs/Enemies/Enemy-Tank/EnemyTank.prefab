@@ -159,7 +159,7 @@ GameObject:
   - component: {fileID: 5450167577550608820}
   m_Layer: 8
   m_Name: EnemyTank
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -252,9 +252,10 @@ MonoBehaviour:
     m_Bits: 128
   chase: 0
   overrideChase: 0
-  distFromPlayer: 1.3
   playerPos: {fileID: 0}
   chaseSpeed: 2
+  enemyId: 1
+  isAlive: 1
 --- !u!58 &601604057050662985
 CircleCollider2D:
   m_ObjectHideFlags: 0

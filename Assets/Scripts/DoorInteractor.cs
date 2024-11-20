@@ -54,6 +54,9 @@ public class DoorInteractor : MonoBehaviour
         if (_playerCollectibleController.HasCollectable(_keyCollectibleID) && !_hasKey)
         {
             _hasKey = true;
+        } else
+        {
+            _hasKey = false;
         }
 
         if (_inRange)

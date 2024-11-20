@@ -1132,8 +1132,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _light: {fileID: 686703521}
-  _TransitionTime: 5
-  _minRadius: 0.2
+  _TransitionTime: 3
+  _minRadius: 0.1
   _maxRadius: 3
 --- !u!1 &760301036
 GameObject:
@@ -4207,6 +4207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 1513824404}
+  _currentDirection: {x: 0, y: 0}
 --- !u!1001 &3275734795530941287
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -30,6 +30,7 @@ namespace Saveables
             typeof(SaveableQuaternion),
             typeof(SaveableGameProgression),
             typeof(SaveableEnemies),
+            typeof(SaveableEnemies[]),
             typeof(string),
             typeof(int),
             typeof(float),
