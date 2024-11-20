@@ -1,54 +1,70 @@
-using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class CollectibleGUIController : MonoBehaviour
 {
     [SerializeField] private PlayerCollectibleController _collectibleController;
-    [SerializeField] private GameObject _slotsParent;
-    [SerializeField] private Image _defaultSlotImage;
+    [SerializeField] private Sprite _defaultSlotSprite;
+    private List<CollectibleSlot> Slots => _collectibleController.slots;
 
     // 0 = slot1
     // 1 = slot2
     // etc
-    [SerializeField] private List<Image> _slots;
-    [SerializeField] private Image _nextAvailableSlot;
+    [SerializeField] private CollectibleSlot _selectedSlot;
 
-    protected void OnEnable()
+    //must call on start so the controller can set its vars before GUI controller does
+    protected void Start()
     {
-        for (int i = 0; i != _slotsParent.transform.childCount; i++) {
-            GameObject slot = _slotsParent.transform.GetChild(i).gameObject;
-            _slots.Add(slot.GetComponent<Image>());
-        }
-        _nextAvailableSlot = _slots[0];
+
+        _selectedSlot = Slots[0];
 
         _collectibleController.OnInventoryAddition += AddNewCollectibleToSlot;
         _collectibleController.OnInventoryDrop += DropCollectibleFromSlot;
+        _collectibleController.OnInventorySelection += ScrollCollectibleGUI;
     }
 
     protected void OnDisable()
     {
         _collectibleController.OnInventoryAddition -= AddNewCollectibleToSlot;
-        _collectibleController.OnInventoryDrop -= DropCollectibleFromSlot;
+        _collectibleController.OnInventoryDrop -= DropCollectibleFromSlot;       
+        _collectibleController.OnInventorySelection -= ScrollCollectibleGUI;
     }
 
     public void AddNewCollectibleToSlot(Collectible collectible)
     {
-        _nextAvailableSlot.sprite = collectible.itemImage;
-        collectible.slot = _slots.IndexOf(_nextAvailableSlot);
-        _nextAvailableSlot.transform.GetComponentInChildren<TextMeshProUGUI>().text = collectible.itemShortName;
-        _nextAvailableSlot = _slots[_slots.IndexOf(_nextAvailableSlot) + 1];
+        collectible.slot = Slots.IndexOf(_selectedSlot);
+
+        if (_selectedSlot.occupied)
+        {
+            _selectedSlot.occupation = collectible;
+            _selectedSlot.slot = Slots.IndexOf(_selectedSlot);
+            _selectedSlot.collectibleImage.sprite = collectible.itemImage;
+            _selectedSlot.collectibleName.text = collectible.itemShortName;
+        } else
+        {
+            _selectedSlot.occupation = collectible;
+            _selectedSlot.occupied = true;
+            _selectedSlot.slot = Slots.IndexOf(_selectedSlot);
+            _selectedSlot.collectibleImage.sprite = collectible.itemImage;
+            _selectedSlot.collectibleName.text = collectible.itemShortName;
+        }
     }
 
     public void DropCollectibleFromSlot(Collectible collectible)
     {
-        Image slot = _slots[collectible.slot];
-        slot = _defaultSlotImage;
-        slot.transform.GetComponentInChildren<TextMeshProUGUI>().text = "";
-        _slots.RemoveAt(collectible.slot);
-        _nextAvailableSlot = _slots[collectible.slot];
+        CollectibleSlot newSlot = Slots[collectible.slot];
+        newSlot.collectibleImage.sprite = _defaultSlotSprite;
+        newSlot.collectibleName.text = "";
+        Slots[collectible.slot] = newSlot;
         collectible.slot = 0;
+    }
+
+    public void ScrollCollectibleGUI(int selectedSlot)
+    {
+        CollectibleSlot slot = Slots[selectedSlot];
+        _selectedSlot.collectibleSelector.SetActive(false);
+
+        slot.collectibleSelector.SetActive(true);
+        _selectedSlot = slot;
     }
 }

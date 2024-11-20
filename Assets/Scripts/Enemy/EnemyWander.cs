@@ -5,6 +5,7 @@ public class EnemyWander : MonoBehaviour
 {
     [SerializeField] protected LayerMask _enemyMask;
     [SerializeField] protected float delay;
+    [SerializeField] protected float moveSpeed;
     protected float timer;
     protected RaycastHit2D line1, line2, line3, line4;
     protected Vector2 yCords;
@@ -25,7 +26,7 @@ public class EnemyWander : MonoBehaviour
     }
 
     protected void Move(){ 
-        transform.position = Vector2.SmoothDamp(transform.position, target, ref currV, Time.deltaTime, 5f);
+        transform.position = Vector2.SmoothDamp(transform.position, target, ref currV, Time.deltaTime, moveSpeed);
         if(new Vector2(transform.position.x, transform.position.y) == target){
             if(Timer()) FindValidLocation();
         }
