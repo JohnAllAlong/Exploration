@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 20
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -102,8 +102,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 59
-        height: 62
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,8 +111,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 25ad81bc673550146a31c9216d4226c8
-      internalID: -195499436
+      spriteID: b9e798a5cb8717142b9149631738782e
+      internalID: 1772353728
       vertices: []
       indices: 
       edges: []
@@ -121,10 +121,10 @@ TextureImporter:
       name: Tony_EquipGun_1
       rect:
         serializedVersion: 2
-        x: 59
+        x: 64
         y: 0
-        width: 59
-        height: 62
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,8 +132,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cb8104c132da1a4438f2308fc82b98ec
-      internalID: 214378476
+      spriteID: 26579f413a5b3d747bf1e51305f73b0a
+      internalID: -1746346150
       vertices: []
       indices: 
       edges: []
@@ -142,10 +142,10 @@ TextureImporter:
       name: Tony_EquipGun_2
       rect:
         serializedVersion: 2
-        x: 118
+        x: 128
         y: 0
-        width: 59
-        height: 62
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,8 +153,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 77f60eeb31bff8b458e247055460b725
-      internalID: 78789084
+      spriteID: 88f6bc413999c7b438340c434a66d334
+      internalID: 1151231144
       vertices: []
       indices: 
       edges: []
@@ -170,9 +170,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Tony_EquipGun_0: -195499436
-      Tony_EquipGun_1: 214378476
-      Tony_EquipGun_2: 78789084
+      Tony_EquipGun_0: 1772353728
+      Tony_EquipGun_1: -1746346150
+      Tony_EquipGun_2: 1151231144
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
