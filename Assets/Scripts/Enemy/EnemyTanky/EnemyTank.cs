@@ -1,6 +1,8 @@
-public class EnemyOne : EnemyWander
-{   
+
+public class EnemyTank : EnemyWander
+{
     private EnemyChase enemyChaseScript;
+    public const float ENEMY_ID = 03;
 
     private protected void Awake(){
         GetTransforms();
