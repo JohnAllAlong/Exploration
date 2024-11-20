@@ -159,7 +159,7 @@ GameObject:
   - component: {fileID: 198847834576191459}
   m_Layer: 8
   m_Name: EnemyFast
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -252,9 +252,10 @@ MonoBehaviour:
     m_Bits: 128
   chase: 0
   overrideChase: 0
-  distFromPlayer: 1.3
   playerPos: {fileID: 0}
   chaseSpeed: 4
+  enemyId: 0
+  isAlive: 0
 --- !u!114 &8232881777666373758
 MonoBehaviour:
   m_ObjectHideFlags: 0

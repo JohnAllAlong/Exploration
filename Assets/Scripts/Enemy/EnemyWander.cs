@@ -11,7 +11,7 @@ public class EnemyWander : MonoBehaviour
     protected Vector2 yCords;
     protected Vector2 target;
     protected Vector2 currV;
-    protected Transform enemySprite, enemyWeapon; 
+    protected Transform enemySprite, enemyWeapon;
 
     protected void GetTransforms(){
         enemySprite = GetComponent<Transform>();

@@ -13,7 +13,6 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
 using Saveables;
-using Saving;
 
 namespace Saveables
 {
@@ -29,6 +28,9 @@ namespace Saveables
         {
             typeof(SaveableVector3),
             typeof(SaveableQuaternion),
+            typeof(SaveableGameProgression),
+            typeof(SaveableEnemies),
+            typeof(SaveableEnemies[]),
             typeof(string),
             typeof(int),
             typeof(float),
@@ -39,6 +41,39 @@ namespace Saveables
     /* namespace for saveable unity datatypes 
      all saveable types must be added here to save properly
      */
+
+
+    public struct SaveableGameProgression
+    {
+        public bool tutorialCompleted;
+        public string lastSavedLevel;
+        public SaveableVector3 lastPlayerPosition;
+        public SaveableEnemies[] enemies;
+        
+        public SaveableGameProgression(bool tut, string clevel, SaveableVector3 lpp, SaveableEnemies[] enemies)
+        {
+            tutorialCompleted = tut;
+            lastSavedLevel = clevel;
+            lastPlayerPosition = lpp;
+            this.enemies = enemies;
+        }
+    }
+
+    [Serializable]
+    public struct SaveableEnemies
+    {
+        public int enemyId;
+        public SaveableVector3 enemyPosition;
+        public bool isAlive;
+
+        public SaveableEnemies(int id, SaveableVector3 pos, bool alive)
+        {
+            enemyId = id;
+            enemyPosition = pos;
+            isAlive = alive;
+        }
+    }
+
 
     /// <summary>
     /// struct used to save Vectors
@@ -117,9 +152,9 @@ namespace Saveables
         /// </summary>
         /// <param name="rValue"></param>
         /// <returns></returns>
-        public static implicit operator UnityEngine.Vector2(SaveableVector3 rValue)
+        public static implicit operator UnityEngine.Vector2(SaveableVector3 vec)
         {
-            return new UnityEngine.Vector3(rValue.x, rValue.y, 0);
+            return new UnityEngine.Vector2(vec.x, vec.y);
         }
     }
 
