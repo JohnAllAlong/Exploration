@@ -66,6 +66,7 @@ public class DoorTest : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collider)
     {
+        if (!door.activeInHierarchy) return;
         if (collider.CompareTag("Player") && hasKey)
         {
             inRange = true;
@@ -78,6 +79,7 @@ public class DoorTest : MonoBehaviour
 
     public void OnTriggerExit2D(Collider2D collider)
     {
+        if (!door.activeInHierarchy) return;
         if (collider.CompareTag("Player"))
         {
             inRange = false;
