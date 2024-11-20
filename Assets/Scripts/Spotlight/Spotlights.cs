@@ -13,7 +13,7 @@ public class Spotlights : MonoBehaviour
         foreach(var r in results){
             if(r.collider!=null){
                 Debug.Log(r.collider.name);
-                r.collider.GetComponent<EnemyChase>().OverrideChaseState();
+                r.collider.GetComponent<EnemyChase>().OverrideChaseState(true);
             }
         }
     }
