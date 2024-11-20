@@ -11,7 +11,7 @@ public class EnemyWander : MonoBehaviour
     protected Vector2 yCords;
     protected Vector2 target;
     protected Vector2 currV;
-    protected Transform enemySprite, enemyWeapon; 
+    protected Transform enemySprite, enemyWeapon;
 
     protected void GetTransforms(){
         enemySprite = GetComponent<Transform>();
@@ -42,7 +42,7 @@ public class EnemyWander : MonoBehaviour
         target = new(Random.Range(line3.point.x, line4.point.x), 
                      Random.Range(line1.point.y, line2.point.y));
 
-        transform.rotation = target.x > transform.position.x ? new Quaternion(0, 0, 180f, 0): 
+        transform.rotation = target.x > transform.position.x ? new Quaternion(0, 180f, 0, 0): 
                                                                new Quaternion(0, 0, 0, 0);
     }
     
