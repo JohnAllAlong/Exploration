@@ -1034,6 +1034,7 @@ GameObject:
   - component: {fileID: 686703520}
   - component: {fileID: 686703521}
   - component: {fileID: 686703522}
+  - component: {fileID: 686703523}
   m_Layer: 7
   m_Name: PlayerLight
   m_TagString: Untagged
@@ -1116,6 +1117,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 84eae8d96583c53408fb3a5101f17885, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _light: {fileID: 686703521}
+  _TransitionTime: 5
+  _minRadius: 0.2
+  _maxRadius: 3
+  radiusCached: 0
+  radius: 0
+  wantedRadius: 0
+--- !u!114 &686703523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 686703519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c50b79e7536ff2469934bed1e012e26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _light: {fileID: 686703521}
@@ -3401,6 +3421,7 @@ MonoBehaviour:
   _playerMove: {fileID: 1513824408}
   _goGoGadgetGun: {fileID: 1513824409}
   _collectibleController: {fileID: 1775465276}
+  _flipper: {fileID: 1954462901}
 --- !u!114 &1513824408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3414,8 +3435,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 6
-  _flipped: 0
-  _flipper: {fileID: 1954462901}
 --- !u!114 &1513824409
 MonoBehaviour:
   m_ObjectHideFlags: 0
