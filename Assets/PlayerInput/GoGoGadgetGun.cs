@@ -22,20 +22,21 @@ public class GoGoGadgetGun : MonoBehaviour
         bullet.transform.up = -((Vector2)transform.position - mousePos);
 
         // make bullet g o
-        bulletRB.AddRelativeForce(bullet.transform.up * _bulletSpeed);
-
-        //bulletRB.AddForce(-((Vector2)transform.position - mousePos) * _bulletSpeed, ForceMode2D.Impulse);
-
-        
+        bulletRB.AddRelativeForce(bullet.transform.up * _bulletSpeed);        
     }
 
     public void VecGamepadAim(Values input)
     {
-        _GamepadBulletDir = -((Vector2)transform.position - input.vector);
+        _GamepadBulletDir = ((Vector2)transform.position - input.vector);
     }
 
     public void OnceBtnGamepadFire(Values input)
-    { 
+    {
+        GameObject bullet = Instantiate(_bullet, transform.position, Quaternion.identity);
+        Rigidbody2D bulletRB = bullet.GetComponent<Rigidbody2D>();
 
+        bullet.transform.up = _GamepadBulletDir;
+
+        bulletRB.AddRelativeForce(bullet.transform.up * _bulletSpeed);
     }
 }

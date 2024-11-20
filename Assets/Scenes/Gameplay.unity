@@ -1979,9 +1979,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 241da26fa4f88ea40bcecc9f8d53a017, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilemap1: {fileID: 2130627124}
-  tilemap2: {fileID: 0}
-  tileToDraw: {fileID: 11400000, guid: 814c51116c54ed34186dcb8e0a5f9197, type: 2}
 --- !u!1001 &691831246
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3220,6 +3217,10 @@ PrefabInstance:
     - target: {fileID: 2374088708961990443, guid: 408bde33ebe66424583ece411ce5c1fb, type: 3}
       propertyPath: m_SortingOrder
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5405598162309182471, guid: 408bde33ebe66424583ece411ce5c1fb, type: 3}
+      propertyPath: _moveSpeed
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8534787742090680248, guid: 408bde33ebe66424583ece411ce5c1fb, type: 3}
       propertyPath: m_Name
