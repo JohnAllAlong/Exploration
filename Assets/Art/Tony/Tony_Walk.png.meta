@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -102,8 +102,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 59
-        height: 62
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,8 +111,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1fc76fe0b3c191942afe36a1bba682ae
-      internalID: -1801058105
+      spriteID: db1646816b0c9c14bbc92c39ae58cba5
+      internalID: -1578784238
       vertices: []
       indices: 
       edges: []
@@ -121,10 +121,10 @@ TextureImporter:
       name: Tony_Walk_1
       rect:
         serializedVersion: 2
-        x: 59
+        x: 64
         y: 0
-        width: 59
-        height: 62
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,8 +132,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b35ae6ed7c351de4dabad6cff60ca41f
-      internalID: -888919394
+      spriteID: 501e34bfc7ce0c542a090d810cb0d6ba
+      internalID: 2077557055
       vertices: []
       indices: 
       edges: []
@@ -149,8 +149,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Tony_Walk_0: -1801058105
-      Tony_Walk_1: -888919394
+      Tony_Walk_0: -1578784238
+      Tony_Walk_1: 2077557055
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
