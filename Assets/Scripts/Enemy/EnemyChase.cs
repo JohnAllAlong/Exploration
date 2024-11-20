@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyChase : MonoBehaviour
@@ -10,7 +9,7 @@ public class EnemyChase : MonoBehaviour
     [SerializeField] protected float distFromPlayer;
     [SerializeField] protected Transform playerPos;
     [SerializeField] protected float chaseSpeed;
-    
+
     protected float timer;
     protected Color col;
     protected RaycastHit2D alertRange;
