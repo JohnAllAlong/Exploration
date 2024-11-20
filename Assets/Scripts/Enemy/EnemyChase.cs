@@ -1,3 +1,4 @@
+using UnityEditor.Rendering.Universal.ShaderGUI;
 using UnityEngine;
 
 public class EnemyChase : MonoBehaviour
@@ -8,12 +9,13 @@ public class EnemyChase : MonoBehaviour
     [SerializeField] protected bool chase, overrideChase;
     [SerializeField] protected Transform playerPos;
     [SerializeField] protected float chaseSpeed;
-    protected float distFromPlayer;
+    protected float distFromPlayer, target;
     private EnemyanimatorController EAC;
     protected float timer;
     protected Color col;
     protected RaycastHit2D alertRange;
     protected Vector2 currV;
+    protected bool backUp = false;
 
     private void Awake(){
         overrideChase = false;
@@ -37,7 +39,7 @@ public class EnemyChase : MonoBehaviour
         
         if(!overrideChase){    
             if(alertRange.collider!=null){
-                CountDownToChase();
+                chase = CountDownToChase();
             }else{
                 timer = 0;
                 chase = false;
@@ -47,22 +49,24 @@ public class EnemyChase : MonoBehaviour
         }
     }
 
-    public void CountDownToChase(){
+    public bool CountDownToChase(){
         timer+=Time.deltaTime;
         if(timer > delay){
-            chase = true;
+            
+            return true;
         }
+        return false;
     }
 
     public void Chase(){
         PlayerDetected();
-        float target;
 
         transform.rotation = playerPos.position.x > transform.position.x ? new Quaternion(0, 180f, 0, 0) : 
                                                                         new Quaternion(0, 0, 0, 0);
 
         if(!overrideChase){
             distFromPlayer = alertRadius <= 1 ? 0.8f : 0.3f+(0.5f*alertRadius);
+
             if(Vector2.Distance(transform.position, playerPos.position) <  1.5f){
                 target = alertRange.point.x < transform.position.x ? alertRange.point.x + distFromPlayer: 
                                                                  alertRange.point.x - distFromPlayer;
@@ -78,7 +82,7 @@ public class EnemyChase : MonoBehaviour
                 EAC.playAlert();
             }
             target = playerPos.position.x;
-        }      
+        }     
 
         transform.position = Vector2.SmoothDamp(
                                                 transform.position, 
@@ -86,6 +90,7 @@ public class EnemyChase : MonoBehaviour
                                                 ref currV, Time.deltaTime, chaseSpeed
                                                 );
     }
+
 
     //Visualizes circle cast
     protected void OnDrawGizmos(){
