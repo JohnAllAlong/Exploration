@@ -171,13 +171,18 @@ MonoBehaviour:
     - {fileID: 1522640093, guid: 26c82965c16a5c04bbd8829d95f00c5f, type: 3}
     - {fileID: -246489545, guid: 26c82965c16a5c04bbd8829d95f00c5f, type: 3}
     - {fileID: -1476946630, guid: 26c82965c16a5c04bbd8829d95f00c5f, type: 3}
+    - {fileID: 1522640093, guid: 26c82965c16a5c04bbd8829d95f00c5f, type: 3}
+    - {fileID: 1522640093, guid: 26c82965c16a5c04bbd8829d95f00c5f, type: 3}
+    - {fileID: 1522640093, guid: 26c82965c16a5c04bbd8829d95f00c5f, type: 3}
+    - {fileID: 1522640093, guid: 26c82965c16a5c04bbd8829d95f00c5f, type: 3}
+    - {fileID: 1522640093, guid: 26c82965c16a5c04bbd8829d95f00c5f, type: 3}
     m_GameObject: {fileID: 0}
     m_MinAnimationSpeed: 1
     m_MaxAnimationSpeed: 1
-    m_PerlinScale: 0.372
+    m_PerlinScale: 0.925
     m_Output: 1
     m_ColliderType: 1
-    m_RandomTransform: 1
+    m_RandomTransform: 5
     m_Neighbors: 010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
     m_NeighborPositions:
     - {x: 2, y: 0, z: 0}
