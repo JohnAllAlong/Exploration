@@ -16,4 +16,9 @@ public class PlayerMove : MonoBehaviour
     {
         _rb.velocity = input.vector * _moveSpeed;
     }
+
+    public void VecMovementCancled(Values _)
+    {
+        _rb.velocity = Vector2.zero;
+    }
 }

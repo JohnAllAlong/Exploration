@@ -102,7 +102,8 @@ public class InputHandler : CustomInputEventManager
         CustomInputEvent gamepadMove = new()
         {
             actionName = "GamepadMove",
-            performed = _playerMove.VecGamepadMove
+            performed = _playerMove.VecGamepadMove,
+            canceled = _playerMove.VecMovementCancled
         };
         gamepadEvents.Add(gamepadMove);
 
@@ -196,7 +197,8 @@ public class InputHandler : CustomInputEventManager
         CustomInputEvent keyboardMove = new()
         {
             actionName = "KeyboardMove",
-            performed = _playerMove.VecKeyboardMove
+            performed = _playerMove.VecKeyboardMove,
+            canceled = _playerMove.VecMovementCancled
         };
         keyboardEvents.Add(keyboardMove);
 
