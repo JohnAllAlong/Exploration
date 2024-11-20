@@ -12,10 +12,6 @@ public class EnemyWander : MonoBehaviour
     protected Vector2 target;
     protected Vector2 currV;
     protected Transform enemySprite, enemyWeapon;
-    public int enemyId;
-
-    //please link this to death when its added santiago - aiden
-    public bool isAlive; //true if alive false if dead
 
     protected void GetTransforms(){
         enemySprite = GetComponent<Transform>();
