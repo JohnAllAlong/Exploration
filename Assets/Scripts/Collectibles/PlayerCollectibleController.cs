@@ -14,7 +14,6 @@ public class PlayerCollectibleController : MonoBehaviour
     [SerializeField] private Collectible _nearest;
     [SerializeField] private List<Collectible> _nearby = new();
     [SerializeField] private int _maxSlots = 4;
-    [SerializeField] private int _selctedSlot = 0;
 
     [SerializeField] private LineRenderer _lineRenderer;
     [SerializeField] private Transform _playerTransform;
@@ -100,25 +99,19 @@ public class PlayerCollectibleController : MonoBehaviour
     //input handlers
     //gamepad/keyboard
 
+    //TODO make new script for these
+
     public void OnceVecScrollInventory(Values input)
     {
-        _selctedSlot += (int)input.vector.x;
-        int maxIdx = _maxSlots - 1;
-        //limit so max slots going left
-        if (_selctedSlot < 0)
-            _selctedSlot = maxIdx;
-
-        //limit so max slots going right
-        if (_selctedSlot > maxIdx)
-            _selctedSlot = 0;
-
-        OnInventorySelection(_selctedSlot);
+        //OnInventorySelection(_selctedSlot);
     }
 
     public void OnceBtnPickupItem(Values _)
     {
+        return;
+        /*
         if (_nearest == null) return;
-
+        
         if (_inventory.Count != _maxSlots)
         {
             //check if slot is the same slot
@@ -157,11 +150,14 @@ public class PlayerCollectibleController : MonoBehaviour
                 return;
             }
         }
+        */
     }
 
     public void OnceBtnDropItem(Values _)
     {
-        DropCollectible(_inventory.Find(c => c.collectibleRID == slots[_selctedSlot].occupation.collectibleRID));
+        /*
+           DropCollectible(_inventory.Find(c => c.collectibleRID == slots[_selctedSlot].occupation.collectibleRID));  
+         */
     }
 
 
