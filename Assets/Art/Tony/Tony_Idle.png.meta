@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 20
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -102,8 +102,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 59
-        height: 62
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,8 +111,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6a63194250397994ea091297789fa72f
-      internalID: -86222774
+      spriteID: aab16afa02c03bf47924e6d44981bc3c
+      internalID: -1736019523
       vertices: []
       indices: 
       edges: []
@@ -121,10 +121,10 @@ TextureImporter:
       name: Tony_Idle_1
       rect:
         serializedVersion: 2
-        x: 59
+        x: 64
         y: 0
-        width: 59
-        height: 62
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,8 +132,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b245a26425a590b49948ea742ec6b051
-      internalID: 256111906
+      spriteID: 8a002ccfce2a32e4f97c385290efef90
+      internalID: -201608314
       vertices: []
       indices: 
       edges: []
@@ -142,10 +142,10 @@ TextureImporter:
       name: Tony_Idle_2
       rect:
         serializedVersion: 2
-        x: 118
+        x: 128
         y: 0
-        width: 59
-        height: 62
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,8 +153,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 50e78187e92245345a2f21b88ba64009
-      internalID: -1279558714
+      spriteID: 309c8b2428cf9234d864439a3eaab503
+      internalID: 890311455
       vertices: []
       indices: 
       edges: []
@@ -170,9 +170,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Tony_Idle_0: -86222774
-      Tony_Idle_1: 256111906
-      Tony_Idle_2: -1279558714
+      Tony_Idle_0: -1736019523
+      Tony_Idle_1: -201608314
+      Tony_Idle_2: 890311455
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

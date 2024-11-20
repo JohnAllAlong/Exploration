@@ -36,7 +36,22 @@ public class DamageApplier : MonoBehaviour
             if (damageable != null)
             {
                 damageable.TakeDamage(damage);
-                Destroy(this.gameObject);
+                //For projectiles.
+                //Destroy(this.gameObject);
+            }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (targetTag == null || collision.gameObject.CompareTag(targetTag))
+        {
+            Damageable damageable = collision.gameObject.GetComponentInChildren<Damageable>();
+            if (damageable != null)
+            {
+                damageable.TakeDamage(damage);
+                //For projectiles.
+                //Destroy(this.gameObject);
             }
         }
     }

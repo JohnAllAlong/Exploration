@@ -29,7 +29,6 @@ namespace Saveables
         {
             typeof(SaveableVector3),
             typeof(SaveableQuaternion),
-            typeof(SaveData.Data),
             typeof(string),
             typeof(int),
             typeof(float),
