@@ -41,8 +41,11 @@ public class SpiderWebBehaviour : MonoBehaviour
     {
         if (victim != null)
         {
+            
+
             if (isTrapped)
             {
+                springy.connectedAnchor = victim.transform.position - transform.position;
                 PlayerTrapped();
                 //StretchWeb();
             }
