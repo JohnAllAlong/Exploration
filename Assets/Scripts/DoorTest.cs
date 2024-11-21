@@ -32,14 +32,18 @@ public class DoorTest : MonoBehaviour
 
     public void OpenDoor(Values input)
     {
-        if (!hasKey) return;
+        if (!door.activeInHierarchy || !hasKey) return;
         cc.UseCollectable(1);
         door.SetActive(false);
         enabled = false;
+        lineRenderer.enabled = false;
+        doorText.text = "";
     }
 
     private void Update()
     {
+        if (!door.activeInHierarchy) return;
+
         //check each frame if the player has the key
         if (cc.HasCollectable(1) && !hasKey)
         {
@@ -62,6 +66,7 @@ public class DoorTest : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collider)
     {
+        if (!door.activeInHierarchy) return;
         if (collider.CompareTag("Player") && hasKey)
         {
             inRange = true;
@@ -74,6 +79,7 @@ public class DoorTest : MonoBehaviour
 
     public void OnTriggerExit2D(Collider2D collider)
     {
+        if (!door.activeInHierarchy) return;
         if (collider.CompareTag("Player"))
         {
             inRange = false;

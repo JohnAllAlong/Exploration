@@ -1,4 +1,4 @@
-using Unity.VisualScripting;
+using UnityEditor.Rendering.Universal.ShaderGUI;
 using UnityEngine;
 
 public class EnemyChase : MonoBehaviour
@@ -7,29 +7,36 @@ public class EnemyChase : MonoBehaviour
     [SerializeField] protected float alertRadius, delay;
     [SerializeField] protected LayerMask _enemyMask;
     [SerializeField] protected bool chase, overrideChase;
-    [SerializeField] protected float distFromPlayer;
     [SerializeField] protected Transform playerPos;
     [SerializeField] protected float chaseSpeed;
+    protected float distFromPlayer, target;
+    private EnemyanimatorController EAC;
+    public int enemyId;
+
+    //please link this to death when its added santiago - aiden
+    public bool isAlive = true; //true if alive false if dead
     
     protected float timer;
     protected Color col;
     protected RaycastHit2D alertRange;
     protected Vector2 currV;
-
-    
+    protected bool backUp = false;
 
     private void Awake(){
         overrideChase = false;
-        if (playerPos == null){
+        if(playerPos == null){
             playerPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         }
+
+        //easy anti cheat?!?!?!!? no way?!?!?!?
+        EAC = GetComponentInChildren<EnemyanimatorController>();
     }
 
     public bool GetChaseState(){
         return chase;
     }
 
-    public void OverrideChaseState(bool state = true){
+    public void OverrideChaseState(bool state){
         overrideChase = state;
     }
     
@@ -39,7 +46,7 @@ public class EnemyChase : MonoBehaviour
         
         if(!overrideChase){    
             if(alertRange.collider!=null){
-                CountDownToChase();
+                chase = CountDownToChase();
             }else{
                 timer = 0;
                 chase = false;
@@ -49,31 +56,40 @@ public class EnemyChase : MonoBehaviour
         }
     }
 
-    public void CountDownToChase(){
+    public bool CountDownToChase(){
         timer+=Time.deltaTime;
         if(timer > delay){
-            chase = true;
+            
+            return true;
         }
+        return false;
     }
 
     public void Chase(){
         PlayerDetected();
-        float target;
 
-        transform.rotation = alertRange.point.x > transform.position.x ? new Quaternion(0, 0, 180f, 0) : 
+        transform.rotation = playerPos.position.x > transform.position.x ? new Quaternion(0, 180f, 0, 0) : 
                                                                         new Quaternion(0, 0, 0, 0);
 
         if(!overrideChase){
-            target = alertRange.point.x < transform.position.x ? alertRange.point.x + distFromPlayer: 
+            distFromPlayer = alertRadius <= 1 ? 0.8f : 0.3f+(0.5f*alertRadius);
+
+            if(Vector2.Distance(transform.position, playerPos.position) <  1.5f){
+                target = alertRange.point.x < transform.position.x ? alertRange.point.x + distFromPlayer: 
                                                                  alertRange.point.x - distFromPlayer;
+            }else{
+                EAC.playAlert();
+                target = alertRange.point.x;
+            }
+            
         }else{
             if(Vector2.Distance(transform.position, playerPos.position) < 2){
                 overrideChase = false;
+            }else{
+                EAC.playAlert();
             }
-            Debug.Log("over");
-            target = alertRange.point.x < transform.position.x ? playerPos.position.x + distFromPlayer: 
-                                                                 playerPos.position.x - distFromPlayer;
-        }
+            target = playerPos.position.x;
+        }     
 
         transform.position = Vector2.SmoothDamp(
                                                 transform.position, 
@@ -81,6 +97,7 @@ public class EnemyChase : MonoBehaviour
                                                 ref currV, Time.deltaTime, chaseSpeed
                                                 );
     }
+
 
     //Visualizes circle cast
     protected void OnDrawGizmos(){
