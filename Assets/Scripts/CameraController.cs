@@ -5,16 +5,16 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public CinemachineVirtualCamera leapfrogCam1;
-    public CinemachineVirtualCamera leapfrogCam2;
-    public CinemachineVirtualCamera followCam;
+    public CinemachineVirtualCamera closeFollowCam;
+    public CinemachineVirtualCamera farFollowCam;
+    public CinemachineVirtualCamera bigRoomCam;
 
     private CinemachineVirtualCamera currentCam;
 
     // Start is called before the first frame update
     void Start()
     {
-        currentCam = leapfrogCam1;
+        currentCam = closeFollowCam;
     }
 
     // Update is called once per frame
@@ -23,40 +23,30 @@ public class CameraController : MonoBehaviour
         
     }
 
-    public void RelocateCamera(Vector3 newPosition)
+    public void EnableRoomCamera(Vector3 newPosition)
     {
-        if (currentCam == leapfrogCam1)
-        {
-            currentCam = leapfrogCam2;
-            leapfrogCam1.transform.position = new Vector3(newPosition.x, newPosition.y, newPosition.z - 10);
-            leapfrogCam2.gameObject.SetActive(false);
-            leapfrogCam1.gameObject.SetActive(true);
-        }
-        else if (currentCam == leapfrogCam2)
-        {
-            currentCam = leapfrogCam1;
-            leapfrogCam2.transform.position = new Vector3(newPosition.x, newPosition.y, newPosition.z - 10);
-            leapfrogCam1.gameObject.SetActive(false);
-            leapfrogCam2.gameObject.SetActive(true);
-        }
+        bigRoomCam.transform.position = new Vector3(newPosition.x, newPosition.y, newPosition.z - 10);
+        SetActiveCamera(bigRoomCam);
     }
 
-    public void SetFollowCamera(bool follow)
+    public void EnableCloseFollowCamera()
     {
-        if (follow) 
-        { 
-            followCam.gameObject.SetActive(true);
-            leapfrogCam1.gameObject.SetActive(false);
-            leapfrogCam2.gameObject.SetActive(false);
-        }
-        else
-        {
-            followCam.gameObject.SetActive(false);
-        }
+        SetActiveCamera(closeFollowCam);
     }
 
-    public void SetCameraPriority()
+    public void EnableFarFollowCamera()
     {
+        SetActiveCamera(farFollowCam);
+    }
 
+    public void SetActiveCamera(CinemachineVirtualCamera activeCam)
+    {
+        closeFollowCam.gameObject.SetActive(false);
+        farFollowCam.gameObject.SetActive(false);
+        bigRoomCam.gameObject.SetActive(false);
+
+        activeCam.gameObject.SetActive(true);
+
+        currentCam = activeCam;
     }
 }
