@@ -3,6 +3,7 @@ using CustomInput.Events;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 
 public class InputHandler : CustomInputEventManager
@@ -11,6 +12,7 @@ public class InputHandler : CustomInputEventManager
     [SerializeField] private PlayerMove _playerMove;
     [SerializeField] private GoGoGadgetGun _goGoGadgetGun;
     [SerializeField] private PlayerCollectibleController _collectibleController;
+    [SerializeField] private PlayerFlip _flipper;
     public static System.Action<Values> OnceBtnOnInteractionUse;
 
     protected void OnEnable()
@@ -171,6 +173,17 @@ public class InputHandler : CustomInputEventManager
         };
         gamepadEvents.Add(GamepadUseItem);
 
+        CustomInputEvent GamepadLeftRight = new()
+        {
+            actionName = "GamepadLR",
+            performed = _flipper.OnceVecLeftRight,
+            modifier = new()
+            {
+                once = true
+            }
+        };
+        gamepadEvents.Add(GamepadLeftRight);
+
         AddCustomInputEvents(gamepadEvents, this);
         Debugger.Print($"<color=#03d7fc>[InputHandler]</color>\n<color=#aaff00>Loaded gamepad events!</color>");
     }
@@ -247,6 +260,17 @@ public class InputHandler : CustomInputEventManager
             }
         };
         keyboardEvents.Add(KeyboardUseItem);
+
+        CustomInputEvent KeyboardLeftRight = new()
+        {
+            actionName = "KeyboardLR",
+            performed = _flipper.OnceVecLeftRight,
+            modifier = new()
+            {
+                once = true
+            }
+        };
+        keyboardEvents.Add(KeyboardLeftRight);
 
         AddCustomInputEvents(keyboardEvents, this);
         Debugger.Print($"<color=#03d7fc>[InputHandler]</color>\n<color=#aaff00>Loaded keyboard events!</color>");

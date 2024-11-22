@@ -1,8 +1,29 @@
+using CustomInput.Events;
 using UnityEngine;
 
 public class PlayerFlip : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer _player;
+    [SerializeField] private Vector2 _currentDirection;
+
+    public void OnceVecLeftRight(Values input)
+    {
+        if (input.vector == Vector2.left && input.vector != _currentDirection)
+        {
+            Flip(Vector2.left);
+        }
+
+        if (input.vector == Vector2.right && input.vector != _currentDirection)
+        {
+            Flip(Vector2.right);
+        }
+
+        _currentDirection = input.vector;
+    }
+
+
+
+
 
     /// <summary>
     /// Flips the player and all local transforms attached to PlayerFlip
