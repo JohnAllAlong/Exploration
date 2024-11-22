@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SimpleCollider : MonoBehaviour
+public class CameraCollider : MonoBehaviour
 {
     public CameraController camController;
     // Start is called before the first frame update
@@ -20,12 +20,7 @@ public class SimpleCollider : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Room"))
         {
-            camController.RelocateCamera(collision.gameObject.transform.position);
-            camController.SetFollowCamera(false);
-        }
-        else if (collision.gameObject.CompareTag("Hallway"))
-        {
-            camController.SetFollowCamera(true);
+            camController.EnableFarFollowCamera();
         }
     }
 
@@ -33,7 +28,7 @@ public class SimpleCollider : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Room"))
         {
-
+            camController.EnableCloseFollowCamera();
         }
     }
 }

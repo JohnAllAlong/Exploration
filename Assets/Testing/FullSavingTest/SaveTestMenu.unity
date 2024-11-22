@@ -752,11 +752,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hasCompletedTutorial: 0
   _playerLoadPosition: {x: 0, y: 0}
-  _enemyLoadPositions: []
+  _enemies: []
   _firstLevel: SaveTestLevel
   _levelLoadList:
   - SaveTestLevel2
+  _currentLevel: 
   _loadedFromSave: 0
+  _loadFromSave: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
