@@ -51,7 +51,7 @@ public class EnemyChase : MonoBehaviour
         // Used to control the current state of animations
         // There are two differenet animation controllers in every enemy so this one has to be specified
         if(EAC == null){
-            EAC = GetComponent<Transform>().GetChild(2).GetComponent<EnemyanimatorController>();
+            EAC = GetComponent<Transform>().GetChild(1).GetComponent<EnemyanimatorController>();
         }
     }
 
@@ -136,7 +136,7 @@ public class EnemyChase : MonoBehaviour
 
             // Adjusts the area where the enemy will stop in front of the player on the X axis
             // This ensures that it will always be stop 0.2 units away from the player
-            distFromPlayer = alertRadius <= 1 ? 0.8f : 0.3f+(0.5f*alertRadius);
+            distFromPlayer = alertRadius <= 1 ? 0.9f : 0.4f+(0.5f*alertRadius);
 
             /*
                 When the player is being chased, Enemy will at first head directly towards them
@@ -174,7 +174,7 @@ public class EnemyChase : MonoBehaviour
 
         // If the player has is within +-0.3 units of the player along the X axis
         // Returns 3 which is the attacking state in the animation controller
-        if(transform.position.x >= target-0.2f && target+0.2f >= transform.position.x) return 3;
+        if(Vector2.Distance(transform.position, new Vector2(target+0.2f, playerPos.position.y)) <  1f) return 3;
         
         // Returns 1, which is the Walking state in the animaiton controller
         return 1;

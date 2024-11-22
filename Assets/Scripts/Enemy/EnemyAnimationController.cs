@@ -15,7 +15,6 @@ public class EnemyanimatorController : MonoBehaviour
     }
 
     public void PlayState(int state){
-        Debug.Log(state + " Current State");
         animator.SetInteger("State", state);
     }
 }

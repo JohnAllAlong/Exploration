@@ -34,7 +34,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7277124306021827304}
-  - {fileID: 5564301902257627151}
   - {fileID: 4425461697577793761}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -57,7 +56,6 @@ MonoBehaviour:
     m_Bits: 128
   chase: 0
   overrideChase: 0
-  playerPos: {fileID: 0}
   chaseSpeed: 3
   EAC: {fileID: 0}
   enemyId: 0
@@ -79,6 +77,8 @@ MonoBehaviour:
     m_Bits: 64
   delay: 2
   moveSpeed: 2
+  isEnemyAlive: 1
+  EAC: {fileID: 0}
 --- !u!58 &8581626814887837442
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -169,10 +169,11 @@ Transform:
   m_GameObject: {fileID: 6154929693175946192}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -14.279999, y: -17.67, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 5564301902257627151}
   m_Father: {fileID: 7603274254796778424}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2179486995673747692
@@ -288,12 +289,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8981235141497148031}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7603274254796778424}
+  m_Father: {fileID: 7277124306021827304}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &96810193978058916
 SpriteRenderer:
