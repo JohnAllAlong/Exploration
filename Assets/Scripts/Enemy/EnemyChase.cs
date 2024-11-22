@@ -174,7 +174,7 @@ public class EnemyChase : MonoBehaviour
 
         // If the player has is within +-0.3 units of the player along the X axis
         // Returns 3 which is the attacking state in the animation controller
-        if(transform.position.x >= target-0.3f && target+0.3f >= transform.position.x) return 3;
+        if(transform.position.x >= target-0.2f && target+0.2f >= transform.position.x) return 3;
         
         // Returns 1, which is the Walking state in the animaiton controller
         return 1;
