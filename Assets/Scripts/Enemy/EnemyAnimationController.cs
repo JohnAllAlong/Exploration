@@ -2,13 +2,20 @@ using UnityEngine;
 
 public class EnemyanimatorController : MonoBehaviour
 {
-    private Animator animator;
+    [SerializeField] private Animator animator;
 
     protected void Awake(){
-        animator = GetComponentInChildren<Animator>();
+        if(animator == null){
+            animator = GetComponentInChildren<Animator>();
+        }    
     }
 
-    public void playAlert(){
+    public void PlayAlert(){
         animator.SetTrigger("Alert");
+    }
+
+    public void PlayState(int state){
+        Debug.Log(state + " Current State");
+        animator.SetInteger("State", state);
     }
 }
