@@ -114,7 +114,7 @@ GameObject:
   - component: {fileID: 4286805614896482589}
   - component: {fileID: 2051598574296280391}
   m_Layer: 0
-  m_Name: Dialogue Prefab
+  m_Name: Dialogue Position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -165,11 +165,10 @@ MonoBehaviour:
   - This is the first block :D
   - what the secondiii
   - what THE heck !!!!!!!!!
-  defaultPosition: {x: 0, y: 0}
   defaultSize: {x: 1600, y: 300}
+  defaultFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
   defaultFontSize: 80
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
-  defaultFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1001 &4910021002799064654
 PrefabInstance:
   m_ObjectHideFlags: 0
