@@ -13,6 +13,8 @@ public class ScrollingDialogue : MonoBehaviour
     [SerializeField] [Range(0f, 20f)] private float scrollSpeed;
     [SerializeField] [Range(0f, 10f)] private float delayBetweenDialogues;
 
+    [SerializeField] string[] dialogueText;
+
     private float currentTextTimer;
     private float currentDelayTimer;
     private List<string> dialogueTexts;
