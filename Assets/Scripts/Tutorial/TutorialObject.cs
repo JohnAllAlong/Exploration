@@ -10,7 +10,6 @@ public class TutorialObject : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("yeah");
         if(collision.gameObject.tag == _tagToCheckFor)
         {           
             // in this event, pass in the number of the tutorial phase
