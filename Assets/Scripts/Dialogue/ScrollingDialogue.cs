@@ -8,16 +8,18 @@ using UnityEngine.UI;
 /// </summary>
 public class ScrollingDialogue : MonoBehaviour
 {
-    [Header("Properties:")]
+    [Header("Speed Properties:")]
     [SerializeField] [Range(0f, 20f)] private float scrollSpeed;
     [SerializeField] [Range(0f, 10f)] private float delayBetweenDialogues;
 
+    [Header("Dialogues to Output:")]
     [SerializeField] string[] dialogueTexts;
-    [SerializeField] Vector2 defaultPosition;
+
+    [Header("Dialogue Text Properties:")]
     [SerializeField] Vector2 defaultSize;
+    [SerializeField] Font defaultFont;
     [SerializeField] int defaultFontSize;
     [SerializeField] Color defaultColor;
-    [SerializeField] Font defaultFont;
 
     private float currentTextTimer;
     private float currentDelayTimer;
@@ -48,17 +50,23 @@ public class ScrollingDialogue : MonoBehaviour
 
         //Create a dialogue object based on the number of string inputs from the dialogueTexts array. Each object will contain text which represent the dialogues, and added to the "dialogues" list.
         for (int i = 0; i < dialogueTexts.Length; i++) {
+
+            //Create object
             GameObject dialogueObject = new GameObject($"Dialogue[{i}]", typeof(RectTransform), typeof(Text));
+
+            //Set dialogue object properties
             dialogueObject.transform.SetParent(transform);
             dialogueObject.GetComponent<RectTransform>().sizeDelta = defaultSize;
             dialogueObject.transform.position = transform.position;
 
+            //Set the dialogue object's text properties
             dialogues.Add(dialogueObject.GetComponent<Text>());
             dialogues[i].fontSize = defaultFontSize;
             dialogues[i].font = defaultFont;
             dialogues[i].color = defaultColor;
             dialogues[i].alignment = TextAnchor.MiddleCenter;
 
+            //Copy the dialogues' texts to targetTexts string array
             targetTexts[i] = dialogueTexts[i];
         }
     }
