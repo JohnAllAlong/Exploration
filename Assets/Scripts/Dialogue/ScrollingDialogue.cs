@@ -27,6 +27,7 @@ public class ScrollingDialogue : MonoBehaviour
         dialogueTexts = new List<string>();
         dialogues = new List<Text>();
 
+        // Add each text child in the dialogue prefab to some list or something i don't know
         foreach (Text dialogue in transform.GetComponentsInChildren<Text>()) {
             dialogues.Add(dialogue);
             dialogueTexts.Add(dialogue.text);
@@ -36,20 +37,20 @@ public class ScrollingDialogue : MonoBehaviour
 
     private void Update() {
 
-            if (numActiveDialogues <= dialogues.Count) {
-                if (currentTextTimer < dialogueTexts[numActiveDialogues-1].Length) {
-                    currentTextTimer += Time.deltaTime * scrollSpeed;
+        if (numActiveDialogues <= dialogues.Count) {
+            if (currentTextTimer < dialogueTexts[numActiveDialogues-1].Length) {
+                currentTextTimer += Time.deltaTime * scrollSpeed;
 
-                    dialogues[numActiveDialogues-1].text = "";
-                    int numCharsToPrint = (int)Mathf.Floor(currentTextTimer);
+                dialogues[numActiveDialogues-1].text = "";
+                int numCharsToPrint = (int)Mathf.Floor(currentTextTimer);
 
-                    for (int chars = 0; chars < numCharsToPrint; chars++) {
-                        dialogues[numActiveDialogues-1].text += dialogueTexts[numActiveDialogues-1][chars];
-                    }   
-                } else {
-                    currentDelayTimer += Time.deltaTime;
-                }
+                for (int chars = 0; chars < numCharsToPrint; chars++) {
+                    dialogues[numActiveDialogues-1].text += dialogueTexts[numActiveDialogues-1][chars];
+                }   
+            } else {
+                currentDelayTimer += Time.deltaTime;
             }
+        }
 
         
         if (currentDelayTimer >= delayBetweenDialogues) {
