@@ -1,10 +1,18 @@
 using System.Linq.Expressions;
 using UnityEngine;
 
+/*
+    Base class for all enemies
+*/
 public class EnemyWander : MonoBehaviour
 {
+    [Header("Set to 'walls'")]
     [SerializeField] protected LayerMask _enemyMask;
+    
+    [Header("Delay Before moving again")]
     [SerializeField] protected float delay;
+
+    [Header("Enemy Wander move speed")]
     [SerializeField] protected float moveSpeed;
     protected float timer;
     protected RaycastHit2D line1, line2, line3, line4;
@@ -13,10 +21,12 @@ public class EnemyWander : MonoBehaviour
     protected Vector2 currV;
     protected Transform enemySprite, enemyWeapon;
 
+    // Gets transform for rotating it to avoid using more sprites
     protected void GetTransforms(){
         enemySprite = GetComponent<Transform>();
     }
 
+    // Simple Timer that returns true when delay has been Reached
     protected bool Timer(){
         timer+=Time.deltaTime;
         if(timer > delay){
@@ -25,13 +35,26 @@ public class EnemyWander : MonoBehaviour
         } else return false;
     }
 
-    protected void Move(){ 
+    // Moves the player to targetted position
+    protected int Move(){
         transform.position = Vector2.SmoothDamp(transform.position, target, ref currV, Time.deltaTime, moveSpeed);
+
+        transform.rotation = target.x > transform.position.x ? new Quaternion(0, 180f, 0, 0): 
+                                                               new Quaternion(0, 0, 0, 0);
+        // Once the enemy has reached the Targetted position 
+        // They will remain there until the timer has been run and cleared
         if(new Vector2(transform.position.x, transform.position.y) == target){
             if(Timer()) FindValidLocation();
+            
+            // Returns 0 Which is idle state for animation controller
+            return 0;
         }
+
+        // Returns 1 which is walking state for animation controller
+        return 1;
     }
 
+    // Casts 4 raycast in 4 different directions to find dimansions of room to select a valid target position
     protected void FindValidLocation(){
   
         line1 = Physics2D.Raycast(transform.position, Vector2.up, Mathf.Infinity ,_enemyMask);
@@ -39,13 +62,12 @@ public class EnemyWander : MonoBehaviour
         line3 = Physics2D.Raycast(transform.position, Vector2.left, Mathf.Infinity ,_enemyMask);
         line4 = Physics2D.Raycast(transform.position, Vector2.right, Mathf.Infinity ,_enemyMask);
         
+        // Sets target location
         target = new(Random.Range(line3.point.x, line4.point.x), 
                      Random.Range(line1.point.y, line2.point.y));
-
-        transform.rotation = target.x > transform.position.x ? new Quaternion(0, 180f, 0, 0): 
-                                                               new Quaternion(0, 0, 0, 0);
     }
     
+    // Finds a new valid loocation to travel to  if enemy collides with a wall
     protected void OnCollisionStay2D(Collision2D collision){
         if(collision.transform.name == "Walls"){
            FindValidLocation();
