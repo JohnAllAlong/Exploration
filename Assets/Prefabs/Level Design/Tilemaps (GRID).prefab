@@ -539,7 +539,7 @@ GameObject:
   - component: {fileID: 40153522595586793}
   - component: {fileID: 5155834989064960943}
   m_Layer: 0
-  m_Name: Tilemaps
+  m_Name: Tilemaps (GRID)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
