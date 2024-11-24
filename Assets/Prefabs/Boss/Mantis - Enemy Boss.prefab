@@ -121,6 +121,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 483260940570048276}
+  - component: {fileID: 1254405331520056044}
+  - component: {fileID: 2218668887614599269}
   m_Layer: 0
   m_Name: Mantis - Enemy Boss
   m_TagString: Untagged
@@ -145,6 +147,42 @@ Transform:
   - {fileID: 833955405604642338}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1254405331520056044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2274779515923240607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b78c68290eee46788832a31cd6cbc141, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Maxhealth: 50
+  health: 0
+  maxCooldownTime: 1
+  onHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &2218668887614599269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2274779515923240607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2baffad02d65b64ca652c60e67ed8c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifetime: 0
+  damage: 1
+  targetTag: Player
 --- !u!1 &6576219781521004820
 GameObject:
   m_ObjectHideFlags: 0

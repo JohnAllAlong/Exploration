@@ -156,6 +156,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Maxhealth: 3
+  health: 0
+  maxCooldownTime: 1
   onHealthChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -174,7 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2baffad02d65b64ca652c60e67ed8c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifetime: 3
+  lifetime: 0
   damage: 1
   targetTag: Player
 --- !u!1 &6154929693175946192
