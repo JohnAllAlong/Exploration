@@ -122,6 +122,26 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &347427399 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2274779515923240607, guid: dc786c5fc107a4f4f8ebadca650fc529, type: 3}
+  m_PrefabInstance: {fileID: 2051852664}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &347427405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347427399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6cd9bbaac3e04c4092ee197534b9c67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  areaAttackPrefab: {fileID: 3844195926359479173, guid: b141407cc60c86f41a2d2e68af88c09f, type: 3}
+  attackSpeed: 0.1
+  destroyAttackTime: 1
 --- !u!1 &348603489
 GameObject:
   m_ObjectHideFlags: 0
@@ -505,18 +525,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mantis - Enemy Boss
       objectReference: {fileID: 0}
-    - target: {fileID: 7245691430452638428, guid: dc786c5fc107a4f4f8ebadca650fc529, type: 3}
-      propertyPath: movementSpeed
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8705093932591461342, guid: dc786c5fc107a4f4f8ebadca650fc529, type: 3}
-      propertyPath: attackingRange
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2274779515923240607, guid: dc786c5fc107a4f4f8ebadca650fc529, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 347427405}
   m_SourcePrefab: {fileID: 100100000, guid: dc786c5fc107a4f4f8ebadca650fc529, type: 3}
 --- !u!1 &2130627121
 GameObject:
