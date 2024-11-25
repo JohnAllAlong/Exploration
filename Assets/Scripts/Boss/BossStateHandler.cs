@@ -17,7 +17,7 @@ public class BossStateHandler : MonoBehaviour
     //Cache the player's Transform component
     protected Transform playerPos;
     
-    protected void OnEnable() {
+    protected virtual void OnEnable() {
         //Find the player on the scene, and get its Transform component
         playerPos = FindObjectOfType<PlayerMove>().GetComponent<Transform>();
         currentState = bossState.Chasing;
@@ -29,5 +29,12 @@ public class BossStateHandler : MonoBehaviour
         } else {
             currentState = bossState.Chasing;
         }
+        Debug.Log(currentState);
+    }
+
+    protected bossState RetrieveState() {
+        bossState theState = new bossState();
+        theState = currentState;
+        return theState;
     }
 }
