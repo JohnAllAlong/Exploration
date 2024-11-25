@@ -7,7 +7,12 @@ using UnityEngine.UI;
 public class Damageable : MonoBehaviour
 {
     [SerializeField] private float Maxhealth = 1f; // Maximum health.
+    [SerializeField]
     private float health; // Current health.
+
+    [SerializeField]
+    private float maxCooldownTime = 1.0f;
+    private float timeElapsed = 0.0f;
 
     // Events triggered on health change and death.
     public UnityEvent onHealthChanged = new UnityEvent();
@@ -25,15 +30,24 @@ public class Damageable : MonoBehaviour
     // Reduces health and updates the health bar.
     public void TakeDamage(int damage)
     {
-        health -= damage;
-       //healthBar.fillAmount = health / Maxhealth;
-        onHealthChanged?.Invoke();
-        print("damage taken "+gameObject.name);
-
-        if (health <= 0)
+        if (timeElapsed >= maxCooldownTime)
         {
-            Die();
+            health -= damage;
+            //healthBar.fillAmount = health / Maxhealth;
+            onHealthChanged?.Invoke();
+            print("damage taken " + gameObject.name);
+            timeElapsed = 0.0f;
+
+            if (health <= 0)
+            {
+                Die();
+            }
         }
+    }
+
+    public void Update()
+    {
+        timeElapsed += Time.deltaTime;
     }
 
     // Handles the entity's death.
