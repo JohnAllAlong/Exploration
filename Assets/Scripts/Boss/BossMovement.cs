@@ -1,9 +1,8 @@
 using UnityEngine;
 
-public class BossMovement : MonoBehaviour
+public class BossMovement : BossStateHandler
 {
     [SerializeField] private float movementSpeed;
-    [SerializeField] private float targetRangeY;
 
     //Cache the player's Transform component
     private Transform playerPos;

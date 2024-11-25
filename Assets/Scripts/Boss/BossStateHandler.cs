@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BossStateHandler : MonoBehaviour
 {
-    private enum bossState {
+    protected enum bossState {
         Chasing,
         Attacking1,
         Attacking2,
@@ -10,11 +10,9 @@ public class BossStateHandler : MonoBehaviour
         Death
     }
 
-    [SerializeField] private bossState currentState;
+    protected bossState currentState;
 
     private void OnEnable() {
         currentState = bossState.Chasing;
-    }   
-
-    
+    }
 }
