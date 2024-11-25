@@ -679,6 +679,10 @@ PrefabInstance:
       propertyPath: m_DynamicOccludee
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 946698728039652575, guid: a96c782f24e81614a98e9297c140a3dc, type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2912026449488368379, guid: a96c782f24e81614a98e9297c140a3dc, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -815,7 +819,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6559283345099461856, guid: dadff325635f6684c9e50c0043f631f7, type: 3}
   m_PrefabInstance: {fileID: 8226055295910270818}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8152340814906418893
+--- !u!114 &7928209288715181977
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
