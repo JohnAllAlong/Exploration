@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,6 +25,7 @@ public class TrapdoorTeleport : MonoBehaviour
 
     public void Update()
     {
+        Debug.Log(delayTimer);
         delayTimer += Time.deltaTime;
         if (delayTimer >= defaultTime)
         {
