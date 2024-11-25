@@ -122,6 +122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 483260940570048276}
   - component: {fileID: 7245691430452638428}
+  - component: {fileID: 8705093932591461342}
   m_Layer: 0
   m_Name: Mantis - Enemy Boss
   m_TagString: Untagged
@@ -160,6 +161,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 2
   targetRangeY: 0.8
+--- !u!114 &8705093932591461342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2274779515923240607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a505656148cf9748b143bfb900eb332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentState: 0
 --- !u!1 &6576219781521004820
 GameObject:
   m_ObjectHideFlags: 0
