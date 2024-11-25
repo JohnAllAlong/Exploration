@@ -9,7 +9,7 @@ public class TrapdoorTeleport : MonoBehaviour
     private static bool canTravel = true;
     private static bool interactWasPressed = false;
 
-    private static float defaultTime = 0.5f;
+    private static float defaultTime = 2.0f;
     private static float delayTimer;
 
     private void OnTriggerStay2D(Collider2D collision) //This should eventually get moved to the player input, under the generic Interact Unity Event
