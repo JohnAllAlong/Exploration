@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ed900592167771e44943311ac22a75e2
+guid: cc8bcd980337834499a653eb4c38b2f0
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 20
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 128
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BugGoo_0
+      name: EnemyAnt_Worker_BLACKDead_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,62 +111,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da31dac74ca93214cae9f4e18b26edd4
-      internalID: -182716807
+      spriteID: c3a2a4772f365264db7cb9f1dac331b8
+      internalID: 1867000754
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BugGoo_1
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: be91dcab51d0ef34bbde8226dabef0d8
-      internalID: -883997736
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BugGoo_2
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8368eb1937e80cc40b170d9762bdeea0
-      internalID: 1361040309
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BugGoo_3
+      name: EnemyAnt_Worker_BLACKDead_1
       rect:
         serializedVersion: 2
         x: 96
         y: 0
-        width: 32
-        height: 32
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,8 +132,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 90381f690f8f0e4438570f5ec1afc54e
-      internalID: 2069528134
+      spriteID: 445a6ae02d59bbd419338ca8a79884f5
+      internalID: -2019143927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnemyAnt_Worker_BLACKDead_2
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 903a9fd4b6acb5a48ad2429aef3eac14
+      internalID: 1145931816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnemyAnt_Worker_BLACKDead_3
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35d8bef4a5457fd458ad9ca6126172d0
+      internalID: 1750362813
       vertices: []
       indices: 
       edges: []
@@ -191,10 +191,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      BugGoo_0: -182716807
-      BugGoo_1: -883997736
-      BugGoo_2: 1361040309
-      BugGoo_3: 2069528134
+      EnemyAnt_Worker_BLACKDead_0: 1867000754
+      EnemyAnt_Worker_BLACKDead_1: -2019143927
+      EnemyAnt_Worker_BLACKDead_2: 1145931816
+      EnemyAnt_Worker_BLACKDead_3: 1750362813
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

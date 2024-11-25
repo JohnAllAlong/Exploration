@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 980c42250a2a0e240b34df044af1b16a
+guid: e0ba2309c48fa6a4da5e9558615c06c3
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,91 +97,175 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Particles_0
+      name: LaserBullet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.20211883, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 654557d5e64387941a3352455c2e3a4f
+      internalID: 986281688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserBullet_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.20211875, y: 0.49160886}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 640e1e6ee6618d1419643dabafb2a276
+      internalID: -471986361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserBullet_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.19372773, y: 0.4874134}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe671750098d1cb4788de24e5667ee0f
+      internalID: -2096606155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserBullet_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 64
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.19792318, y: 0.4958043}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 350b582f067b12442854611b1edc4195
+      internalID: 1909161908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserBullet_4
       rect:
         serializedVersion: 2
         x: 0
         y: 32
         width: 32
         height: 32
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 86ecb11ed08521848ba7a37bbfb1a389
-      internalID: 2098313502
+      spriteID: 6eadd5970df775b44a0c159833ebbc93
+      internalID: 1363999465
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Particles_1
+      name: LaserBullet_5
       rect:
         serializedVersion: 2
         x: 32
         y: 32
         width: 32
         height: 32
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0de3d5b1842256a48b679730b67880d7
-      internalID: -441706965
+      spriteID: ad3775324df4cd84d9db567b84038842
+      internalID: -936788033
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Particles_2
+      name: LaserBullet_6
       rect:
         serializedVersion: 2
         x: 64
         y: 32
         width: 32
         height: 32
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7342d109fe308b0448010f85a0453f18
-      internalID: 513140378
+      spriteID: 55a5707649747cb42b761c7da7a39d91
+      internalID: -1998101011
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Particles_3
+      name: LaserBullet_7
       rect:
         serializedVersion: 2
         x: 96
         y: 32
         width: 32
         height: 32
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 285431be37b920e448425b2c7ba8a877
-      internalID: -669158230
+      spriteID: 3ec15fa83497cc44cab7615baa26a614
+      internalID: -1923229358
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Particles_4
+      name: LaserBullet_8
       rect:
         serializedVersion: 2
         x: 0
@@ -195,14 +279,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 45bc3d26055e24c41a098943dc518bda
-      internalID: -807197908
+      spriteID: 23107485902c5c24cab84dff91b60938
+      internalID: 1733743766
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Particles_5
+      name: LaserBullet_9
       rect:
         serializedVersion: 2
         x: 32
@@ -216,14 +300,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1964a8583a375774a8baf42ec65365dc
-      internalID: -1849479792
+      spriteID: d835dc7a2c8930f4e831b6d7350ab783
+      internalID: -1262048450
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Particles_6
+      name: LaserBullet_10
       rect:
         serializedVersion: 2
         x: 64
@@ -237,14 +321,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4b2bd2086ba55504b8384c1ea5db3e2f
-      internalID: 64727991
+      spriteID: e14b4ea1e29114d4ab5a52b79d1b01b6
+      internalID: 1247246931
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Particles_7
+      name: LaserBullet_11
       rect:
         serializedVersion: 2
         x: 96
@@ -258,8 +342,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c4fd760b167227e43ab5a2241f541789
-      internalID: -83242365
+      spriteID: 0df25fcdcbda86248a03bd0186437e6b
+      internalID: 1647207916
       vertices: []
       indices: 
       edges: []
@@ -275,14 +359,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Particles_0: 2098313502
-      Particles_1: -441706965
-      Particles_2: 513140378
-      Particles_3: -669158230
-      Particles_4: -807197908
-      Particles_5: -1849479792
-      Particles_6: 64727991
-      Particles_7: -83242365
+      LaserBullet_0: 986281688
+      LaserBullet_1: -471986361
+      LaserBullet_10: 1247246931
+      LaserBullet_11: 1647207916
+      LaserBullet_2: -2096606155
+      LaserBullet_3: 1909161908
+      LaserBullet_4: 1363999465
+      LaserBullet_5: -936788033
+      LaserBullet_6: -1998101011
+      LaserBullet_7: -1923229358
+      LaserBullet_8: 1733743766
+      LaserBullet_9: -1262048450
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
