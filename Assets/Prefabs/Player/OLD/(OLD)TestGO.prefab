@@ -278,7 +278,7 @@ GameObject:
   - component: {fileID: 5775922353105444051}
   - component: {fileID: 5603312366193280279}
   m_Layer: 0
-  m_Name: TestGO
+  m_Name: (OLD)TestGO
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -293,7 +293,7 @@ Transform:
   m_GameObject: {fileID: 8534787742090680248}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.2099576, y: -0.3013399, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -342,7 +342,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 15
-  m_Sprite: {fileID: 21300000, guid: 72e91ce78f0be0246bef823ca9ee4fb7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d912927ae94ff384c9def50d89e3b1d4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -426,7 +426,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8886035bdbae76d45aa5a4b78a3adf4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camController: {fileID: 0}
 --- !u!114 &7298962699920527916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -477,7 +476,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.7, y: 3.64}
+    oldSize: {x: 4.5, y: 4.4}
     newSize: {x: 2.7, y: 3.64}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
