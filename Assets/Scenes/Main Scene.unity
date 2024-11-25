@@ -544,10 +544,6 @@ PrefabInstance:
       propertyPath: _slotsParent
       value: 
       objectReference: {fileID: 1075259274}
-    - target: {fileID: 988187765949767016, guid: 74f1562d79f9a164282f6ebfede13012, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4333843902148263952, guid: 74f1562d79f9a164282f6ebfede13012, type: 3}
       propertyPath: m_LocalPosition.x
       value: 211.18521
@@ -711,18 +707,6 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 1942517959}
-    - target: {fileID: 2544397904665860843, guid: 37c1e243da5b248469d29fb01e23707a, type: 3}
-      propertyPath: m_Lens.OrthographicSize
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 3805196935163608164, guid: 37c1e243da5b248469d29fb01e23707a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 204.17586
-      objectReference: {fileID: 0}
-    - target: {fileID: 3805196935163608164, guid: 37c1e243da5b248469d29fb01e23707a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 10.669132
-      objectReference: {fileID: 0}
     - target: {fileID: 4119444299896615454, guid: 37c1e243da5b248469d29fb01e23707a, type: 3}
       propertyPath: m_Name
       value: Camera and UI
@@ -731,14 +715,6 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 1942517959}
-    - target: {fileID: 7460086718086644935, guid: 37c1e243da5b248469d29fb01e23707a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 204.17586
-      objectReference: {fileID: 0}
-    - target: {fileID: 7460086718086644935, guid: 37c1e243da5b248469d29fb01e23707a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 10.669132
-      objectReference: {fileID: 0}
     - target: {fileID: 8983676513647091449, guid: 37c1e243da5b248469d29fb01e23707a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.0093584
