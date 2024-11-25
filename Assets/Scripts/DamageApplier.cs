@@ -9,8 +9,10 @@ public class DamageApplier : MonoBehaviour
     [SerializeField] private float lifetime = 0.0f;
     [SerializeField] private int damage = 1;
     [SerializeField] private string targetTag;
+    [SerializeField] private bool isProjectile = false;
     private float _endTime;
     private Collider2D _collider;
+
 
     void Start()
     {
@@ -21,7 +23,7 @@ public class DamageApplier : MonoBehaviour
 
     void Update()
     {
-          if (lifetime != 0 && Time.time > _endTime)
+          if (isProjectile && Time.time > _endTime)
         {
             Destroy(this.gameObject);
         }
@@ -35,8 +37,10 @@ public class DamageApplier : MonoBehaviour
             if (damageable != null)
             {
                 damageable.TakeDamage(damage);
-                //For projectiles.
-                //Destroy(this.gameObject);
+                if (isProjectile)
+                {
+                    Destroy(this.gameObject);
+                }
             }
         }
     }
@@ -49,8 +53,10 @@ public class DamageApplier : MonoBehaviour
             if (damageable != null)
             {
                 damageable.TakeDamage(damage);
-                //For projectiles.
-                //Destroy(this.gameObject);
+                if (isProjectile)
+                {
+                    Destroy(this.gameObject);
+                }
             }
         }
     }
