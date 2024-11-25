@@ -4,17 +4,9 @@ public class BossMovement : BossStateHandler
 {
     [SerializeField] private float movementSpeed;
 
-    //Cache the player's Transform component
-    private Transform playerPos;
-    
-    private void OnEnable() {
-        //Find the player on the scene, and get its Transform component
-        playerPos = FindObjectOfType<PlayerMove>().GetComponent<Transform>();
-    }
-
     private void FixedUpdate() {
         //If the player is in the scene
-        if (playerPos) {
+        if (playerPos && currentState == bossState.Chasing) {
             //If the player is on the above the Mantis, set the directionY to 1. Else if they are below, set to -1;
             int directionY = transform.position.y < playerPos.position.y ? 1 : -1;
 

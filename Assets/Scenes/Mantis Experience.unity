@@ -505,6 +505,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mantis - Enemy Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 7245691430452638428, guid: dc786c5fc107a4f4f8ebadca650fc529, type: 3}
+      propertyPath: movementSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8705093932591461342, guid: dc786c5fc107a4f4f8ebadca650fc529, type: 3}
+      propertyPath: attackingRange
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
