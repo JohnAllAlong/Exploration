@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 625035065031708421}
   - component: {fileID: 6534377842685189069}
   - component: {fileID: 1242723321840068483}
-  - component: {fileID: 4966505534281238619}
+  - component: {fileID: 7872848471978817424}
   m_Layer: 8
   m_Name: Weapon
   m_TagString: Untagged
@@ -131,7 +131,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &4966505534281238619
+--- !u!114 &7872848471978817424
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,9 +140,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4180463066735427630}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59c443f68fb933e4ba43b4cb2f98093f, type: 3}
+  m_Script: {fileID: 11500000, guid: a2baffad02d65b64ca652c60e67ed8c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 1
+  targetTag: Player
 --- !u!1 &4733892880471000787
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,10 +157,9 @@ GameObject:
   - component: {fileID: 3149712957342271107}
   - component: {fileID: 8232881777666373758}
   - component: {fileID: 2595015255177084748}
-  - component: {fileID: 2158844141953411769}
-  - component: {fileID: 7803441488192449041}
   - component: {fileID: 198847834576191459}
   - component: {fileID: 884946909754283401}
+  - component: {fileID: 5510384972270282937}
   m_Layer: 8
   m_Name: EnemyFast
   m_TagString: Enemy
@@ -206,7 +207,7 @@ MonoBehaviour:
   EAC: {fileID: 0}
   enemyId: 0
   isAlive: 0
-  moveDelay: 0
+  moveDelay: 1
 --- !u!114 &8232881777666373758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,7 +225,6 @@ MonoBehaviour:
     m_Bits: 64
   delay: 1
   moveSpeed: 3
-  distFromWall: 0
   isEnemyAlive: 1
   EAC: {fileID: 0}
 --- !u!114 &2595015255177084748
@@ -240,7 +240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Maxhealth: 5
-  health: 0
+  health: 10
   maxCooldownTime: 1
   onHealthChanged:
     m_PersistentCalls:
@@ -248,35 +248,6 @@ MonoBehaviour:
   onDeath:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &2158844141953411769
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4733892880471000787}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2baffad02d65b64ca652c60e67ed8c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lifetime: 0
-  damage: 1
-  targetTag: Player
-  isProjectile: 0
---- !u!114 &7803441488192449041
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4733892880471000787}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc14f3f01b1e5fd488c5c97b4f2b2a06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 10
 --- !u!50 &198847834576191459
 Rigidbody2D:
   serializedVersion: 4
@@ -305,6 +276,41 @@ Rigidbody2D:
   m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!70 &884946909754283401
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4733892880471000787}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.2}
+  m_Size: {x: 1.61, y: 0.8}
+  m_Direction: 1
+--- !u!70 &5510384972270282937
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -415,15 +421,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 1950519304, guid: 6819789b486b7164196ef13464a08dd8, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 4.8, y: 4.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &549257628137950478
@@ -449,7 +455,7 @@ Animator:
   m_GameObject: {fileID: 6349002054864811450}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: bfda45635cf8e654f8f64a4f9be82e7b, type: 2}
+  m_Controller: {fileID: 9100000, guid: 8c9a89d68c6a4b64583dc541f0376a48, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
