@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class CameraCollider : MonoBehaviour
 {
-    public CameraController camController;
+    private CameraController camController;
     // Start is called before the first frame update
     void Start()
     {
-        
+        camController = FindFirstObjectByType<CameraController>();
     }
 
     // Update is called once per frame
