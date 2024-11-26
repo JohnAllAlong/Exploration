@@ -154,11 +154,11 @@ GameObject:
   - component: {fileID: 2387388419047750649}
   - component: {fileID: 3149712957342271107}
   - component: {fileID: 8232881777666373758}
-  - component: {fileID: 198847834576191459}
   - component: {fileID: 2595015255177084748}
   - component: {fileID: 2158844141953411769}
-  - component: {fileID: 980708254535398633}
-  - component: {fileID: 2899827135647946351}
+  - component: {fileID: 7803441488192449041}
+  - component: {fileID: 198847834576191459}
+  - component: {fileID: 884946909754283401}
   m_Layer: 8
   m_Name: EnemyFast
   m_TagString: Enemy
@@ -227,33 +227,6 @@ MonoBehaviour:
   distFromWall: 0
   isEnemyAlive: 1
   EAC: {fileID: 0}
---- !u!50 &198847834576191459
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4733892880471000787}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!114 &2595015255177084748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,7 +264,7 @@ MonoBehaviour:
   damage: 1
   targetTag: Player
   isProjectile: 0
---- !u!114 &980708254535398633
+--- !u!114 &7803441488192449041
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -304,7 +277,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
---- !u!70 &2899827135647946351
+--- !u!50 &198847834576191459
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4733892880471000787}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!70 &884946909754283401
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
