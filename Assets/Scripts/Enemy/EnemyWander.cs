@@ -68,7 +68,6 @@ public class EnemyWander : MonoBehaviour
     
     // Finds a new valid loocation to travel to  if enemy collides with a wall
     protected void OnCollisionStay2D(Collision2D collision){
-        Debug.Log($"{transform.name} Has Hit a Wall");
         if(collision.collider.name == "Base Map"){
            FindValidLocation();
         }
