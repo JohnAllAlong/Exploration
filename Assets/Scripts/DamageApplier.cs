@@ -60,4 +60,20 @@ public class DamageApplier : MonoBehaviour
             }
         }
     }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Wall") && isProjectile)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Wall") && isProjectile)
+        {
+            Destroy(this.gameObject);
+        }
+    }
 }
