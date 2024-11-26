@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9063010127499115844}
   - component: {fileID: 7264616921163837523}
   - component: {fileID: 7563532538912415874}
-  - component: {fileID: 4076458423308063679}
+  - component: {fileID: 7974423386959666731}
   m_Layer: 8
   m_Name: Weapon
   m_TagString: Untagged
@@ -131,7 +131,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &4076458423308063679
+--- !u!114 &7974423386959666731
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,9 +140,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1135145004892446647}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59c443f68fb933e4ba43b4cb2f98093f, type: 3}
+  m_Script: {fileID: 11500000, guid: a2baffad02d65b64ca652c60e67ed8c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 1
+  targetTag: 
 --- !u!1 &2289109060410338021
 GameObject:
   m_ObjectHideFlags: 0
@@ -260,7 +262,7 @@ GameObject:
   - component: {fileID: 8896854105619143057}
   - component: {fileID: 3064900061025044876}
   - component: {fileID: 5450167577550608820}
-  - component: {fileID: 2993886820024849401}
+  - component: {fileID: 1257462789100785297}
   - component: {fileID: 4369958612708424901}
   - component: {fileID: 6152503282230906005}
   m_Layer: 8
@@ -278,7 +280,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3197040729240262931}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.257849, y: 32.14045, z: 0.11733274}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -330,7 +332,7 @@ MonoBehaviour:
   moveSpeed: 1
   isEnemyAlive: 1
   EAC: {fileID: 0}
---- !u!114 &2993886820024849401
+--- !u!114 &1257462789100785297
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -339,10 +341,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 3197040729240262931}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc14f3f01b1e5fd488c5c97b4f2b2a06, type: 3}
+  m_Script: {fileID: 11500000, guid: b78c68290eee46788832a31cd6cbc141, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 20
+  Maxhealth: 1
+  health: 10
+  maxCooldownTime: 1
+  onHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!50 &4369958612708424901
 Rigidbody2D:
   serializedVersion: 4
@@ -527,7 +537,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -2023926017, guid: 9b5682d1b5ffa694f8671b51e43e528e, type: 3}
   m_Color: {r: 0.07693553, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -535,7 +545,7 @@ SpriteRenderer:
   m_Size: {x: 4.8, y: 4.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &4614325058995947597
