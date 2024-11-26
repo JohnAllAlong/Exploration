@@ -6,6 +6,7 @@ using UnityEngine.UI;
 // Represents a damageable entity with health.
 public class Damageable : MonoBehaviour
 {
+    [Header("Enemy Health")]
     [SerializeField] private float Maxhealth = 1f; // Maximum health.
     [SerializeField]
     private float health; // Current health.
@@ -45,6 +46,10 @@ public class Damageable : MonoBehaviour
         }
     }
 
+    public float GetHP(){
+        return health;
+    }
+
     public void Update()
     {
         timeElapsed += Time.deltaTime;
@@ -54,6 +59,6 @@ public class Damageable : MonoBehaviour
     protected virtual void Die()
     {
         onDeath?.Invoke();
-        Destroy(this.gameObject);
+        //Destroy(this.gameObject);
     }
 }

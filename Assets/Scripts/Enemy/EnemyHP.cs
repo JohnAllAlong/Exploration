@@ -9,7 +9,7 @@ public class EnemyHP : MonoBehaviour
         return health;
     }
 
-    protected void TakeDamage(float damage){
+    public void TakeDamage(float damage){
         health-=damage;
     }
 }
