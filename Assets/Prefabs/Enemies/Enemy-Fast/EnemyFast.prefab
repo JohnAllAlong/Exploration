@@ -224,6 +224,7 @@ MonoBehaviour:
     m_Bits: 64
   delay: 1
   moveSpeed: 3
+  distFromWall: 0
   isEnemyAlive: 1
   EAC: {fileID: 0}
 --- !u!114 &2595015255177084748
