@@ -22,11 +22,19 @@ public class CameraCollider : MonoBehaviour
         {
             camController.EnableFarFollowCamera();
         }
+        else if(collision.gameObject.CompareTag("Big Room")) 
+        {
+            camController.EnableRoomCamera(collision.gameObject.transform.position);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Room"))
+        {
+            camController.EnableCloseFollowCamera();
+        }
+        else if (collision.gameObject.CompareTag("Big Room"))
         {
             camController.EnableCloseFollowCamera();
         }
