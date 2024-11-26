@@ -29,7 +29,7 @@ public class BossStateHandler : MonoBehaviour
         } else {
             currentState = bossState.Chasing;
         }
-        Debug.Log(currentState);
+        //Debug.Log(currentState);
     }
 
     protected bossState RetrieveState() {
