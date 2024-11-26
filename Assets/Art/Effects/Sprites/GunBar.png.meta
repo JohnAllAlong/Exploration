@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 00fbafcdf0f963f4b9c0083035ae8c62
+guid: 2d0ed9d00cccda54cba73d35148f28eb
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 20
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -97,13 +97,97 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: WorkerAnt_Attack_0
+      name: GunBar_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 128
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32cc00ee37e9ebb4c8438c3f55f09114
+      internalID: 729430365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GunBar_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 128
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96df9f61d7460cb43bd546f10adadbee
+      internalID: 2112893151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GunBar_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 128
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3604949cf7256cf46affbcd7a6ca9f91
+      internalID: -868139956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GunBar_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 128
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ceaae39cfaf0ab43b564e5f892effad
+      internalID: -1550869229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GunBar_4
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 96
-        height: 96
+        width: 128
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,50 +195,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 49397a40ab16f4046958de3e6d7f24ab
-      internalID: 1870474022
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WorkerAnt_Attack_1
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 96
-        height: 96
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 89ea7b526a54f5a4b98d106b3cebb7f4
-      internalID: 1992466490
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WorkerAnt_Attack_2
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 0
-        width: 96
-        height: 96
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 07f0366fc93e453409e2fdf8453e69ab
-      internalID: -1409353496
+      spriteID: 88e3b7adefdc11d4e81a4c6f755b7f7c
+      internalID: 1713609735
       vertices: []
       indices: 
       edges: []
@@ -170,9 +212,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      WorkerAnt_Attack_0: 1870474022
-      WorkerAnt_Attack_1: 1992466490
-      WorkerAnt_Attack_2: -1409353496
+      GunBar_0: 729430365
+      GunBar_1: 2112893151
+      GunBar_2: -868139956
+      GunBar_3: -1550869229
+      GunBar_4: 1713609735
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

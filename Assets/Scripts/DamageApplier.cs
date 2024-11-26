@@ -6,31 +6,30 @@ using UnityEngine;
 
 public class DamageApplier : MonoBehaviour
 {
-    [SerializeField] private float lifetime = 3f;
+    [SerializeField] private float lifetime = 0.0f;
     [SerializeField] private int damage = 1;
     [SerializeField] private string targetTag;
     private float _endTime;
-    private BoxCollider2D _boxCollider;
+    private Collider2D _collider;
 
     void Start()
     {
 
-        _boxCollider = GetComponent<BoxCollider2D>();
+        _collider = GetComponent<Collider2D>();
         _endTime = Time.time + lifetime;
     }
 
     void Update()
     {
-        /*For projectiles.
-         * if (Time.time > _endTime)
+          if (lifetime != 0 && Time.time > _endTime)
         {
             Destroy(this.gameObject);
-        }*/
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (targetTag == null || other.gameObject.CompareTag(targetTag))
+        if (other.gameObject.CompareTag(targetTag))
         {
             Damageable damageable = other.gameObject.GetComponentInChildren<Damageable>();
             if (damageable != null)
@@ -44,7 +43,7 @@ public class DamageApplier : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (targetTag == null || collision.gameObject.CompareTag(targetTag))
+        if (collision.gameObject.CompareTag(targetTag))
         {
             Damageable damageable = collision.gameObject.GetComponentInChildren<Damageable>();
             if (damageable != null)
