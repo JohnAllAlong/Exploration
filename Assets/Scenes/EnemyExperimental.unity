@@ -705,6 +705,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &955496794 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4733892880471000787, guid: d730d81135f62a24e83a1113e04e6914, type: 3}
+  m_PrefabInstance: {fileID: 6207588330616236275}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1341418394
 GameObject:
   m_ObjectHideFlags: 0
@@ -4571,7 +4576,7 @@ Transform:
   m_GameObject: {fileID: 1733157608}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.86, y: -18.19, z: 0}
+  m_LocalPosition: {x: -0.98, y: -17.763, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4700,14 +4705,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyBasic
       objectReference: {fileID: 0}
-    - target: {fileID: 7277124306021827304, guid: 308624632cbb73c4197f3cb793c231a5, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7277124306021827304, guid: 308624632cbb73c4197f3cb793c231a5, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7603274254796778424, guid: 308624632cbb73c4197f3cb793c231a5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 16.537848
@@ -4761,13 +4758,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2068593828}
     m_Modifications:
-    - target: {fileID: 1257133499283247611, guid: d730d81135f62a24e83a1113e04e6914, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.8
-      objectReference: {fileID: 0}
     - target: {fileID: 2387388419047750649, guid: d730d81135f62a24e83a1113e04e6914, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.2578485
+      value: 2.6278484
       objectReference: {fileID: 0}
     - target: {fileID: 2387388419047750649, guid: d730d81135f62a24e83a1113e04e6914, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4805,6 +4798,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3149712957342271107, guid: d730d81135f62a24e83a1113e04e6914, type: 3}
+      propertyPath: moveDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4644829579760803509, guid: d730d81135f62a24e83a1113e04e6914, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -2023926017, guid: 9b5682d1b5ffa694f8671b51e43e528e, type: 3}
+    - target: {fileID: 4644829579760803509, guid: d730d81135f62a24e83a1113e04e6914, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4733892880471000787, guid: d730d81135f62a24e83a1113e04e6914, type: 3}
       propertyPath: m_Name
       value: EnemyFast
@@ -4812,13 +4817,51 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4733892880471000787, guid: d730d81135f62a24e83a1113e04e6914, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7105794827385744521}
   m_SourcePrefab: {fileID: 100100000, guid: d730d81135f62a24e83a1113e04e6914, type: 3}
 --- !u!4 &7105794827385744516 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2387388419047750649, guid: d730d81135f62a24e83a1113e04e6914, type: 3}
   m_PrefabInstance: {fileID: 6207588330616236275}
   m_PrefabAsset: {fileID: 0}
+--- !u!70 &7105794827385744521
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 955496794}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.2}
+  m_Size: {x: 1.61, y: 0.8}
+  m_Direction: 1
 --- !u!1001 &7789591567979891623
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4830,10 +4873,6 @@ PrefabInstance:
     - target: {fileID: 3197040729240262931, guid: bc23a1e00bfd73e4a89d1ef2a29b3630, type: 3}
       propertyPath: m_Name
       value: EnemyTank
-      objectReference: {fileID: 0}
-    - target: {fileID: 5759339942511815028, guid: bc23a1e00bfd73e4a89d1ef2a29b3630, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8896854105619143057, guid: bc23a1e00bfd73e4a89d1ef2a29b3630, type: 3}
       propertyPath: m_LocalPosition.x
