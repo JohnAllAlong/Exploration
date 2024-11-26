@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Bullet
   - Big Room
+  - Wall
   layers:
   - Default
   - TransparentFX
