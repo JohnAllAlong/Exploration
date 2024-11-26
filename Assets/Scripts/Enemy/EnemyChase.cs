@@ -146,7 +146,7 @@ public class EnemyChase : MonoBehaviour
                 When getting within 1.5 units of the player the target position on the X axis will be adjusted to
                 Ensure the enemy is in front of the player and not overlapping them
             */
-            if(Vector2.Distance(transform.position, playerPos.position) <  1.5f){
+            if(Vector2.Distance(transform.position, playerPos.position) <  2f){
                 // Adusts targeted X axis
                 target = alertRange.point.x < transform.position.x ? alertRange.point.x + distFromPlayer: 
                                                                  alertRange.point.x - distFromPlayer;
