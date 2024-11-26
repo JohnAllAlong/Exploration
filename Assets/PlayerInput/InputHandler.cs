@@ -2,10 +2,9 @@ using CustomInput.Debug;
 using CustomInput.Events;
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
-
 
 public class InputHandler : CustomInputEventManager
 {
@@ -14,20 +13,24 @@ public class InputHandler : CustomInputEventManager
     [SerializeField] private GoGoGadgetGun _goGoGadgetGun;
     [SerializeField] private PlayerCollectibleController _collectibleController;
     [SerializeField] private PlayerFlip _flipper;
-    public static System.Action<Values> ContBtnOnItemUse = (i) => { };
-    public static System.Action<Values> ContBtnOnInteraction = (i) => { };
+    public Action<Values> ContBtnOnItemUse = (i) => { };
+    public Action<Values> ContBtnOnInteraction = (i) => { };
+    public static InputHandler singleton;
 
     protected void OnEnable()
     {
+        singleton = this;
         //set onDeviceChange
         InputSystem.onDeviceChange += OnDeviceChanged;
-
         //set OnAnyCustomInput
         OnAnyCustomInput += SwitchedInput;
 
         //set the launch input device
         currentDevice = GetNextAvailableInputDevice();
+    }
 
+    private void Awake()
+    {
         InitGamepadEvents();
         InitKeyboardEvents();
     }
@@ -36,7 +39,8 @@ public class InputHandler : CustomInputEventManager
     {
         //de-set onDeviceChange
         InputSystem.onDeviceChange -= OnDeviceChanged;
-
+        ContBtnOnItemUse -= (i) => { };
+        ContBtnOnInteraction -= (i) => { };
         //de-set OnAnyCustomInput
         OnAnyCustomInput -= SwitchedInput;
 
@@ -192,7 +196,6 @@ public class InputHandler : CustomInputEventManager
         {
             actionName = "GamepadInteraction",
             performed = ContBtnOnInteraction,
-            canceled = ContBtnOnInteraction,
             modifier = new()
             {
                 isButton = true,
@@ -293,7 +296,6 @@ public class InputHandler : CustomInputEventManager
         {
             actionName = "KeyboardInteraction",
             performed = ContBtnOnInteraction,
-            canceled = ContBtnOnInteraction,
             modifier = new()
             {
                 isButton = true,

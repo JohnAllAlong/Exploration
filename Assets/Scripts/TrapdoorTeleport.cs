@@ -1,55 +1,54 @@
 using CustomInput.Events;
 using UnityEngine;
+using UnityEngine.Windows;
 
 public class TrapdoorTeleport : MonoBehaviour
 {
     [SerializeField]
     private GameObject targetDoor;
-    private static bool canTravel = true;
-    private static bool interactWasPressed = false;
     [SerializeField]
-    private static float defaultTime = 2.0f;
-    [SerializeField]
-    private Timer interactionTimer;
+    private bool canTravel = false;
 
-    //all simple actions must be created in start
+    private Transform PlayerTransform => PlayerData.singleton.GetPlayerTransform();
+    private Timer PlayerTeleporterCooldown => PlayerData.singleton.GetPlayerTeleporterCooldownTimer();
+
+
     private void OnEnable()
     {
-        interactionTimer = new Timer(defaultTime).DestroyOnEnd(false);
-
-        InputHandler.ContBtnOnInteraction += UseTrapdoor;
+        InputHandler.singleton.ContBtnOnInteraction += UseTrapdoor;
     }
 
     private void OnDisable()
     {
-        InputHandler.ContBtnOnInteraction -= UseTrapdoor;
+        InputHandler.singleton.ContBtnOnInteraction -= UseTrapdoor;
     }
 
-    private void OnTriggerStay2D(Collider2D collision) //This should eventually get moved to the player input, under the generic Interact Unity Event
+    
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && canTravel && interactWasPressed)
-        {
-            collision.gameObject.transform.position = targetDoor.transform.position;
-            canTravel = false;
-        }
+        if (collision.CompareTag("Player"))
+            canTravel = true;
     }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+            canTravel = false;
+    }
+
 
     private void UseTrapdoor(Values input)
     {
-
-        if (input.pressed)
+        print(input.pressed + " " + canTravel);
+        if (input.pressed && canTravel)
         {
-            interactWasPressed = true;
-        }
-        if (!input.pressed)
-        {
-            interactWasPressed = false;
-        }
+            print(PlayerTeleporterCooldown.GetElapsedTime());
+            if (PlayerTeleporterCooldown.IsRunning()) return;
+            PlayerTeleporterCooldown.StartTimer();
 
-        //print(interactionTimer.GetElapsedTime());
-        if (interactionTimer.IsRunning()) return;
-        canTravel = true;
-        interactionTimer.StartTimer();
+            canTravel = false;
+            PlayerTransform.position = targetDoor.transform.position;
+        }
 
     }
     /*

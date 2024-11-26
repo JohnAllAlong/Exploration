@@ -125,7 +125,7 @@ Transform:
   m_GameObject: {fileID: 3688444119903178177}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.235, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -493,6 +493,7 @@ GameObject:
   - component: {fileID: 9211888785150070678}
   - component: {fileID: 2930885169671391476}
   - component: {fileID: 6707554557875511930}
+  - component: {fileID: 7857962907244387419}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -510,8 +511,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3639194645992619689}
   - {fileID: 9046364817340685611}
@@ -717,7 +718,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bullet: {fileID: 2509055158162251948, guid: dbb4740c9bfe4a843b52b6e3e70cf09a, type: 3}
-  _bulletSpeed: 250
+  _bulletSpeed: 350
 --- !u!114 &6707554557875511930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -739,3 +740,25 @@ MonoBehaviour:
   onDeath:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7857962907244387419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7593584462917522530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70578bb31baf48c45b851eb5152d851e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerTransform: {fileID: 4333843902148263952}
+  teleporterCooldown:
+    timerName: 
+    _timeElapsed: 0
+    _running: 0
+    _loop: 0
+    _countdown: 0
+    _destroyOnEnd: 0
+    _destroy: 0
+  teleporterCooldownTime: 2

@@ -89,6 +89,7 @@ public class Timers
 /// Creates a timer when constructed. Must be started with StartTimer()
 /// You can choose to identify a timer if needed, otherwise it will be anonymous
 /// </summary>
+[Serializable]
 public class Timer : Timers
 {
     public string timerName; //name
