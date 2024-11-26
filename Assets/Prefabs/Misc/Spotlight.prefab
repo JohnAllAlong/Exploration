@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 696906648960405360}
   - component: {fileID: 1900406307612665663}
   - component: {fileID: 1769917733460214176}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Spotlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}

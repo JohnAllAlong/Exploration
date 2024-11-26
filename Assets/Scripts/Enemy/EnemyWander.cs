@@ -1,4 +1,3 @@
-using System.Linq.Expressions;
 using UnityEngine;
 
 /*
@@ -14,6 +13,8 @@ public class EnemyWander : MonoBehaviour
 
     [Header("Enemy Wander move speed")]
     [SerializeField] protected float moveSpeed;
+
+    [SerializeField] protected float distFromWall;
     protected float timer;
     protected RaycastHit2D line1, line2, line3, line4;
     protected Vector2 yCords;
@@ -63,13 +64,14 @@ public class EnemyWander : MonoBehaviour
         line4 = Physics2D.Raycast(transform.position, Vector2.right, Mathf.Infinity ,_enemyMask);
         
         // Sets target location
-        target = new(Random.Range(line3.point.x, line4.point.x), 
-                     Random.Range(line1.point.y, line2.point.y));
+        target = new(Random.Range(line3.point.x+distFromWall, line4.point.x-distFromWall), 
+                     Random.Range(line1.point.y+distFromWall, line2.point.y-distFromWall));
     }
     
     // Finds a new valid loocation to travel to  if enemy collides with a wall
     protected void OnCollisionStay2D(Collision2D collision){
-        if(collision.transform.name == "Walls"){
+        Debug.Log($"{transform.name} Has Hit a Wall");
+        if(collision.collider.name == "Base Map"){
            FindValidLocation();
         }
     }

@@ -178,6 +178,7 @@ MonoBehaviour:
   lifetime: 3
   damage: 1
   targetTag: Enemy
+  isProjectile: 1
 --- !u!1 &3964014420108447740
 GameObject:
   m_ObjectHideFlags: 0

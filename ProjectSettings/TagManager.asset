@@ -8,6 +8,7 @@ TagManager:
   - Hallway
   - Enemy
   - Bullet
+  - Big Room
   layers:
   - Default
   - TransparentFX
