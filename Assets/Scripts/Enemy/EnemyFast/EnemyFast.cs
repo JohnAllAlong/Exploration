@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class EnemyFast : EnemyWander
 {
-    private EnemyChase enemyChaseScript;
-    private EnemyHP EHP;
-
     [Header("Enemy Information")]
     public const float ENEMY_ID = 02;
     public bool isEnemyAlive = true;
+    
+    private EnemyChase enemyChaseScript;
+    private EnemyHP EHP;
 
     [Header("Animation Controller")]
     [SerializeField] private EnemyanimatorController EAC;
