@@ -154,7 +154,6 @@ GameObject:
   - component: {fileID: 2387388419047750649}
   - component: {fileID: 3149712957342271107}
   - component: {fileID: 8232881777666373758}
-  - component: {fileID: 8071371703821497745}
   - component: {fileID: 198847834576191459}
   m_Layer: 8
   m_Name: EnemyFast
@@ -203,6 +202,7 @@ MonoBehaviour:
   EAC: {fileID: 0}
   enemyId: 0
   isAlive: 0
+  moveDelay: 0
 --- !u!114 &8232881777666373758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,41 +222,6 @@ MonoBehaviour:
   moveSpeed: 3
   isEnemyAlive: 1
   EAC: {fileID: 0}
---- !u!58 &8071371703821497745
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4733892880471000787}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!50 &198847834576191459
 Rigidbody2D:
   serializedVersion: 4
@@ -439,7 +404,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5356768122360130254, guid: 9a4743e59ff7af54585c565814cfd566, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1
+      value: -0.8
       objectReference: {fileID: 0}
     - target: {fileID: 5356768122360130254, guid: 9a4743e59ff7af54585c565814cfd566, type: 3}
       propertyPath: m_LocalPosition.y

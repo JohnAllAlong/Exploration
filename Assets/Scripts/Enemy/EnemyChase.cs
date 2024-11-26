@@ -26,13 +26,16 @@ public class EnemyChase : MonoBehaviour
     [Header("Information for enemy tracking")]
     public int enemyId;
     public bool isAlive = true; //true if alive false if dead
+
+    [Header("Chase Delay")]
+    public float moveDelay;
     
     protected Transform playerPos;
-    protected float timer;
+    protected float timer, time;
     protected Color col;
     protected RaycastHit2D alertRange;
     protected Vector2 currV;
-    protected bool backUp = false;
+    protected bool disbaleMovement = false;
 
     /*
         Runs once on awake
@@ -167,17 +170,37 @@ public class EnemyChase : MonoBehaviour
             // Sets target to players position outside of the valid detection radius
             target = playerPos.position.x;
         }     
-
-        // Moves the enemy toowards the player
-        transform.position = Vector2.SmoothDamp(transform.position, new Vector2(target, playerPos.position.y),
-                                                ref currV, Time.deltaTime, chaseSpeed);
-
+        
+        if(!disbaleMovement){
+            // Moves the enemy towards the player
+            transform.position = Vector2.SmoothDamp(transform.position, new Vector2(target, playerPos.position.y),
+                                                        ref currV, Time.deltaTime, chaseSpeed);
+        }else{
+            return Timer();
+        }
+        
         // If the player has is within +-0.3 units of the player along the X axis
         // Returns 3 which is the attacking state in the animation controller
-        if(Vector2.Distance(transform.position, new Vector2(target+0.2f, playerPos.position.y)) <  1f) return 3;
+        if(Vector2.Distance(transform.position, new Vector2(target+0.2f, playerPos.position.y)) <  1f){
+            return 3;
+        }
         
         // Returns 1, which is the Walking state in the animaiton controller
         return 1;
+    }
+
+    protected void OnCollisionExit2D(Collision2D other){
+        disbaleMovement = true;
+    }
+
+    protected int Timer(){
+        time+=Time.deltaTime;
+        if(time>moveDelay){
+            time=0;
+            disbaleMovement = false;
+        }
+
+        return 0;
     }
 
     //Visualizes circle cast
