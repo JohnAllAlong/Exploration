@@ -71,7 +71,6 @@ public class BossStateHandler : MonoBehaviour
             if (currentState == bossState.Attacking1 && currentTimer >= 1f) {
                 Quaternion toPlayer = new Quaternion();
                 toPlayer = Quaternion.FromToRotation(Vector3.up, (playerPos.position - transform.position).normalized);
-                Debug.Log((playerPos.position - transform.position).normalized);
 
                 GameObject areaAttack = Instantiate(areaAttackPrefab, playerPos.position, toPlayer);
 
