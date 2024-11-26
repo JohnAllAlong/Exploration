@@ -1,6 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using CustomInput.Events;
 using UnityEngine;
 
 public class TrapdoorTeleport : MonoBehaviour
@@ -9,20 +7,52 @@ public class TrapdoorTeleport : MonoBehaviour
     private GameObject targetDoor;
     private static bool canTravel = true;
     private static bool interactWasPressed = false;
-
+    [SerializeField]
     private static float defaultTime = 2.0f;
-    private static float delayTimer;
+    [SerializeField]
+    private Timer interactionTimer;
+
+    //all simple actions must be created in start
+    private void OnEnable()
+    {
+        interactionTimer = new Timer(defaultTime).DestroyOnEnd(false);
+
+        InputHandler.ContBtnOnInteraction += UseTrapdoor;
+    }
+
+    private void OnDisable()
+    {
+        InputHandler.ContBtnOnInteraction -= UseTrapdoor;
+    }
 
     private void OnTriggerStay2D(Collider2D collision) //This should eventually get moved to the player input, under the generic Interact Unity Event
     {
         if (collision.gameObject.CompareTag("Player") && canTravel && interactWasPressed)
         {
             collision.gameObject.transform.position = targetDoor.transform.position;
-            delayTimer = 0;
             canTravel = false;
         }
     }
 
+    private void UseTrapdoor(Values input)
+    {
+
+        if (input.pressed)
+        {
+            interactWasPressed = true;
+        }
+        if (!input.pressed)
+        {
+            interactWasPressed = false;
+        }
+
+        //print(interactionTimer.GetElapsedTime());
+        if (interactionTimer.IsRunning()) return;
+        canTravel = true;
+        interactionTimer.StartTimer();
+
+    }
+    /*
     public void Update()
     {
         Debug.Log(delayTimer);
@@ -41,4 +71,5 @@ public class TrapdoorTeleport : MonoBehaviour
             interactWasPressed = false;
         }
     }
+    */
 }

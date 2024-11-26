@@ -120,12 +120,31 @@ public class Timer : Timers
     }
 
     /// <summary>
+    /// gets the time this timer is set to
+    /// </summary>
+    /// <returns>the time</returns>
+    public float GetTime()
+    {
+        return _time;
+    }
+
+    /// <summary>
+    /// gets the elapsed time
+    /// </summary>
+    /// <returns>elapsed time</returns>
+    public float GetElapsedTime()
+    {
+        return _timeElapsed;
+    }
+
+    /// <summary>
     /// ends the timer on end by "destroy"
     /// </summary>
     /// <param name="destroy">end on end?</param>
-    public void DestroyOnEnd(bool destroy)
+    public Timer DestroyOnEnd(bool destroy)
     {
         _destroyOnEnd = destroy;
+        return this;
     }
 
     /// <summary>

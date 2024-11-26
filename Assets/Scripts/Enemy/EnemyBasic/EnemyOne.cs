@@ -43,14 +43,14 @@ public class EnemyOne : EnemyWander
     protected void Act(){
         // Switches between chase state and wander state
         if(!enemyChaseScript.GetChaseState()){
-            Debug.Log("Enemy wander");
+            //Debug.Log("Enemy wander");
             // Moves player, and alse sets the current animation state
             EAC.PlayState(Move());
 
             // Runs player detection to see if player is in range
             enemyChaseScript.PlayerDetected();
         }else{
-            Debug.Log("enemy Chase");
+            //Debug.Log("enemy Chase");
             // Runs chase script
             EAC.PlayState(enemyChaseScript.Chase());
         }
