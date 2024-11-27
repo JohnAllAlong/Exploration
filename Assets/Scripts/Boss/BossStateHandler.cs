@@ -30,7 +30,7 @@ public class BossStateHandler : MonoBehaviour
     
     private float currentTimer;
 
-    protected virtual void OnEnable() {
+    protected virtual void Awake() {
         //Find the player on the scene, and get its Transform component
         playerPos = FindObjectOfType<PlayerMove>().GetComponent<Transform>();
         mantisAnimator = GetComponentInChildren<Animator>();
