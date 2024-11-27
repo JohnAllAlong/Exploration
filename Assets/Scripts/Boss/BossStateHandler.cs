@@ -2,12 +2,16 @@ using UnityEngine;
 
 public class BossStateHandler : MonoBehaviour
 {
-    [SerializeField] private float movementSpeed;
+    [SerializeField] private Vector2 movementSpeed;
     [SerializeField] private GameObject areaAttackPrefab;
     [SerializeField] private float attackSpeed;
     [SerializeField] private float destroyAttackTime;
 
     private float attackingRange = 3f;
+
+    [SerializeField] private float centerGizmoSize;
+    [SerializeField] private Vector3 mantisOffsetCenter;
+    [SerializeField] private Vector3 playerOffsetCenter;
 
     protected enum bossState {
         Patrolling,
@@ -70,9 +74,11 @@ public class BossStateHandler : MonoBehaviour
 
             if (currentState == bossState.Attacking1 && currentTimer >= 1f) {
                 Quaternion toPlayer = new Quaternion();
-                toPlayer = Quaternion.FromToRotation(Vector3.up, (playerPos.position - transform.position).normalized);
+                toPlayer = Quaternion.FromToRotation(Vector3.up, (playerPos.position + playerOffsetCenter - (transform.position + mantisOffsetCenter)).normalized);
+                Debug.Log(toPlayer.eulerAngles);
 
-                GameObject areaAttack = Instantiate(areaAttackPrefab, playerPos.position, toPlayer);
+
+                GameObject areaAttack = Instantiate(areaAttackPrefab, transform.position + mantisOffsetCenter, toPlayer*areaAttackPrefab.transform.rotation);
 
                 Destroy(areaAttack, destroyAttackTime);
                 currentTimer = 0f;
@@ -84,5 +90,13 @@ public class BossStateHandler : MonoBehaviour
         bossState theState = new bossState();
         theState = currentState;
         return theState;
+    }
+
+
+    private void OnDrawGizmos() {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position + mantisOffsetCenter, centerGizmoSize);
+
+        Gizmos.DrawWireSphere(playerPos.position + playerOffsetCenter, centerGizmoSize);
     }
 }

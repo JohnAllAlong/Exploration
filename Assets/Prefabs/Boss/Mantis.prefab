@@ -46,10 +46,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a505656148cf9748b143bfb900eb332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 3
+  movementSpeed: 1
   areaAttackPrefab: {fileID: 1807508928537114627, guid: 764701cd24022ab4eae117661db4fda4, type: 3}
   attackSpeed: 3
   destroyAttackTime: 1
+  centerGizmoSize: 0.44
+  offsetCenter: {x: 0.5, y: -2.19, z: 0}
 --- !u!1 &3962861172317806177
 GameObject:
   m_ObjectHideFlags: 0
@@ -61,6 +63,7 @@ GameObject:
   - component: {fileID: 5361333339370680569}
   - component: {fileID: 9138719747823651676}
   - component: {fileID: 9094183461853790891}
+  - component: {fileID: 6630496659874503753}
   m_Layer: 0
   m_Name: Art
   m_TagString: Untagged
@@ -156,6 +159,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6630496659874503753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3962861172317806177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 350f4e76b6e3c3c4f8b3ad03062c5aad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  yOffsetEffect: -1
+  effectLayerOrder: 20
 --- !u!1 &5567011173357851311
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,6 +237,6 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.13630982, y: -0.25}
-  m_Size: {x: 0.22738038, y: 0.5}
+  m_Offset: {x: -0.20446531, y: -0.25000006}
+  m_Size: {x: 0.09107021, y: 0.4999999}
   m_Direction: 0
