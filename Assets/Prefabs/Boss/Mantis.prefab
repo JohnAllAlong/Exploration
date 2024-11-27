@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 6630496659874503753}
   - component: {fileID: 8975073317257091744}
   - component: {fileID: 7109460210141392495}
+  - component: {fileID: 8597638298047882387}
   m_Layer: 0
   m_Name: Art
   m_TagString: Untagged
@@ -190,6 +191,20 @@ MonoBehaviour:
   centerGizmoSize: 0.44
   mantisOffsetCenter: {x: 0.38, y: -2.22, z: 0}
   playerOffsetCenter: {x: 0, y: -0.5, z: 0}
+--- !u!114 &8597638298047882387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3962861172317806177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d50809611eda8f4e853c5568f731f75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpDuration: 2
+  jumpPower: 5
 --- !u!1 &5567011173357851311
 GameObject:
   m_ObjectHideFlags: 0

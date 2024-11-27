@@ -72,7 +72,6 @@ public class BossStateHandler : MonoBehaviour
 
         if (currentTimer >= 1f) {
             ChooseRandomAttack();
-            Debug.Log(currentState);
             currentTimer = 0f;
         }
 
