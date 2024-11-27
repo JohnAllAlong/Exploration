@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class BossMovement : BossStateHandler
 {
+/*
     [SerializeField] private float movementSpeed;
 
     private void FixedUpdate() {
@@ -28,5 +29,6 @@ public class BossMovement : BossStateHandler
             }
         }
     }
+*/
 
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BossAreaAttack : BossStateHandler
 {
+/*
     [SerializeField] private GameObject areaAttackPrefab;
     [SerializeField] private float attackSpeed;
     [SerializeField] private float destroyAttackTime;
@@ -27,4 +28,5 @@ public class BossAreaAttack : BossStateHandler
             Destroy(areaAttack, destroyAttackTime);
         }
     }
+*/
 }
