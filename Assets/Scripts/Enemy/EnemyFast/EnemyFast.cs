@@ -3,7 +3,7 @@ using UnityEngine;
 public class EnemyFast : EnemyWander
 {
     [Header("Enemy Information")]
-    public const float ENEMY_ID = 02;
+    public const int ENEMY_ID = 02;
     public bool isEnemyAlive = true;
     
     private EnemyChase enemyChaseScript;
@@ -15,9 +15,9 @@ public class EnemyFast : EnemyWander
     protected void Awake(){
         // get enemy transfrom
         GetTransforms();
-
         // Sets chase script if not done so in editor
         if(enemyChaseScript ==null) enemyChaseScript = GetComponent<EnemyChase>();
+        enemyChaseScript.SetEnemy(ENEMY_ID);
 
         if(EHP ==null) EHP = GetComponent<Damageable>();
         
