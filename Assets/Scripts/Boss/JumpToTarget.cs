@@ -36,14 +36,13 @@ public class JumpToTarget : MonoBehaviour
 
     private void Update() {
         if (isJumping && currentTimer < jumpDuration) {
-            Debug.Log("JUMPING");
             currentTimer += Time.deltaTime;
-
             mantisPos.Translate(directionToTarget * jumpPower * Time.deltaTime);
+            
         } else if (isJumping && currentTimer >= jumpDuration) {
             isJumping = false;
             mantisAnimator.SetTrigger("Land");
-            Debug.Log("LANDED");
+            currentTimer = 0;
         }
     }
 
