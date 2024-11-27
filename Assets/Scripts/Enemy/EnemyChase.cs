@@ -153,7 +153,7 @@ public class EnemyChase : MonoBehaviour
                 case 2:
                     distFromPlayer = alertRadius <= 1 ? 0.6f : 0.1f+(0.5f*alertRadius);
                     yPos = playerPos.position.y-0.1f;
-                    dist = 1.6f;
+                    dist = 1.5f;
 
                     break;
                 case 3:
