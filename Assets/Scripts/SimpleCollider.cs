@@ -5,7 +5,8 @@ using UnityEngine.Events;
 
 public class SimpleCollider : MonoBehaviour
 {
-    public UnityEvent triggerEvent = new UnityEvent();
+    public UnityEvent enterTriggerEvent = new UnityEvent();
+    public UnityEvent exitTriggerEvent = new UnityEvent();
     [SerializeField]
     private string tagToCompare = null;
 
@@ -25,7 +26,15 @@ public class SimpleCollider : MonoBehaviour
     {
         if (collision.gameObject.CompareTag(tagToCompare))
         {
-            triggerEvent.Invoke();
+            enterTriggerEvent.Invoke();
+        }
+    }
+
+    public void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag(tagToCompare))
+        {
+            exitTriggerEvent.Invoke();
         }
     }
 }
