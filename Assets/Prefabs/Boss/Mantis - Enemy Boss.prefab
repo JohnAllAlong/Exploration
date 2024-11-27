@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7392150039887482616}
   - component: {fileID: 8497889243272339860}
   m_Layer: 0
-  m_Name: Art
+  m_Name: Mantis - Art
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -123,6 +123,7 @@ GameObject:
   - component: {fileID: 483260940570048276}
   - component: {fileID: 7245691430452638428}
   - component: {fileID: 8705093932591461342}
+  - component: {fileID: 4951502149109111327}
   m_Layer: 0
   m_Name: Mantis - Enemy Boss
   m_TagString: Untagged
@@ -154,12 +155,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2274779515923240607}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 98d6e620609a23f49a3358f3b1c31885, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 3
+  areaAttackPrefab: {fileID: 0}
+  attackSpeed: 0
+  destroyAttackTime: 0
 --- !u!114 &8705093932591461342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,6 +176,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a505656148cf9748b143bfb900eb332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementSpeed: 3
+  areaAttackPrefab: {fileID: 3844195926359479173, guid: b141407cc60c86f41a2d2e68af88c09f, type: 3}
+  attackSpeed: 1
+  destroyAttackTime: 1
+--- !u!114 &4951502149109111327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2274779515923240607}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6cd9bbaac3e04c4092ee197534b9c67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 0
+  areaAttackPrefab: {fileID: 3844195926359479173, guid: b141407cc60c86f41a2d2e68af88c09f, type: 3}
+  attackSpeed: 1
+  destroyAttackTime: 1
 --- !u!1 &6576219781521004820
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,9 +206,10 @@ GameObject:
   m_Component:
   - component: {fileID: 833955405604642338}
   - component: {fileID: 2125667761889682771}
-  m_Layer: 0
-  m_Name: Collider
-  m_TagString: Untagged
+  - component: {fileID: 2858502401706880304}
+  m_Layer: 8
+  m_Name: Mantis - Collider
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -249,3 +274,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.2038422, y: 0.42373276}
   m_EdgeRadius: 0
+--- !u!114 &2858502401706880304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6576219781521004820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b78c68290eee46788832a31cd6cbc141, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Maxhealth: 15
+  health: 15
+  maxCooldownTime: 1
+  onHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []
