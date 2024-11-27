@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bace28ba0f148044caddf5f5916ca2f2
+guid: d3e84f7e0782acf439d3b57d5d5d2bcf
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Tony_Walk_0
+      name: Tony_Death_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
-        height: 64
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,20 +111,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: db1646816b0c9c14bbc92c39ae58cba5
-      internalID: -1578784238
+      spriteID: 33a7ed891d848df48830b0b6da560556
+      internalID: -154576029
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tony_Walk_1
+      name: Tony_Death_1
       rect:
         serializedVersion: 2
-        x: 64
+        x: 96
         y: 0
-        width: 64
-        height: 64
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,8 +132,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 501e34bfc7ce0c542a090d810cb0d6ba
-      internalID: 2077557055
+      spriteID: dbec02cfb397a7545b1abaf2d06eaf69
+      internalID: 646757454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tony_Death_2
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d6e2a5a8a8e25e4eb3c4a7340979d1f
+      internalID: -335170469
       vertices: []
       indices: 
       edges: []
@@ -149,8 +170,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Tony_Walk_0: -1578784238
-      Tony_Walk_1: 2077557055
+      Tony_Death_0: -154576029
+      Tony_Death_1: 646757454
+      Tony_Death_2: -335170469
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

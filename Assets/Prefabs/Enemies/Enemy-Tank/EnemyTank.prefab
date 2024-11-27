@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7563532538912415874}
   - component: {fileID: 7974423386959666731}
   - component: {fileID: 8817895497608760358}
+  - component: {fileID: 9185471950193972080}
   m_Layer: 8
   m_Name: Weapon
   m_TagString: Untagged
@@ -160,6 +161,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   targetTag: 
+--- !u!114 &9185471950193972080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1135145004892446647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2baffad02d65b64ca652c60e67ed8c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  targetTag: 
 --- !u!1 &2289109060410338021
 GameObject:
   m_ObjectHideFlags: 0
@@ -277,6 +292,7 @@ GameObject:
   - component: {fileID: 8896854105619143057}
   - component: {fileID: 3064900061025044876}
   - component: {fileID: 5450167577550608820}
+  - component: {fileID: 4663774719421738056}
   - component: {fileID: 1368121786530175224}
   - component: {fileID: 1257462789100785297}
   - component: {fileID: 4369958612708424901}
@@ -348,6 +364,27 @@ MonoBehaviour:
   moveSpeed: 1
   isEnemyAlive: 1
   EAC: {fileID: 0}
+--- !u!114 &4663774719421738056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3197040729240262931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b78c68290eee46788832a31cd6cbc141, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Maxhealth: 1
+  health: 10
+  maxCooldownTime: 1
+  onHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1368121786530175224
 MonoBehaviour:
   m_ObjectHideFlags: 0
