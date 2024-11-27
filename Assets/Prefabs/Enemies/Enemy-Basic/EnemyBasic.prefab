@@ -465,6 +465,7 @@ GameObject:
   - component: {fileID: 5331602238664306196}
   - component: {fileID: 8449832202463134355}
   - component: {fileID: 8579881017528660550}
+  - component: {fileID: 1377370592550055988}
   m_Layer: 8
   m_Name: Weapon
   m_TagString: Untagged
@@ -599,6 +600,20 @@ MonoBehaviour:
   damage: 1
   targetTag: 
 --- !u!114 &8579881017528660550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8981235141497148031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2baffad02d65b64ca652c60e67ed8c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  targetTag: 
+--- !u!114 &1377370592550055988
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
