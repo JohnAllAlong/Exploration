@@ -10,13 +10,19 @@ public class SceneStateManager : MonoBehaviour
     public float timeScale = 1.0f;//For testing only, so we can fast forward
     public static bool gameIsPaused;
     public static bool playerLost;
+    public static bool isGod;
     private UIManager uiManager;
+
+    [SerializeField]
+    private CapsuleCollider2D tonyBones;
 
     public void Start()
     {
         uiManager = GetComponent<UIManager>();
         playerLost = false;
+        isGod = false;
         ResumeGame();
+        
     }
 
     public void Update()
@@ -47,6 +53,10 @@ public class SceneStateManager : MonoBehaviour
                 ResumeGame();
             }
         }
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            GodMode();
+        }
     }
     public void EnterMainScene()
     {
@@ -68,5 +78,18 @@ public class SceneStateManager : MonoBehaviour
     {
         gameIsPaused = false;
         Time.timeScale = 1;
+    }
+
+    public void GodMode()
+    {
+        isGod = !isGod;
+        if (isGod)
+        {
+            tonyBones.enabled = false;
+        }
+        else
+        {
+            tonyBones.enabled = true;
+        }
     }
 }
