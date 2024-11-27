@@ -122,11 +122,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &84616148 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 772662638819609651, guid: dcabebb164ca46d4ab7d3a615650db91, type: 3}
-  m_PrefabInstance: {fileID: 3151637739882169784}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &348603489
 GameObject:
   m_ObjectHideFlags: 0
@@ -7812,17 +7807,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 249936107637354087, guid: dcabebb164ca46d4ab7d3a615650db91, type: 3}
-      propertyPath: areaAttackPrefab
-      value: 
-      objectReference: {fileID: 84616148}
-    - target: {fileID: 772662638819609651, guid: dcabebb164ca46d4ab7d3a615650db91, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1849865266281422116, guid: dcabebb164ca46d4ab7d3a615650db91, type: 3}
       propertyPath: m_Name
-      value: Manty
+      value: Mantis
       objectReference: {fileID: 0}
     - target: {fileID: 5951112543580151612, guid: dcabebb164ca46d4ab7d3a615650db91, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7864,10 +7851,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6992400135808174130, guid: dcabebb164ca46d4ab7d3a615650db91, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: f1fb51e06ac6ba3449250bd6a3487912, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
