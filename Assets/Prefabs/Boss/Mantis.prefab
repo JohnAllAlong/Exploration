@@ -172,6 +172,10 @@ MonoBehaviour:
   bookPrefab: {fileID: 8530818421645737552, guid: bc95295d4f237e14f9d8f285d6bbe661, type: 3}
   bookOffset: {x: 0.96, y: 1.71, z: 0}
   bookGizmoSize: 0.19
+  centerGizmoSize: 1
+  aimArrowPrefab: {fileID: 1807508928537114627, guid: 764701cd24022ab4eae117661db4fda4, type: 3}
+  playerOffsetCenter: {x: 0, y: -0.5, z: 0}
+  mantisOffsetCenter: {x: 0.38, y: -2.22, z: 0}
 --- !u!114 &7109460210141392495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,8 +207,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d50809611eda8f4e853c5568f731f75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpDuration: 2
-  jumpPower: 5
+  jumpDuration: 1
+  jumpPower: 10
 --- !u!1 &5567011173357851311
 GameObject:
   m_ObjectHideFlags: 0

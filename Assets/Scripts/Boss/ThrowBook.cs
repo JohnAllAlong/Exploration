@@ -3,9 +3,17 @@ using UnityEngine;
 
 public class ThrowBook : MonoBehaviour
 {
-    [SerializeField] GameObject bookPrefab;
-    [SerializeField] Vector3 bookOffset;
-    [SerializeField] float bookGizmoSize;
+    [SerializeField] private GameObject bookPrefab;
+    [SerializeField] private Vector3 bookOffset;
+    [SerializeField] private float bookGizmoSize;
+    [SerializeField] private float centerGizmoSize;
+    
+    
+    [SerializeField] private GameObject aimArrowPrefab;
+    [SerializeField] private Vector3 playerOffsetCenter;
+    [SerializeField] private Vector3 mantisOffsetCenter;
+
+
 
     private Transform playerPos;
     
@@ -24,5 +32,31 @@ public class ThrowBook : MonoBehaviour
     private void OnDrawGizmos() {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position + bookOffset, bookGizmoSize);
+
+
+        Gizmos.color = Color.yellow;
+
+        Gizmos.DrawWireSphere(transform.position + mantisOffsetCenter, centerGizmoSize);
+
+        if (playerPos)
+            Gizmos.DrawWireSphere(playerPos.position + playerOffsetCenter, centerGizmoSize);
+    }
+
+    GameObject arrowAim;
+    public void ShowArrow() {
+        Quaternion toPlayer = new Quaternion();
+        toPlayer = Quaternion.FromToRotation(Vector3.up, (playerPos.position + playerOffsetCenter - (transform.position + mantisOffsetCenter)).normalized);
+
+        arrowAim = Instantiate(aimArrowPrefab, transform.position + mantisOffsetCenter, toPlayer*aimArrowPrefab.transform.rotation);
+    }
+
+    private void Update() {
+        if (arrowAim) {
+            arrowAim.transform.rotation = Quaternion.FromToRotation(Vector3.up, (playerPos.position + playerOffsetCenter - (transform.position + mantisOffsetCenter)).normalized)*aimArrowPrefab.transform.rotation;
+        }
+    }
+
+    public void HideArrow() {
+        Destroy(arrowAim);
     }
 }
