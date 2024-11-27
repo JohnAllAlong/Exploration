@@ -157,9 +157,9 @@ GameObject:
   - component: {fileID: 3149712957342271107}
   - component: {fileID: 8232881777666373758}
   - component: {fileID: 2595015255177084748}
+  - component: {fileID: -3945580192793651049}
   - component: {fileID: 198847834576191459}
   - component: {fileID: 884946909754283401}
-  - component: {fileID: 5510384972270282937}
   m_Layer: 8
   m_Name: EnemyFast
   m_TagString: Enemy
@@ -177,8 +177,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.01, y: -17.67, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6588048868496977556}
   - {fileID: 1257133499283247611}
@@ -196,6 +196,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7238b2b4a9a6594f8bed9bc414cf38c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  contactFilter2D:
+    useTriggers: 0
+    useLayerMask: 0
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 128
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
   alertRadius: 4
   delay: 1
   _enemyMask:
@@ -239,15 +253,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b78c68290eee46788832a31cd6cbc141, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Maxhealth: 5
-  health: 10
-  maxCooldownTime: 1
+  Maxhealth: 3
+  currentHealth: 0
+  maxCooldownTime: 0.5
   onHealthChanged:
     m_PersistentCalls:
       m_Calls: []
   onDeath:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &-3945580192793651049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4733892880471000787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2baffad02d65b64ca652c60e67ed8c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  targetTag: Player
 --- !u!50 &198847834576191459
 Rigidbody2D:
   serializedVersion: 4
@@ -260,7 +288,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 10000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -307,43 +335,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.2}
-  m_Size: {x: 1.61, y: 0.8}
-  m_Direction: 1
---- !u!70 &5510384972270282937
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4733892880471000787}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.2}
-  m_Size: {x: 1.61, y: 0.8}
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 2.5, y: 1}
   m_Direction: 1
 --- !u!1 &6349002054864811450
 GameObject:
@@ -421,7 +414,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1950519304, guid: 6819789b486b7164196ef13464a08dd8, type: 3}
+  m_Sprite: {fileID: 1921920191, guid: 7b1811aafc2ce264e94653a3fc470c18, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

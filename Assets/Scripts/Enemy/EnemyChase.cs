@@ -1,4 +1,4 @@
-using UnityEditor.Rendering.Universal.ShaderGUI;
+
 using UnityEngine;
 
 /*
@@ -7,6 +7,7 @@ using UnityEngine;
 public class EnemyChase : MonoBehaviour
 {
     [Header("Player Collision Settings:")]
+    [SerializeField] protected ContactFilter2D contactFilter2D;
     [SerializeField] protected float alertRadius;
     [SerializeField] protected float delay;
     [SerializeField] protected LayerMask _enemyMask;
@@ -29,7 +30,7 @@ public class EnemyChase : MonoBehaviour
 
     [Header("Chase Delay")]
     public float moveDelay;
-    
+    protected int enemy;
     protected Transform playerPos;
     protected float timer, time;
     protected Color col;
@@ -58,6 +59,9 @@ public class EnemyChase : MonoBehaviour
         }
     }
 
+    public void SetEnemy(int enemy){
+        this.enemy = enemy;
+    }
     // Returns wether or not the enemy is chasing player at the current moment
     public bool GetChaseState(){
         return chase;
@@ -76,7 +80,7 @@ public class EnemyChase : MonoBehaviour
         // Creates Circle cast
         alertRange = Physics2D.CircleCast(new Vector2(transform.position.x, transform.position.y),
                                             alertRadius, Vector2.zero, 0f, _enemyMask);
-        
+
         // Controls wether or not the enemy begins chasing player
         if(!overrideChase){
             
@@ -123,7 +127,8 @@ public class EnemyChase : MonoBehaviour
         // Flips enemy on Y axis to face the player
         transform.rotation = playerPos.position.x > transform.position.x ? new Quaternion(0, 180f, 0, 0) : 
                                                                         new Quaternion(0, 0, 0, 0);
-
+        float yPos = playerPos.position.y;
+        float dist = 2f;
         /*
             When chasing the enemy has two possible targets:
             The player position of the player within the circle cast
@@ -139,14 +144,32 @@ public class EnemyChase : MonoBehaviour
 
             // Adjusts the area where the enemy will stop in front of the player on the X axis
             // This ensures that it will always be stop 0.2 units away from the player
-            distFromPlayer = alertRadius <= 1 ? 0.9f : 0.4f+(0.5f*alertRadius);
+            switch (enemy){
+                case 1:
+                    distFromPlayer = alertRadius <= 1 ? 0.7f : 0.2f+(0.5f*alertRadius);
+                    yPos = playerPos.position.y-0.05f;
+                    dist = 2f;
+                    break;
+                case 2:
+                    distFromPlayer = alertRadius <= 1 ? 0.6f : 0.1f+(0.5f*alertRadius);
+                    yPos = playerPos.position.y-0.1f;
+                    dist = 1.5f;
 
+                    break;
+                case 3:
+                    distFromPlayer = alertRadius <= 1 ? 0.8f : 0.3f+(0.5f*alertRadius);
+                    yPos = playerPos.position.y+0.15f;
+                    dist = 2f;
+                    break;
+            }
+            //distFromPlayer = alertRadius <= 1 ? 0.9f : 0.4f+(0.5f*alertRadius);
+            
             /*
                 When the player is being chased, Enemy will at first head directly towards them
                 When getting within 1.5 units of the player the target position on the X axis will be adjusted to
                 Ensure the enemy is in front of the player and not overlapping them
             */
-            if(Vector2.Distance(transform.position, playerPos.position) <  2f){
+            if(Vector2.Distance(transform.position, playerPos.position) <  dist){
                 // Adusts targeted X axis
                 target = alertRange.point.x < transform.position.x ? alertRange.point.x + distFromPlayer: 
                                                                  alertRange.point.x - distFromPlayer;
@@ -159,7 +182,7 @@ public class EnemyChase : MonoBehaviour
         }else{
             
             // Disables the Override once the distance between the player and enemy is less than 2 units
-            if(Vector2.Distance(transform.position, playerPos.position) < 2){
+            if(Vector2.Distance(transform.position, playerPos.position) < dist){
                 overrideChase = false;
             }else{
 
@@ -169,11 +192,11 @@ public class EnemyChase : MonoBehaviour
 
             // Sets target to players position outside of the valid detection radius
             target = playerPos.position.x;
-        }     
-        
+        }
+
         if(!disbaleMovement){
             // Moves the enemy towards the player
-            transform.position = Vector2.SmoothDamp(transform.position, new Vector2(target, playerPos.position.y),
+            transform.position = Vector2.SmoothDamp(transform.position, new Vector2(target, yPos),
                                                         ref currV, Time.deltaTime, chaseSpeed);
         }else{
             return Timer();
@@ -181,7 +204,7 @@ public class EnemyChase : MonoBehaviour
         
         // If the player has is within +-0.3 units of the player along the X axis
         // Returns 3 which is the attacking state in the animation controller
-        if(Vector2.Distance(transform.position, new Vector2(target+0.2f, playerPos.position.y)) <  1f){
+        if(Vector2.Distance(transform.position, new Vector2(target, playerPos.position.y)) < dist-0.5f){
             return 3;
         }
         

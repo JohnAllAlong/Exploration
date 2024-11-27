@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7264616921163837523}
   - component: {fileID: 7563532538912415874}
   - component: {fileID: 7974423386959666731}
-  - component: {fileID: 8817895497608760358}
   m_Layer: 8
   m_Name: Weapon
   m_TagString: Untagged
@@ -144,22 +143,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2baffad02d65b64ca652c60e67ed8c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
-  targetTag: 
---- !u!114 &8817895497608760358
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1135145004892446647}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2baffad02d65b64ca652c60e67ed8c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 1
-  targetTag: 
+  damage: 4
+  targetTag: Player
 --- !u!1 &2289109060410338021
 GameObject:
   m_ObjectHideFlags: 0
@@ -277,8 +262,8 @@ GameObject:
   - component: {fileID: 8896854105619143057}
   - component: {fileID: 3064900061025044876}
   - component: {fileID: 5450167577550608820}
+  - component: {fileID: 4663774719421738056}
   - component: {fileID: 1368121786530175224}
-  - component: {fileID: 1257462789100785297}
   - component: {fileID: 4369958612708424901}
   - component: {fileID: 6152503282230906005}
   m_Layer: 8
@@ -298,8 +283,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.257849, y: 32.14045, z: 0.11733274}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5759339942511815028}
   - {fileID: 1265107343112496179}
@@ -317,6 +302,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7238b2b4a9a6594f8bed9bc414cf38c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  contactFilter2D:
+    useTriggers: 0
+    useLayerMask: 0
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 0
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
   alertRadius: 2
   delay: 2
   _enemyMask:
@@ -348,7 +347,7 @@ MonoBehaviour:
   moveSpeed: 1
   isEnemyAlive: 1
   EAC: {fileID: 0}
---- !u!114 &1368121786530175224
+--- !u!114 &4663774719421738056
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -369,7 +368,7 @@ MonoBehaviour:
   onDeath:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1257462789100785297
+--- !u!114 &1368121786530175224
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -381,8 +380,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b78c68290eee46788832a31cd6cbc141, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Maxhealth: 1
-  health: 10
+  Maxhealth: 5
+  currentHealth: 0
   maxCooldownTime: 1
   onHealthChanged:
     m_PersistentCalls:
@@ -402,7 +401,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 10000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -449,8 +448,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.2}
-  m_Size: {x: 1.61, y: 0.8}
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 2, y: 1}
   m_Direction: 1
 --- !u!1 &3383638686983069119
 GameObject:
