@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Windows;
+using Input = UnityEngine.Input;
 
 public class SceneStateManager : MonoBehaviour
 {
@@ -24,10 +25,37 @@ public class SceneStateManager : MonoBehaviour
         {
             Time.timeScale = timeScale;
         }
+
+        //close app on build
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            QuitGame();
+        }
+        //reload scene
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            EnterMainScene();
+        }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            if (!gameIsPaused)
+            {
+                PauseGame();
+            }
+            else
+            {
+                ResumeGame();
+            }
+        }
     }
     public void EnterMainScene()
     {
         SceneManager.LoadScene(1);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 
     public void PauseGame()

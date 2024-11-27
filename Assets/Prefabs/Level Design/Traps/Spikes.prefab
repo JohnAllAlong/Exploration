@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 157199286230728897}
   - component: {fileID: 463766173646379125}
   - component: {fileID: 5082334538719885325}
+  - component: {fileID: 1688412986794623572}
   - component: {fileID: 7358071198924167835}
   m_Layer: 0
   m_Name: Spikes
@@ -131,6 +132,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1688412986794623572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4267286696055606886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2baffad02d65b64ca652c60e67ed8c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  targetTag: Player
 --- !u!114 &7358071198924167835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,18 +169,6 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 1123511581, guid: e73d9ce9c3ae2244ea7a1668bb1c2d25, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 6707554557875511930, guid: 74f1562d79f9a164282f6ebfede13012, type: 3}
-        m_TargetAssemblyTypeName: Damageable, Assembly-CSharp
-        m_MethodName: TakeDamage
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

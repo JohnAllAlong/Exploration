@@ -248,9 +248,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 32
-        y: 128
-        width: 32
-        height: 32
+        y: 64
+        width: 64
+        height: 96
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -260,27 +260,6 @@ TextureImporter:
       bones: []
       spriteID: e6879afdb9f23f34397f0de4704e432e
       internalID: -1914673547
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Doors and Spikes_13
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 128
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 23dd41fee33a10d4a979a51f2b97fbc8
-      internalID: -1050005484
       vertices: []
       indices: 
       edges: []
@@ -307,48 +286,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Doors and Spikes_17
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cf3fdb096b543914f91e6807794697e9
-      internalID: -442600226
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Doors and Spikes_18
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fae2d2cfebd36bf40a283bdd1c17c626
-      internalID: 548238084
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Doors and Spikes_19
       rect:
         serializedVersion: 2
@@ -365,48 +302,6 @@ TextureImporter:
       bones: []
       spriteID: 3648b6b0664639046a4ab4ff9390310f
       internalID: -757117834
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Doors and Spikes_21
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4edc2da087ef41a48a7db2f8cfc13245
-      internalID: 333188280
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Doors and Spikes_22
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a49722f6b4909a6468874c8c4dd44edb
-      internalID: -2036302077
       vertices: []
       indices: 
       edges: []

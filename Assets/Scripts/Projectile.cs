@@ -11,7 +11,7 @@ public class Projectile : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Wall"))
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
         if (collision.gameObject.CompareTag(targetTag))
         {
@@ -19,7 +19,7 @@ public class Projectile : MonoBehaviour
             if (damageable != null)
             {
                 damageable.TakeDamage(damage);
-                Destroy(this);
+                Destroy(this.gameObject);
             }
         }
     }
@@ -45,7 +45,7 @@ public class Projectile : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Wall"))
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
     }
 
