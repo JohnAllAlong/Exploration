@@ -46,12 +46,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a505656148cf9748b143bfb900eb332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 1
+  movementSpeed: {x: 3.5, y: 1.5}
   areaAttackPrefab: {fileID: 1807508928537114627, guid: 764701cd24022ab4eae117661db4fda4, type: 3}
-  attackSpeed: 3
+  attackSpeed: 0.3
   destroyAttackTime: 1
   centerGizmoSize: 0.44
-  offsetCenter: {x: 0.5, y: -2.19, z: 0}
+  mantisOffsetCenter: {x: 0.38, y: -2.22, z: 0}
+  playerOffsetCenter: {x: 0, y: -0.5, z: 0}
 --- !u!1 &3962861172317806177
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,7 +127,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -1375237595, guid: 694cba2e5f0cde1498ecfad3c147352a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

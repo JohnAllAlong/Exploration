@@ -7808,6 +7808,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 249936107637354087, guid: dcabebb164ca46d4ab7d3a615650db91, type: 3}
+      propertyPath: attackSpeed
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 249936107637354087, guid: dcabebb164ca46d4ab7d3a615650db91, type: 3}
       propertyPath: offsetCenter.x
       value: 0
       objectReference: {fileID: 0}
