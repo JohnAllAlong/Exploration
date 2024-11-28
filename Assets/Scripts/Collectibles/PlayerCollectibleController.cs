@@ -21,8 +21,12 @@ public class PlayerCollectibleController : MonoBehaviour
 
     public Action<Collectible> OnInventoryAddition;
     public Action<Collectible> OnInventoryDrop;
-    public Action<int> OnInventorySelection;
+    public Action<CollectibleSlot> OnInventorySelection;
     public Action<Collectible> OnInventoryCollectibleUse = (c) => { };
+
+
+
+
 
     protected void OnEnable()
     {

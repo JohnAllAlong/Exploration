@@ -1,10 +1,10 @@
 using CustomInput.Debug;
 using CustomInput.Events;
+using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
-
 
 public class InputHandler : CustomInputEventManager
 {
@@ -13,19 +13,24 @@ public class InputHandler : CustomInputEventManager
     [SerializeField] private GoGoGadgetGun _goGoGadgetGun;
     [SerializeField] private PlayerCollectibleController _collectibleController;
     [SerializeField] private PlayerFlip _flipper;
-    public static System.Action<Values> OnceBtnOnInteractionUse;
+    public Action<Values> ContBtnOnItemUse = (i) => { };
+    public Action<Values> ContBtnOnInteraction = (i) => { };
+    public static InputHandler singleton;
 
     protected void OnEnable()
     {
+        singleton = this;
         //set onDeviceChange
         InputSystem.onDeviceChange += OnDeviceChanged;
-
         //set OnAnyCustomInput
         OnAnyCustomInput += SwitchedInput;
 
         //set the launch input device
         currentDevice = GetNextAvailableInputDevice();
+    }
 
+    private void Awake()
+    {
         InitGamepadEvents();
         InitKeyboardEvents();
     }
@@ -34,7 +39,8 @@ public class InputHandler : CustomInputEventManager
     {
         //de-set onDeviceChange
         InputSystem.onDeviceChange -= OnDeviceChanged;
-
+        ContBtnOnItemUse -= (i) => { };
+        ContBtnOnInteraction -= (i) => { };
         //de-set OnAnyCustomInput
         OnAnyCustomInput -= SwitchedInput;
 
@@ -43,6 +49,8 @@ public class InputHandler : CustomInputEventManager
 
     private void SwitchedInput(CustomInputEvent @event)
     {
+        if (@event.action.activeControl == null) return;
+
         if (@event.action.activeControl.device == currentDevice) return;
 
         currentDevice = @event.action.activeControl.device;
@@ -164,11 +172,11 @@ public class InputHandler : CustomInputEventManager
         CustomInputEvent GamepadUseItem = new()
         {
             actionName = "GamepadUseItem",
-            performed = OnceBtnOnInteractionUse,
+            performed = ContBtnOnItemUse,
             modifier = new()
             {
                 isButton = true,
-                once = true,
+                continuous = true,
             }
         };
         gamepadEvents.Add(GamepadUseItem);
@@ -183,6 +191,18 @@ public class InputHandler : CustomInputEventManager
             }
         };
         gamepadEvents.Add(GamepadLeftRight);
+
+        CustomInputEvent GamepadInteraction = new()
+        {
+            actionName = "GamepadInteraction",
+            performed = ContBtnOnInteraction,
+            modifier = new()
+            {
+                isButton = true,
+                continuous = true
+            }
+        };
+        gamepadEvents.Add(GamepadInteraction);
 
         AddCustomInputEvents(gamepadEvents, this);
         Debugger.Print($"<color=#03d7fc>[InputHandler]</color>\n<color=#aaff00>Loaded gamepad events!</color>");
@@ -252,11 +272,11 @@ public class InputHandler : CustomInputEventManager
         CustomInputEvent KeyboardUseItem = new()
         {
             actionName = "KeyboardUseItem",
-            performed = OnceBtnOnInteractionUse,
+            performed = ContBtnOnItemUse,
             modifier = new()
             {
                 isButton = true,
-                once = true
+                continuous = true
             }
         };
         keyboardEvents.Add(KeyboardUseItem);
@@ -271,6 +291,18 @@ public class InputHandler : CustomInputEventManager
             }
         };
         keyboardEvents.Add(KeyboardLeftRight);
+
+        CustomInputEvent KeyboardInteraction = new()
+        {
+            actionName = "KeyboardInteraction",
+            performed = ContBtnOnInteraction,
+            modifier = new()
+            {
+                isButton = true,
+                continuous = true
+            }
+        };
+        keyboardEvents.Add(KeyboardInteraction);
 
         AddCustomInputEvents(keyboardEvents, this);
         Debugger.Print($"<color=#03d7fc>[InputHandler]</color>\n<color=#aaff00>Loaded keyboard events!</color>");
