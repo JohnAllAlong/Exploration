@@ -50,7 +50,7 @@ public class TrapdoorTeleport : MonoBehaviour
         {
             delayTimer += Time.deltaTime;
         }*/
-
+        
         /*if (delayTimer >= defaultTime)
         {
             canTravel = true;
