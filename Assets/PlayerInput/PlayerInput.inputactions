@@ -120,7 +120,7 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "GamepadDropItem",
@@ -129,7 +129,7 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "GamepadUseItem",
@@ -138,7 +138,7 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "KeyboardUseItem",
@@ -147,7 +147,7 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "KeyboardLR",
@@ -163,6 +163,24 @@
                     "type": "Value",
                     "id": "6270d5f9-163f-4f56-9231-26b010957563",
                     "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "KeyboardInteraction",
+                    "type": "Button",
+                    "id": "4a61b8c1-261a-47ea-895b-16233a4c43d7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "GamepadInteraction",
+                    "type": "Button",
+                    "id": "5bff83d9-1ef5-4954-9a99-3a095998e298",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -564,6 +582,28 @@
                     "action": "GamepadLR",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "c6a9694c-167c-4fb1-a2a5-e850e3b3b3d8",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "KeyboardInteraction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d235de8a-746c-446d-b387-4f76ba0998a1",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "GamepadInteraction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },

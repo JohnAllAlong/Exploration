@@ -24,4 +24,4 @@ EditorBuildSettings:
     path: Assets/Testing/FullSavingTest/SaveTestLevel.unity
     guid: 9b68c4b477bc94f499c4e13aa7659447
   m_configObjects:
-    com.unity.input.settings: {fileID: 11400000, guid: ed901b57f5bff7f408658dc5f0fc040f, type: 2}
+    com.unity.input.settings: {fileID: 11400000, guid: ba0fbebf40c9af9448cd675ff0437520, type: 2}

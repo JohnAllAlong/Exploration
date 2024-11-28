@@ -89,6 +89,7 @@ public class Timers
 /// Creates a timer when constructed. Must be started with StartTimer()
 /// You can choose to identify a timer if needed, otherwise it will be anonymous
 /// </summary>
+[Serializable]
 public class Timer : Timers
 {
     public string timerName; //name
@@ -120,12 +121,31 @@ public class Timer : Timers
     }
 
     /// <summary>
+    /// gets the time this timer is set to
+    /// </summary>
+    /// <returns>the time</returns>
+    public float GetTime()
+    {
+        return _time;
+    }
+
+    /// <summary>
+    /// gets the elapsed time
+    /// </summary>
+    /// <returns>elapsed time</returns>
+    public float GetElapsedTime()
+    {
+        return _timeElapsed;
+    }
+
+    /// <summary>
     /// ends the timer on end by "destroy"
     /// </summary>
     /// <param name="destroy">end on end?</param>
-    public void DestroyOnEnd(bool destroy)
+    public Timer DestroyOnEnd(bool destroy)
     {
         _destroyOnEnd = destroy;
+        return this;
     }
 
     /// <summary>
