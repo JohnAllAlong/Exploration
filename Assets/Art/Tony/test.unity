@@ -273,11 +273,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6720177791779122707, guid: 44c22c75da6c14f4795f3ce3da9464d4, type: 3}
       propertyPath: m_Size.x
-      value: 3.2
+      value: 4.8
       objectReference: {fileID: 0}
     - target: {fileID: 6720177791779122707, guid: 44c22c75da6c14f4795f3ce3da9464d4, type: 3}
       propertyPath: m_Size.y
-      value: 3.2
+      value: 4.8
       objectReference: {fileID: 0}
     - target: {fileID: 7219221095101972436, guid: 44c22c75da6c14f4795f3ce3da9464d4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -335,6 +335,10 @@ PrefabInstance:
     - target: {fileID: 914195599693021354, guid: 2866190392ab09946b85787b5c957650, type: 3}
       propertyPath: m_Name
       value: WorkerAnt
+      objectReference: {fileID: 0}
+    - target: {fileID: 914195599693021354, guid: 2866190392ab09946b85787b5c957650, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6677876117334924874, guid: 2866190392ab09946b85787b5c957650, type: 3}
       propertyPath: m_LocalPosition.x
