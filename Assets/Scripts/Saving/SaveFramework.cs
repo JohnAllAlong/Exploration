@@ -140,18 +140,14 @@ namespace Saveables
         /// <summary>
         /// Automatic conversion from Vector2 to SaveableVector3
         /// </summary>
-        /// <param name="rValue"></param>
-        /// <returns></returns>
-        public static implicit operator SaveableVector3(UnityEngine.Vector2 rValue)
+        public static implicit operator SaveableVector3(UnityEngine.Vector2 vec)
         {
-            return new SaveableVector3(rValue.x, rValue.y, 0);
+            return new SaveableVector3(vec.x, vec.y, 0);
         }
 
         /// <summary>
         /// Automatic conversion from SaveableVector3 to Vector2
         /// </summary>
-        /// <param name="rValue"></param>
-        /// <returns></returns>
         public static implicit operator UnityEngine.Vector2(SaveableVector3 vec)
         {
             return new UnityEngine.Vector2(vec.x, vec.y);

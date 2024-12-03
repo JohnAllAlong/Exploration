@@ -49,12 +49,12 @@ public class GameProgression : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+    protected void OnDestroy()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    private void OnApplicationQuit()
+    protected void OnApplicationQuit()
     {
         savedGameProgression.lastPlayerPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
         savedGameProgression.lastSavedLevel = _currentLevel;

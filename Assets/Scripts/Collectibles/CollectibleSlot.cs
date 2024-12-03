@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class CollectibleSlot : MonoBehaviour
 {
     public SlotType type;
-    public TextMeshProUGUI collectibleName;
     public Image collectibleImage;
     public Collectible occupation;
     public bool occupied;

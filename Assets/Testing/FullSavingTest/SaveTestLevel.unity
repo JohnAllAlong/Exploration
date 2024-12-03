@@ -514,12 +514,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b775451192e1feb42ba819b91f59cd50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   collectibleName: {fileID: 1143179754}
   collectibleImage: {fileID: 447819626}
-  collectibleSelector: {fileID: 1877421344}
-  slot: 0
-  occupied: 0
   occupation: {fileID: 0}
+  occupied: 0
 --- !u!1 &456439826
 GameObject:
   m_ObjectHideFlags: 0
@@ -1054,12 +1053,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b775451192e1feb42ba819b91f59cd50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   collectibleName: {fileID: 774687409}
   collectibleImage: {fileID: 760301038}
-  collectibleSelector: {fileID: 1085359236}
-  slot: 0
-  occupied: 0
   occupation: {fileID: 0}
+  occupied: 0
 --- !u!1 &774687407
 GameObject:
   m_ObjectHideFlags: 0
@@ -1368,12 +1366,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b775451192e1feb42ba819b91f59cd50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   collectibleName: {fileID: 1392178015}
   collectibleImage: {fileID: 879511345}
-  collectibleSelector: {fileID: 346624969}
-  slot: 0
-  occupied: 0
   occupation: {fileID: 0}
+  occupied: 0
 --- !u!1 &981817595
 GameObject:
   m_ObjectHideFlags: 0
@@ -2637,12 +2634,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b775451192e1feb42ba819b91f59cd50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   collectibleName: {fileID: 456439828}
   collectibleImage: {fileID: 1546397548}
-  collectibleSelector: {fileID: 221915384}
-  slot: 0
-  occupied: 0
   occupation: {fileID: 0}
+  occupied: 0
 --- !u!1 &1579513752
 GameObject:
   m_ObjectHideFlags: 0
@@ -2778,7 +2774,6 @@ MonoBehaviour:
   _nearest: {fileID: 0}
   _nearby: []
   _maxSlots: 4
-  _selctedSlot: 0
   _lineRenderer: {fileID: 1775465278}
   _playerTransform: {fileID: 1513824405}
   _dropTransform: {fileID: 1584860141}
@@ -3292,7 +3287,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 1513824404}
-  _currentDirection: {x: 0, y: 0}
+  _currentDirection: {x: -1, y: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -30,10 +30,10 @@ public class DoorTest : MonoBehaviour
         //InputHandler.OnceBtnOnInteractionUse -= OpenDoor;
     }
 
-    public void OpenDoor(Values input)
+    public void OpenDoor(ReturnData input)
     {
         if (!door.activeInHierarchy || !hasKey) return;
-        cc.UseCollectable(1);
+        //cc.UseCollectable(1);
         door.SetActive(false);
         enabled = false;
         lineRenderer.enabled = false;

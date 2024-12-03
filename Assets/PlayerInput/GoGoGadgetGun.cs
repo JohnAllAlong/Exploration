@@ -9,7 +9,7 @@ public class GoGoGadgetGun : MonoBehaviour
     [SerializeField] private GameObject _bullet;
     [SerializeField] private float _bulletSpeed;
     private Vector2 _GamepadBulletDir;
-    public void OnceBtnMouseFire(Values input)
+    public void OnceBtnMouseFire(ReturnData input)
     {
         // Get the mouse screen position and convert it to a world position
         Vector2 mousePos = Devices.GetMouse().position.ReadValue();
@@ -25,12 +25,12 @@ public class GoGoGadgetGun : MonoBehaviour
         bulletRB.AddRelativeForce(bullet.transform.up * _bulletSpeed);        
     }
 
-    public void VecGamepadAim(Values input)
+    public void AxisGamepadAim(ReturnData input)
     {
-        _GamepadBulletDir = ((Vector2)transform.position - input.vector);
+        _GamepadBulletDir = input.axis;
     }
 
-    public void OnceBtnGamepadFire(Values input)
+    public void OnceBtnGamepadFire(ReturnData input)
     {
         GameObject bullet = Instantiate(_bullet, transform.position, Quaternion.identity);
         Rigidbody2D bulletRB = bullet.GetComponent<Rigidbody2D>();

@@ -3,9 +3,8 @@ using UnityEngine;
 
 public class Collectible : MonoBehaviour
 {
-    public string itemShortName;
-    public string itemLongName;
-    public Sprite itemImage;
+    public string collectibleName;
+    public Sprite collectibleImage;
     public uint collectibleID;
     public uint collectibleRID;
     public int slot;
