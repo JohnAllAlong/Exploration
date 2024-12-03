@@ -25,12 +25,12 @@ public class DoorInteractor : MonoBehaviour
 
     private void OnEnable()
     {
-        InputHandler.OnceBtnOnInteractionUse += TryOpenDoor;
+        //InputHandler.OnceBtnOnInteractionUse += TryOpenDoor;
     }
 
     private void OnDisable()
     {
-        InputHandler.OnceBtnOnInteractionUse -= TryOpenDoor;
+        //InputHandler.OnceBtnOnInteractionUse -= TryOpenDoor;
     }
 
     public void TryOpenDoor(Values input)

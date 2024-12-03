@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class CameraCollider : MonoBehaviour
 {
-    public CameraController camController;
+    private CameraController camController;
     // Start is called before the first frame update
     void Start()
     {
-        
+        camController = FindFirstObjectByType<CameraController>();
     }
 
     // Update is called once per frame
@@ -22,11 +22,19 @@ public class CameraCollider : MonoBehaviour
         {
             camController.EnableFarFollowCamera();
         }
+        else if(collision.gameObject.CompareTag("Big Room")) 
+        {
+            camController.EnableRoomCamera(collision.gameObject.transform.position);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Room"))
+        {
+            camController.EnableCloseFollowCamera();
+        }
+        else if (collision.gameObject.CompareTag("Big Room"))
         {
             camController.EnableCloseFollowCamera();
         }

@@ -22,12 +22,12 @@ public class DoorTest : MonoBehaviour
 
     private void OnEnable()
     {
-        InputHandler.OnceBtnOnInteractionUse += OpenDoor;
+        //InputHandler.OnceBtnOnInteractionUse += OpenDoor;
     }
 
     private void OnDisable()
     {
-        InputHandler.OnceBtnOnInteractionUse -= OpenDoor;
+        //InputHandler.OnceBtnOnInteractionUse -= OpenDoor;
     }
 
     public void OpenDoor(Values input)

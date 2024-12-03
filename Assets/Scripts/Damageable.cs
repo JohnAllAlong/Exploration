@@ -6,8 +6,15 @@ using UnityEngine.UI;
 // Represents a damageable entity with health.
 public class Damageable : MonoBehaviour
 {
-    [SerializeField] private float Maxhealth = 1f; // Maximum health.
-    private float health; // Current health.
+    [Header("Enemy Health")]
+    [SerializeField] 
+    private float Maxhealth = 1.0f; // Maximum health.
+    [SerializeField]
+    private float currentHealth; // Current health.
+
+    [SerializeField]
+    private float maxCooldownTime = 0.5f;
+    private float timeElapsed = 0.0f;
 
     // Events triggered on health change and death.
     public UnityEvent onHealthChanged = new UnityEvent();
@@ -19,27 +26,41 @@ public class Damageable : MonoBehaviour
     public void Start()
     {
         //healthBar = healthBarObject.GetComponent<Image>();
-        health = Maxhealth;
+        currentHealth = Maxhealth;
     }
 
     // Reduces health and updates the health bar.
     public void TakeDamage(int damage)
     {
-        health -= damage;
-       //healthBar.fillAmount = health / Maxhealth;
-        onHealthChanged?.Invoke();
-        print("damage taken "+gameObject.name);
-
-        if (health <= 0)
+        if (timeElapsed >= maxCooldownTime)
         {
-            Die();
+            currentHealth -= damage;
+            //healthBar.fillAmount = health / Maxhealth;
+            onHealthChanged?.Invoke();
+            print("damage taken " + gameObject.name);
+            timeElapsed = 0.0f;
+
+            if (currentHealth <= 0)
+            {
+                Die();
+            }
         }
+    }
+
+    public float GetHP(){
+        return currentHealth;
+    }
+
+    public void Update()
+    {
+        timeElapsed += Time.deltaTime;
     }
 
     // Handles the entity's death.
     protected virtual void Die()
     {
         onDeath?.Invoke();
-        Destroy(this.gameObject);
+        this.gameObject.SetActive(false);
+        //Destroy(this.gameObject);
     }
 }
