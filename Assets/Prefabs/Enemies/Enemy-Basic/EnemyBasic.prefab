@@ -224,7 +224,7 @@ MonoBehaviour:
     m_Bits: 128
   chase: 0
   overrideChase: 0
-  chaseSpeed: 0
+  chaseSpeed: 3
   EAC: {fileID: 0}
   enemyId: 0
   isAlive: 0
@@ -244,8 +244,8 @@ MonoBehaviour:
   _enemyMask:
     serializedVersion: 2
     m_Bits: 64
-  delay: 2
-  moveSpeed: 0
+  delay: 1.5
+  moveSpeed: 2
   isEnemyAlive: 1
   EAC: {fileID: 0}
   deathExplosion: {fileID: 4967476631846938564, guid: 1ae5005f25dd8f14d9207efe19060055, type: 3}
