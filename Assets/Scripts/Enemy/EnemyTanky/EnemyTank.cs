@@ -12,6 +12,9 @@ public class EnemyTank : EnemyWander
     [Header("Animation Controller")]
     [SerializeField] private EnemyanimatorController EAC;
 
+    [Header("Death Explosion")]
+    [SerializeField] private GameObject deathExplosion;
+
     protected void Awake(){
         // get enemy transfrom
         GetTransforms();
@@ -37,7 +40,8 @@ public class EnemyTank : EnemyWander
             Act();
         }else{
             isEnemyAlive = false;
-            EAC.PlayState(100);
+            Instantiate(deathExplosion, transform.position, transform.rotation);
+            enemySprite.gameObject.SetActive(false);
         }
     }
 
