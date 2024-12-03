@@ -14,7 +14,7 @@ public class InputHandler : CustomInputEventManager
     [SerializeField] private PlayerFlip _flipper;
     public Action<Values> ContBtnOnItemUse = (i) => { };
     public Action<Values> ContBtnOnInteraction = (i) => { };
-    public static InputHandler singleton;
+    public static InputHandler singleton;    
 
     protected void OnEnable()
     {
@@ -219,6 +219,7 @@ public class InputHandler : CustomInputEventManager
             performed = _playerMove.VecKeyboardMove,
             canceled = _playerMove.VecMovementCancled
         };
+        
         keyboardEvents.Add(keyboardMove);
 
         CustomInputEvent MouseFire = new()

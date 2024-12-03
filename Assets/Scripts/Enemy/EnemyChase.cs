@@ -148,12 +148,12 @@ public class EnemyChase : MonoBehaviour
                 case 1:
                     distFromPlayer = alertRadius <= 1 ? 0.7f : 0.2f+(0.5f*alertRadius);
                     yPos = playerPos.position.y-0.05f;
-                    dist = 2f;
+                    dist = 1.6f;
                     break;
                 case 2:
                     distFromPlayer = alertRadius <= 1 ? 0.6f : 0.1f+(0.5f*alertRadius);
                     yPos = playerPos.position.y-0.1f;
-                    dist = 1.5f;
+                    dist = 1f;
 
                     break;
                 case 3:
@@ -180,9 +180,8 @@ public class EnemyChase : MonoBehaviour
                 target = alertRange.point.x;
             }
         }else{
-            
-            // Disables the Override once the distance between the player and enemy is less than 2 units
-            if(Vector2.Distance(transform.position, playerPos.position) < dist){
+            // Disables the Override once the distance between the player and enemy isS less than N units
+            if(Vector2.Distance(transform.position, playerPos.position) < dist+1f){
                 overrideChase = false;
             }else{
 
@@ -213,7 +212,7 @@ public class EnemyChase : MonoBehaviour
     }
 
     protected void OnCollisionExit2D(Collision2D other){
-        disbaleMovement = true;
+        if(other.collider.name == "Player") disbaleMovement = true;
     }
 
     protected int Timer(){

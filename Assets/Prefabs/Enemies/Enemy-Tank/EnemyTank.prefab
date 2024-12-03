@@ -263,7 +263,6 @@ GameObject:
   - component: {fileID: 3064900061025044876}
   - component: {fileID: 5450167577550608820}
   - component: {fileID: 4663774719421738056}
-  - component: {fileID: 1368121786530175224}
   - component: {fileID: 4369958612708424901}
   - component: {fileID: 6152503282230906005}
   m_Layer: 8
@@ -323,7 +322,7 @@ MonoBehaviour:
     m_Bits: 128
   chase: 0
   overrideChase: 0
-  chaseSpeed: 2
+  chaseSpeed: 4
   EAC: {fileID: 0}
   enemyId: 1
   isAlive: 1
@@ -343,10 +342,11 @@ MonoBehaviour:
   _enemyMask:
     serializedVersion: 2
     m_Bits: 64
-  delay: 3
+  delay: 0
   moveSpeed: 1
   isEnemyAlive: 1
   EAC: {fileID: 0}
+  deathExplosion: {fileID: 4967476631846938564, guid: 1ae5005f25dd8f14d9207efe19060055, type: 3}
 --- !u!114 &4663774719421738056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -359,29 +359,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b78c68290eee46788832a31cd6cbc141, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Maxhealth: 1
-  health: 10
-  maxCooldownTime: 1
-  onHealthChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  onDeath:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &1368121786530175224
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3197040729240262931}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b78c68290eee46788832a31cd6cbc141, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Maxhealth: 5
-  currentHealth: 0
+  Maxhealth: 10
+  currentHealth: 10
   maxCooldownTime: 1
   onHealthChanged:
     m_PersistentCalls:

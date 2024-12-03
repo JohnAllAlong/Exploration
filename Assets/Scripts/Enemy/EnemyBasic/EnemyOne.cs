@@ -5,13 +5,13 @@ public class EnemyOne : EnemyWander
     [Header("Enemy Information")]
     public const int ENEMY_ID = 01;
     public bool isEnemyAlive = true;
-    
     private EnemyChase enemyChaseScript;
     private Damageable EHP;
-
     [Header("Animation Controller")]
     [SerializeField] private EnemyanimatorController EAC;
 
+    [Header("Death Explosion")]
+    [SerializeField] private GameObject deathExplosion;
     protected void Awake(){
         // get enemy transfrom
         GetTransforms();
@@ -37,7 +37,8 @@ public class EnemyOne : EnemyWander
             Act();
         }else{
             isEnemyAlive = false;
-            EAC.PlayState(100);
+            Instantiate(deathExplosion, transform.position, transform.rotation);
+            enemySprite.gameObject.SetActive(false);
         }
     }
 
