@@ -6,20 +6,23 @@ public class PlayerFlip : MonoBehaviour
     [SerializeField] private SpriteRenderer _player;
     [SerializeField] private Vector2 _currentDirection = Vector2.left;
 
-    public void OnceVecLeftRight(Values input)
+    public void OnceAxisLeftRight(ReturnData input)
     {
+        //if movement is paused then we dont flip
+        //if the list returned contains true anywhere, that means one of the movement events is paused
+        if (Events.IsPaused("KeyboardMove", "GamepadMove").Contains(true)) return;
 
-        if (input.vector == Vector2.left && input.vector != _currentDirection)
+        if (input.axis == Vector2.left && input.axis != _currentDirection)
         {
             Flip(Vector2.left);
         }
 
-        if (input.vector == Vector2.right && input.vector != _currentDirection)
+        if (input.axis == Vector2.right && input.axis != _currentDirection)
         {
             Flip(Vector2.right);
         }
 
-        _currentDirection = input.vector;
+        _currentDirection = input.axis;
     }
 
 

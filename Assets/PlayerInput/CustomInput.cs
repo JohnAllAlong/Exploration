@@ -1,6 +1,6 @@
 /* 
        Aiden C. Desjarlais
-  Custom Input Events Framework V3
+  Custom Input Events Framework V4
          "CustomInput"
 
 Allows easy single-player setup for controllers and keyboards/mouses
@@ -13,7 +13,7 @@ Recommended Input manager method naming:
 
 Con - means the event is continously ran even if no input is detected
 Btn - means the event value is a type of Button, and will only return a bool
-Vec - means the event value is a type of Axis, and will only return a vector
+Axis - means the event value is a type of Axis, and will only return a vector
 Once - means the event is ran once at the time of the input being true
 
  */
@@ -23,6 +23,7 @@ using System.Collections.Generic;
 using CustomInput.Debug;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static CustomInput.Events.CustomInputEventManager;
 
 namespace CustomInput.Debug
 {
@@ -65,6 +66,10 @@ namespace CustomInput
                 return Mouse.current;
             }
         }
+        public static Mouse GetRawMouse()
+        {
+            return Mouse.current;
+        }
 
         /// <summary>
         /// gets the current keyboard if available
@@ -81,6 +86,10 @@ namespace CustomInput
             {
                 return Keyboard.current;
             }
+        }
+        public static Keyboard GetRawKeyboard()
+        {
+            return Keyboard.current;
         }
 
         /// <summary>
@@ -99,6 +108,21 @@ namespace CustomInput
                 return Gamepad.current;
             }
         }
+        public static Gamepad GetRawGamepad()
+        {
+            return Gamepad.current;
+        }
+
+        /// <summary>
+        /// Gets the current input device
+        /// </summary>
+        /// <returns>the current input device</returns>
+        public static InputDevice GetCurrent()
+        {
+
+            if (GetRawGamepad() != null) return GetRawGamepad();
+            else return GetKeyboard();
+        }
     }
 }
 
@@ -108,16 +132,103 @@ namespace CustomInput.Events
     /// <summary>
     /// The class used to store input values for Buttons and Axis
     /// </summary>
-    public class Values
+    public class ReturnData
     {
         /// <summary>
         /// Vector from input (if input is axis)
         /// </summary>
-        public Vector2 vector = Vector2.zero;
+        public Vector2 axis = Vector2.zero;
         /// <summary>
         /// bool from input (if input is button)
         /// </summary>
         public bool pressed = false;
+
+        public CustomInputEventData eventData;
+    }
+
+    /// <summary>
+    /// Class used to interact with existing events
+    /// </summary>
+    public static class Events
+    {
+        /// <summary>
+        /// Fetches an events data
+        /// </summary>
+        /// <param name="actionName"></param>
+        public static CustomInputEventData Fetch(string actionName)
+        {
+            return singleton.GetCustomEventData(actionName);
+        }
+
+        /// <summary>
+        /// pauses an action
+        /// </summary>
+        /// <param name="actionName">the action to pause</param>
+        public static void Pause(string actionName)
+        {
+            Fetch(actionName).runEvent = false;
+        }
+
+        /// <summary>
+        /// resumes an action
+        /// </summary>
+        /// <param name="actionName">the action to resume</param>
+        public static void Resume(string actionName)
+        {
+            Fetch(actionName).runEvent = true;
+        }
+
+        /// <summary>
+        /// pauses multiple actions
+        /// </summary>
+        /// <param name="actionName">actions to pause</param>
+        public static void Pause(params string[] actionName)
+        {
+            foreach (string name in actionName)
+            {
+                Fetch(name).runEvent = false;
+            }
+        }
+
+        /// <summary>
+        /// resumes multiple actions
+        /// </summary>
+        /// <param name="actionName">actions to resume</param>
+        public static void Resume(params string[] actionName)
+        {
+            foreach (string name in actionName)
+            {
+                Fetch(name).runEvent = true;
+            }
+        }
+
+        /// <summary>
+        /// checks if an event is paused
+        /// </summary>
+        /// <param name="actionName">actions to check</param>
+        /// <returns>A list of bools in order of each provided actions, true/false if pausedk</returns>
+        public static List<bool> IsPaused(params string[] actionName)
+        {
+            List<bool> checks = new();
+
+            foreach (string name in actionName)
+            {
+                //reverse because we want true if paused
+                checks.Add(!Fetch(name).runEvent);
+            }
+
+            return checks;
+        }
+
+        /// <summary>
+        /// checks if an event is paused
+        /// </summary>
+        /// <param name="actionName">action to check</param>
+        /// <returns>A bool, which is true if paused</returns>
+        public static bool IsPaused(string actionName)
+        {
+            return Fetch(actionName).runEvent;
+        }
     }
 
 
@@ -140,21 +251,26 @@ namespace CustomInput.Events
         /// if true, the event is ran once at the time of the input being true
         /// </summary>
         public bool once = false;
-
-        /// <summary>
-        /// true if this event has ran once, and is awaitng to be canceled <br></br> (only used if once is true)
-        /// </summary>
-        public bool hasRanOnce = false;
     }
 
     /// <summary>
     /// Extension class to create a custom input event manager
     /// </summary>
-    [Serializable]
     public class CustomInputEventManager : MonoBehaviour
     {
+        public static CustomInputEventManager singleton;
 
         [SerializeField] private PlayerInput _input;
+
+        //custom events (main way of input)
+        [SerializeField]
+        protected List<CustomInputEvent> CustomInputEvents = new();
+
+        //set singleton
+        protected virtual void Awake()
+        {
+            singleton = this;
+        }
 
         /// <summary>
         /// called when any cutom registered input is performed
@@ -177,41 +293,34 @@ namespace CustomInput.Events
             Debugger.Print($"<color=#03d7fc>[CustomInputEventManager]</color>\n<color=#03fc4e>Device removed: </color><color=#e3fc03>" + device.displayName + "</color>");
         }
 
-
-        //custom events (main way of input)
-
-        protected List<CustomInputEvent> CustomInputEvents = new();
-
-        /// <summary>
-        /// class to create cusotm input events with the Unity InputSystem
-        /// </summary>
-        protected class CustomInputEvent
+        public CustomInputEventData GetCustomEventData(string actionName)
         {
+            return CustomInputEvents.Find(e => e.eventData.actionName == actionName).eventData;
+        }
+
+        [Serializable]
+        public class CustomInputEventData
+        {
+
+            /// <summary>
+            /// if true runs the event
+            /// </summary>
+            public bool runEvent = true;
+
             /// <summary>
             /// The owner of this event
             /// </summary>
             public CustomInputEventManager owner;
+
             /// <summary>
             /// The name of the action to listen to
             /// </summary>
             public string actionName;
-            /// <summary>
-            /// action to run when input hasb ecome active.
-            /// <br></br>(Called every frame the input is active if no modifiers are set)
-            /// </summary>
-            public Action<Values> performed = (a) => { };
-            /// <summary>
-            /// action to run when the input has stopped
-            /// </summary>
-            public Action<Values> canceled = (a) => { };
+
             /// <summary>
             /// the input action found from actionName (set after initialization)
             /// </summary>
             public InputAction action;
-            /// <summary>
-            /// the last input callback from the InputEvent system
-            /// </summary>
-            public InputAction.CallbackContext lastCallback;
 
             /// <summary>
             /// true if the action is performing
@@ -219,9 +328,43 @@ namespace CustomInput.Events
             public bool isPerforming;
 
             /// <summary>
+            /// true if this event has ran once, and is awaitng to be canceled <br></br> (only used if once is true)
+            /// </summary>
+            public bool hasRanOnce = false;
+
+            /// <summary>
             /// the custom modifier for this input event (all are false by default)<br></br>if no modifier is set, only a vector will be returned.
             /// </summary>
             public CustomEventModifiers modifier = new();
+        }
+
+        /// <summary>
+        /// class to create custom input events with the Unity InputSystem
+        /// </summary>
+        [Serializable]
+        protected class CustomInputEvent
+        {
+
+            /// <summary>
+            /// The modifiable data for this event
+            /// </summary>
+            public CustomInputEventData eventData = new();
+
+            /// <summary>
+            /// action to run when input hasb ecome active.
+            /// <br></br>(Called every frame the input is active if no modifiers are set)
+            /// </summary>
+            public Action<ReturnData> performed = (a) => { };
+            /// <summary>
+            /// action to run when the input has stopped
+            /// </summary>
+            public Action<ReturnData> canceled = (a) => { };
+
+            /// <summary>
+            /// the last input callback from the InputEvent system
+            /// </summary>
+            public InputAction.CallbackContext lastCallback;
+
 
             /// <summary>
             /// The base callback for every performed action<br></br>(called before the "performed" custom event)
@@ -230,7 +373,7 @@ namespace CustomInput.Events
             public void GetPerformedCallback(InputAction.CallbackContext callback)
             {
                 lastCallback = callback;
-                isPerforming = true;
+                eventData.isPerforming = true;
             }
 
             /// <summary>
@@ -239,22 +382,24 @@ namespace CustomInput.Events
             /// <param name="callback">callback from the input action event</param>
             public void StopPerforming(InputAction.CallbackContext callback)
             {
-                if (modifier.once)
-                    modifier.hasRanOnce = false;
+                if (eventData.modifier.once)
+                    eventData.hasRanOnce = false;
 
-                isPerforming = false;
-                Values inputValues = new();
+                //send cancled input
+                eventData.isPerforming = false;
+                ReturnData input = new();
 
-                if (modifier.isButton)
+                if (eventData.modifier.isButton)
                 {
-                    inputValues.pressed = callback.ReadValueAsButton();
+                    input.pressed = callback.ReadValueAsButton();
                 }
                 else
                 {
-                    inputValues.vector = callback.ReadValue<Vector2>();
+                    input.axis = callback.ReadValue<Vector2>();
                 }
 
-                canceled.Invoke(inputValues);
+                input.eventData = eventData;
+                canceled.Invoke(input);
             }
         }
 
@@ -266,13 +411,13 @@ namespace CustomInput.Events
         {
             foreach (CustomInputEvent @event in events)
             {
-                @event.owner = owner;
-                @event.action = GetAction(@event.actionName);
-                @event.action.performed += @event.GetPerformedCallback;
-                @event.action.canceled += @event.StopPerforming;
+                @event.eventData.owner = owner;
+                @event.eventData.action = GetAction(@event.eventData.actionName);
+                @event.eventData.action.performed += @event.GetPerformedCallback;
+                @event.eventData.action.canceled += @event.StopPerforming;
                 //@event.action.performed += @event.performed;
                 //print("Registerd input event: " + @event.action.name);
-                Debugger.Print($"<size=14><color=#03d7fc>[CustomInputEventManager]</color>\n<color=#03fc4e>Registerd input event: </color><color=#e3fc03>" + @event.actionName + "</color></size>");
+                Debugger.Print($"<size=14><color=#03d7fc>[CustomInputEventManager]</color>\n<color=#03fc4e>Registerd input event: </color><color=#e3fc03>" + @event.eventData.actionName + "</color></size>");
 
                 CustomInputEvents.Add(@event);
             }
@@ -284,7 +429,7 @@ namespace CustomInput.Events
             foreach (CustomInputEvent @event in CustomInputEvents)
             {
                 //@event.action.performed -= @event.GetPerformedCallback;
-                @event.action.canceled -= @event.StopPerforming;
+                @event.eventData.action.canceled -= @event.StopPerforming;
             }
             CustomInputEvents.Clear();
         }
@@ -294,27 +439,29 @@ namespace CustomInput.Events
         {
             foreach (CustomInputEvent @event in CustomInputEvents)
             {
-                if (@event.isPerforming || @event.modifier.continuous)
+                if (@event.eventData.runEvent)
                 {
-                    //run only once
-                    if (@event.modifier.once)
-                        if (@event.modifier.hasRanOnce) return;
-                        else @event.modifier.hasRanOnce = true;
-
-                    Values inputValues = new();
-
-                    if (@event.modifier.isButton)
+                    if (@event.eventData.isPerforming || @event.eventData.modifier.continuous)
                     {
-                        inputValues.pressed = @event.lastCallback.ReadValueAsButton();
-                    }
-                    else
-                    {
-                        inputValues.vector = @event.lastCallback.ReadValue<Vector2>();
-                    }
+                        //run only once
+                        if (@event.eventData.modifier.once)
+                            if (@event.eventData.hasRanOnce) return;
+                            else @event.eventData.hasRanOnce = true;
 
-                    @event.owner.OnAnyCustomInput(@event);
-                    @event.performed.Invoke(inputValues);
+                        ReturnData input = new();
 
+                        if (@event.eventData.modifier.isButton)
+                        {
+                            input.pressed = @event.lastCallback.ReadValueAsButton();
+                        }
+                        else
+                        {
+                            input.axis = @event.lastCallback.ReadValue<Vector2>();
+                        }
+
+                        @event.eventData.owner.OnAnyCustomInput(@event);
+                        @event.performed.Invoke(input);
+                    }
                 }
             }
         }

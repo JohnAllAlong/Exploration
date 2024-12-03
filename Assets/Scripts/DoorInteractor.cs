@@ -33,11 +33,11 @@ public class DoorInteractor : MonoBehaviour
         //InputHandler.OnceBtnOnInteractionUse -= TryOpenDoor;
     }
 
-    public void TryOpenDoor(Values input)
+    public void TryOpenDoor(ReturnData input)
     {
         if (!_doorObject.activeInHierarchy || !_hasKey) return;
 
-        _playerCollectibleController.UseCollectable(_keyCollectibleID);
+        //_playerCollectibleController.UseCollectable(_keyCollectibleID);
         _doorObject.SetActive(false);
         _lineRenderer.enabled = false;
         _alertText.text = "";

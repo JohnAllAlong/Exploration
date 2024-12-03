@@ -12,13 +12,13 @@ public class InputHandler : CustomInputEventManager
     [SerializeField] private GoGoGadgetGun _goGoGadgetGun;
     [SerializeField] private PlayerCollectibleController _collectibleController;
     [SerializeField] private PlayerFlip _flipper;
-    public Action<Values> ContBtnOnItemUse = (i) => { };
-    public Action<Values> ContBtnOnInteraction = (i) => { };
-    public static InputHandler singleton;    
+
+    public static bool isInteractingKeyboard;
+    public static bool isInteractingGamepad;
+    public static Action<ReturnData> OnceBtnOnInteraction = (i) => { };
 
     protected void OnEnable()
     {
-        singleton = this;
         //set onDeviceChange
         InputSystem.onDeviceChange += OnDeviceChanged;
         //set OnAnyCustomInput
@@ -28,8 +28,9 @@ public class InputHandler : CustomInputEventManager
         currentDevice = GetNextAvailableInputDevice();
     }
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         InitGamepadEvents();
         InitKeyboardEvents();
     }
@@ -38,21 +39,51 @@ public class InputHandler : CustomInputEventManager
     {
         //de-set onDeviceChange
         InputSystem.onDeviceChange -= OnDeviceChanged;
-        ContBtnOnItemUse -= (i) => { };
-        ContBtnOnInteraction -= (i) => { };
+        OnceBtnOnInteraction = default;
         //de-set OnAnyCustomInput
         OnAnyCustomInput -= SwitchedInput;
 
         RemoveAllEvents();
     }
 
+    private void InteractionEventHandlerGamepad(ReturnData input)
+    {
+        if (currentDevice as Gamepad == null) return;
+
+        if (input.pressed)
+        {
+            isInteractingGamepad = true;
+        } else
+        {
+            isInteractingGamepad = false;
+        }
+
+        OnceBtnOnInteraction(input);
+    }
+
+    private void InteractionEventHandlerKeyboard(ReturnData input)
+    {
+        if (currentDevice as Keyboard == null) return;
+
+        if (input.pressed)
+        {
+            isInteractingKeyboard = true;
+        }
+        else
+        {
+            isInteractingKeyboard = false;
+        }
+
+        OnceBtnOnInteraction(input);
+    }
+
     private void SwitchedInput(CustomInputEvent @event)
     {
-        if (@event.action.activeControl == null) return;
+        if (@event.eventData.action.activeControl == null) return;
 
-        if (@event.action.activeControl.device == currentDevice) return;
+        if (@event.eventData.action.activeControl.device == currentDevice) return;
 
-        currentDevice = @event.action.activeControl.device;
+        currentDevice = @event.eventData.action.activeControl.device;
     }
 
 
@@ -90,12 +121,12 @@ public class InputHandler : CustomInputEventManager
 
 
     /* 
-     
-    Input method naming:
+
+    Recommended Input manager method naming:
 
     Con - means the event is continously ran even if no input is detected
     Btn - means the event value is a type of Button, and will only return a bool
-    Vec - means the event value is a type of Axis, and will only return a vector
+    Axis - means the event value is a type of Axis, and will only return a vector
     Once - means the event is ran once at the time of the input being true
 
      */
@@ -108,104 +139,89 @@ public class InputHandler : CustomInputEventManager
         //
         CustomInputEvent gamepadMove = new()
         {
-            actionName = "GamepadMove",
-            performed = _playerMove.VecGamepadMove,
-            canceled = _playerMove.VecMovementCancled
+            eventData = new()
+            {
+                actionName = "GamepadMove",
+            },
+            performed = _playerMove.AxisGamepadMove,
+            canceled = _playerMove.AxisMovementCancled
         };
         gamepadEvents.Add(gamepadMove);
 
         CustomInputEvent GamepadFire = new()
         {
-            actionName = "GamepadFire",
-            performed = _goGoGadgetGun.OnceBtnGamepadFire,
-            modifier = new()
+            eventData = new()
             {
-                isButton = true,
-                once = true,
-            }
+                actionName = "GamepadFire",
+                modifier = new()
+                {
+                    isButton = true,
+                    once = true,
+                }
+            },
+            performed = _goGoGadgetGun.OnceBtnGamepadFire,
         };
         gamepadEvents.Add(GamepadFire);
 
         CustomInputEvent GamepadAim = new()
         {
-            actionName = "GamepadAim",
-            performed = _goGoGadgetGun.VecGamepadAim,
+            eventData = new()
+            {
+                actionName = "GamepadAim",
+            },
+            performed = _goGoGadgetGun.AxisGamepadAim,
         };
         gamepadEvents.Add(GamepadAim);
 
-        CustomInputEvent GamepadPickupItem = new()
-        {
-            actionName = "GamepadPickupItem",
-            performed = _collectibleController.OnceBtnPickupItem,
-            modifier = new()
-            {
-                isButton = true,
-                once = true,
-            }
-        };
-        gamepadEvents.Add(GamepadPickupItem);
-
-        CustomInputEvent GamepadScrollInventory = new()
-        {
-            actionName = "GamepadScrollInventory",
-            performed = _collectibleController.OnceVecScrollInventory,
-            modifier = new()
-            {
-                once = true
-            }
-        };
-        gamepadEvents.Add(GamepadScrollInventory);
-
-        CustomInputEvent GamepadDropItem = new()
-        {
-            actionName = "GamepadDropItem",
-            performed = _collectibleController.OnceBtnDropItem,
-            modifier = new()
-            {
-                isButton = true,
-                once = true
-            }
-        };
-        gamepadEvents.Add(GamepadDropItem);
-
-        CustomInputEvent GamepadUseItem = new()
-        {
-            actionName = "GamepadUseItem",
-            performed = ContBtnOnItemUse,
-            modifier = new()
-            {
-                isButton = true,
-                continuous = true,
-            }
-        };
-        gamepadEvents.Add(GamepadUseItem);
-
         CustomInputEvent GamepadLeftRight = new()
         {
-            actionName = "GamepadLR",
-            performed = _flipper.OnceVecLeftRight,
-            modifier = new()
+            eventData = new()
             {
-                once = true
-            }
+                actionName = "GamepadLR",
+                modifier = new()
+                {
+                    once = true
+                }
+            },
+            performed = _flipper.OnceAxisLeftRight,
         };
         gamepadEvents.Add(GamepadLeftRight);
 
         CustomInputEvent GamepadInteraction = new()
         {
-            actionName = "GamepadInteraction",
-            performed = ContBtnOnInteraction,
-            modifier = new()
+            eventData = new()
             {
-                isButton = true,
-                continuous = true
-            }
+                actionName = "GamepadInteraction",
+                modifier = new()
+                {
+                    isButton = true,
+                    once = true
+                }
+            },
+            performed = InteractionEventHandlerGamepad,
         };
         gamepadEvents.Add(GamepadInteraction);
+
+        CustomInputEvent GamepadOpenInv = new()
+        {
+            eventData = new()
+            {
+                actionName = "GamepadOpenInv",
+                modifier = new()
+                {
+                    isButton = true,
+                    once = true
+                }
+            },
+            performed = _collectibleController.OnceBtnOpenInv,
+        };
+        gamepadEvents.Add(GamepadOpenInv);
 
         AddCustomInputEvents(gamepadEvents, this);
         Debugger.Print($"<color=#03d7fc>[InputHandler]</color>\n<color=#aaff00>Loaded gamepad events!</color>");
     }
+
+
 
     //all input events for keyboard/mouse go here
     public void InitKeyboardEvents()
@@ -215,94 +231,75 @@ public class InputHandler : CustomInputEventManager
         //
         CustomInputEvent keyboardMove = new()
         {
-            actionName = "KeyboardMove",
-            performed = _playerMove.VecKeyboardMove,
-            canceled = _playerMove.VecMovementCancled
+            eventData = new()
+            {
+                actionName = "KeyboardMove",
+            },
+            performed = _playerMove.AxisKeyboardMove,
+            canceled = _playerMove.AxisMovementCancled
         };
         
         keyboardEvents.Add(keyboardMove);
 
         CustomInputEvent MouseFire = new()
         {
-            actionName = "MouseFire",
-            performed = _goGoGadgetGun.OnceBtnMouseFire,
-            modifier = new()
+            eventData = new()
             {
-                isButton = true,
-                once = true,
-            }
+                actionName = "MouseFire",
+                modifier = new()
+                {
+                    isButton = true,
+                    once = true,
+                }
+            },
+            performed = _goGoGadgetGun.OnceBtnMouseFire,
+
         };
         keyboardEvents.Add(MouseFire);
 
-        CustomInputEvent KeyboardPickupItem = new()
-        {
-            actionName = "KeyboardPickupItem",
-            performed = _collectibleController.OnceBtnPickupItem,
-            modifier = new()
-            {
-                isButton = true,
-                once = true,
-            }
-        };
-        keyboardEvents.Add(KeyboardPickupItem);
-
-        CustomInputEvent KeyboardScrollInventory = new()
-        {
-            actionName = "KeyboardScrollInventory",
-            performed = _collectibleController.OnceVecScrollInventory,
-            modifier = new()
-            {
-                once = true
-            }
-        };
-        keyboardEvents.Add(KeyboardScrollInventory);
-
-        CustomInputEvent KeyboardDropItem = new()
-        {
-            actionName = "KeyboardDropItem",
-            performed = _collectibleController.OnceBtnDropItem,
-            modifier = new()
-            {
-                isButton = true,
-                once = true
-            }
-        };
-        keyboardEvents.Add(KeyboardDropItem);
-
-        CustomInputEvent KeyboardUseItem = new()
-        {
-            actionName = "KeyboardUseItem",
-            performed = ContBtnOnItemUse,
-            modifier = new()
-            {
-                isButton = true,
-                continuous = true
-            }
-        };
-        keyboardEvents.Add(KeyboardUseItem);
-
         CustomInputEvent KeyboardLeftRight = new()
         {
-            actionName = "KeyboardLR",
-            performed = _flipper.OnceVecLeftRight,
-            modifier = new()
+            eventData = new()
             {
-                once = true
-            }
+                actionName = "KeyboardLR",
+                modifier = new()
+                {
+                    once = true
+                }
+            },
+            performed = _flipper.OnceAxisLeftRight,
         };
         keyboardEvents.Add(KeyboardLeftRight);
 
         CustomInputEvent KeyboardInteraction = new()
         {
-            actionName = "KeyboardInteraction",
-            performed = ContBtnOnInteraction,
-            modifier = new()
+            eventData = new()
             {
-                isButton = true,
-                continuous = true
-            }
+                actionName = "KeyboardInteraction",
+                modifier = new()
+                {
+                    isButton = true,
+                    once = true
+                }
+            },
+            performed = InteractionEventHandlerKeyboard,
+
         };
         keyboardEvents.Add(KeyboardInteraction);
+
+        CustomInputEvent KeyboardOpenInv = new()
+        {
+            eventData = new() {
+                actionName = "KeyboardOpenInv",
+                modifier = new()
+                {
+                    isButton = true,
+                    once = true
+                }
+            }, 
+            performed = _collectibleController.OnceBtnOpenInv,
+        };
+        keyboardEvents.Add(KeyboardOpenInv);
 
         AddCustomInputEvents(keyboardEvents, this);
         Debugger.Print($"<color=#03d7fc>[InputHandler]</color>\n<color=#aaff00>Loaded keyboard events!</color>");
