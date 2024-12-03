@@ -216,7 +216,7 @@ MonoBehaviour:
     m_Bits: 128
   chase: 0
   overrideChase: 0
-  chaseSpeed: 9
+  chaseSpeed: 7.5
   EAC: {fileID: 0}
   enemyId: 0
   isAlive: 0
@@ -322,7 +322,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 2.5, y: 1}
+  m_Size: {x: 2.47, y: 1}
   m_Direction: 1
 --- !u!1 &6349002054864811450
 GameObject:

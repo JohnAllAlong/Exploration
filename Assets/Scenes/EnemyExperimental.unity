@@ -4811,21 +4811,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2068593828}
     m_Modifications:
-    - target: {fileID: 3164653985377378777, guid: 308624632cbb73c4197f3cb793c231a5, type: 3}
-      propertyPath: delay
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3164653985377378777, guid: 308624632cbb73c4197f3cb793c231a5, type: 3}
-      propertyPath: moveSpeed
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4490022705323480350, guid: 308624632cbb73c4197f3cb793c231a5, type: 3}
       propertyPath: m_Name
       value: EnemyBasic
-      objectReference: {fileID: 0}
-    - target: {fileID: 6933730976672836866, guid: 308624632cbb73c4197f3cb793c231a5, type: 3}
-      propertyPath: chaseSpeed
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7603274254796778424, guid: 308624632cbb73c4197f3cb793c231a5, type: 3}
       propertyPath: m_LocalPosition.x
