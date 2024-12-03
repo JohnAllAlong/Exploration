@@ -213,7 +213,7 @@ public class EnemyChase : MonoBehaviour
     }
 
     protected void OnCollisionExit2D(Collision2D other){
-        disbaleMovement = true;
+        if(other.collider.name == "Player") disbaleMovement = true;
     }
 
     protected int Timer(){
