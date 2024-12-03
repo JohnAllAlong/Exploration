@@ -180,9 +180,8 @@ public class EnemyChase : MonoBehaviour
                 target = alertRange.point.x;
             }
         }else{
-            
-            // Disables the Override once the distance between the player and enemy is less than 2 units
-            if(Vector2.Distance(transform.position, playerPos.position) < dist){
+            // Disables the Override once the distance between the player and enemy isS less than N units
+            if(Vector2.Distance(transform.position, playerPos.position) < dist+1f){
                 overrideChase = false;
             }else{
 
