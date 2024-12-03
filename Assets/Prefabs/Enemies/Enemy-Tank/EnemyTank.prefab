@@ -347,6 +347,7 @@ MonoBehaviour:
   moveSpeed: 1
   isEnemyAlive: 1
   EAC: {fileID: 0}
+  deathExplosion: {fileID: 4967476631846938564, guid: 1ae5005f25dd8f14d9207efe19060055, type: 3}
 --- !u!114 &4663774719421738056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -360,7 +361,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Maxhealth: 1
-  health: 10
+  currentHealth: 0
   maxCooldownTime: 1
   onHealthChanged:
     m_PersistentCalls:

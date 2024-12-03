@@ -4659,7 +4659,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Maxhealth: 1
-  health: 10
+  currentHealth: 0
   maxCooldownTime: 1
   onHealthChanged:
     m_PersistentCalls:
@@ -4705,11 +4705,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4333843902148263952, guid: 74f1562d79f9a164282f6ebfede13012, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.01
+      value: 0.28
       objectReference: {fileID: 0}
     - target: {fileID: 4333843902148263952, guid: 74f1562d79f9a164282f6ebfede13012, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 17.74
+      value: 9.29
       objectReference: {fileID: 0}
     - target: {fileID: 4333843902148263952, guid: 74f1562d79f9a164282f6ebfede13012, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4878,6 +4878,18 @@ PrefabInstance:
     - target: {fileID: 8449832202463134355, guid: 308624632cbb73c4197f3cb793c231a5, type: 3}
       propertyPath: targetTag
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8963291170255181475, guid: 308624632cbb73c4197f3cb793c231a5, type: 3}
+      propertyPath: m_Size.x
+      value: 2.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8963291170255181475, guid: 308624632cbb73c4197f3cb793c231a5, type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8963291170255181475, guid: 308624632cbb73c4197f3cb793c231a5, type: 3}
+      propertyPath: m_Offset.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8579881017528660550, guid: 308624632cbb73c4197f3cb793c231a5, type: 3}

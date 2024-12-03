@@ -26,8 +26,8 @@ Transform:
   m_GameObject: {fileID: 149160770132296045}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.849, y: 0.064, z: 0}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4748913558545896278}
@@ -224,7 +224,7 @@ MonoBehaviour:
     m_Bits: 128
   chase: 0
   overrideChase: 0
-  chaseSpeed: 3
+  chaseSpeed: 0
   EAC: {fileID: 0}
   enemyId: 0
   isAlive: 0
@@ -245,9 +245,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   delay: 2
-  moveSpeed: 2
+  moveSpeed: 0
   isEnemyAlive: 1
   EAC: {fileID: 0}
+  deathExplosion: {fileID: 4967476631846938564, guid: 1ae5005f25dd8f14d9207efe19060055, type: 3}
 --- !u!114 &8394144747272087447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -342,8 +343,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.2}
-  m_Size: {x: 1.61, y: 0.8}
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 2.2, y: 1}
   m_Direction: 1
 --- !u!1 &6154929693175946192
 GameObject:

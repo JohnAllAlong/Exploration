@@ -60,7 +60,7 @@ public class Damageable : MonoBehaviour
     protected virtual void Die()
     {
         onDeath?.Invoke();
-        this.gameObject.SetActive(false);
+        //this.gameObject.SetActive(false);
         //Destroy(this.gameObject);
     }
 }

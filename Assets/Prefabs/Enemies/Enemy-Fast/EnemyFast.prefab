@@ -241,6 +241,7 @@ MonoBehaviour:
   moveSpeed: 3
   isEnemyAlive: 1
   EAC: {fileID: 0}
+  deathExplosion: {fileID: 4967476631846938564, guid: 1ae5005f25dd8f14d9207efe19060055, type: 3}
 --- !u!114 &2595015255177084748
 MonoBehaviour:
   m_ObjectHideFlags: 0
