@@ -4,69 +4,17 @@ using UnityEngine;
 
 
 //mono so we can update timers 
-[ExecuteAlways]
-public class TimerController : MonoBehaviour
+[Serializable]
+public class TimerController : Timers
 {
-    protected void Awake()
+    private void OnEnable()
     {
-        Timers.Wipe();
+        Wipe();
     }
 
-    protected void Update()
+    private void Update()
     {
         //update timers
-        Timers.UpdateTimers();
-    }
-}
-
-
-//timers class used to manage timers as an extends.
-//also for general timer management outside of this script.
-
-/// <summary>
-/// calss that manages all active timers
-/// </summary>
-public class Timers
-{
-    protected static List<Timer> _timers = new();
-
-    /** 
-    <summary>gets a timer</summary>
-    */
-    public static Timer GetTimer(string name)
-    {
-        return _timers.Find(t => t.timerName == name);
-    }
-
-    /** 
-    <summary>returns all timers</summary>
-     */
-    public static List<Timer> GetTimers()
-    {
-        return _timers;
-    }
-
-    /** 
-     <summary>adds a timer</summary>
-     */
-    public static void AddTimer(Timer timer)
-    {
-        _timers.Add(timer);
-    }
-
-    /** 
-    <summary>wipes all timers</summary>
-    */
-    public static void Wipe()
-    {
-        _timers.Clear();
-    }
-
-    /** 
-     <summary>updates timers</summary>
-     */
-    public static void UpdateTimers()
-    {
         //update timers
         for (int i = 0; i != _timers.Count; i++)
         {
@@ -85,15 +33,64 @@ public class Timers
 }
 
 
+//timers class used to manage timers as an extends.
+//also for general timer management outside of this script.
+
+/// <summary>
+/// calss that manages all active timers
+/// </summary>
+public class Timers : MonoBehaviour
+{
+    public List<Timer> _timers = new();
+    public static Timers singleton;
+
+    private void Awake()
+    {
+        singleton = this;
+    }
+
+    /** 
+    <summary>gets a timer</summary>
+    */
+    public Timer GetTimer(string name)
+    {
+        return _timers.Find(t => t.timerName == name);
+    }
+
+    /** 
+    <summary>returns all timers</summary>
+     */
+    public List<Timer> GetTimers()
+    {
+        return _timers;
+    }
+
+    /** 
+     <summary>adds a timer</summary>
+     */
+    public void AddTimer(Timer timer)
+    {
+        _timers.Add(timer);
+    }
+
+    /** 
+    <summary>wipes all timers</summary>
+    */
+    public void Wipe()
+    {
+        _timers.Clear();
+    }
+}
+
+
 /// <summary>
 /// Creates a timer when constructed. Must be started with StartTimer()
-/// You can choose to identify a timer if needed, otherwise it will be anonymous
 /// </summary>
 [Serializable]
-public class Timer : Timers
+public class Timer
 {
     public string timerName; //name
-    [SerializeField] private readonly float _time = 1f; //timer time
+    [SerializeField] private float _time = 1f; //timer time
     [SerializeField] private float _timeElapsed = 0f; //timer elapsed
     [SerializeField] private bool _running = false; //timer is on
     [SerializeField] private bool _loop = false; //loop at end
@@ -104,48 +101,29 @@ public class Timer : Timers
     private Action _runAtEnd = null; //end action
     private Action<float> _update = null; //update action
 
-    public Timer(float time, string timerName = null)
+    public Timer(float time, string timerName = "")
     {
         this._time = time; //set time
 
         //check if timer with name already exists
-        if (timerName != null)
-            if (GetTimers().Find(t => t.timerName == timerName) != null)
+        if (timerName != "")
+            if (Timers.singleton._timers.Find(t => t.timerName == timerName) != null)
             {
-                Debug.LogWarning("[TimerController] Timer with id of " + timerName + " already exists!");
+                Debug.LogWarning("[TimerController] Timer with name of " + timerName + " already exists!");
                 return;
             }
         //set name and add timer
-        this.timerName = timerName;
-        AddTimer(this);
-    }
-
-    /// <summary>
-    /// gets the time this timer is set to
-    /// </summary>
-    /// <returns>the time</returns>
-    public float GetTime()
-    {
-        return _time;
-    }
-
-    /// <summary>
-    /// gets the elapsed time
-    /// </summary>
-    /// <returns>elapsed time</returns>
-    public float GetElapsedTime()
-    {
-        return _timeElapsed;
+        this.timerName = UnityEngine.Random.Range(0, 999999).ToString();
+        Timers.singleton.AddTimer(this);
     }
 
     /// <summary>
     /// ends the timer on end by "destroy"
     /// </summary>
     /// <param name="destroy">end on end?</param>
-    public Timer DestroyOnEnd(bool destroy)
+    public void DestroyOnEnd(bool destroy)
     {
         _destroyOnEnd = destroy;
-        return this;
     }
 
     /// <summary>
@@ -154,6 +132,16 @@ public class Timer : Timers
     public void Destroy()
     {
         this._destroy = true;
+    }
+
+    /// <summary>
+    /// resets time to a new time (stops the timer) keeps all other data
+    /// </summary>
+    public void ResetTime(float newTime = 5f)
+    {
+        _running = false;
+        _timeElapsed = 0f;
+        _time = newTime;
     }
 
     /// <summary>
@@ -167,22 +155,6 @@ public class Timer : Timers
         _loop = false;
         _countdown = false;
         _destroyOnEnd = true; //not processed if loop is true
-        _destroy = false;
-        _runAtEnd = null;
-        _update = null;
-    }
-
-    /// <summary>
-    /// hard-resets the timer back to defaults
-    /// </summary>
-    public void Reset(bool destroyOnEnd)
-    {
-        _running = false;
-
-        _timeElapsed = 0f;
-        _loop = false;
-        _countdown = false;
-        _destroyOnEnd = destroyOnEnd; //not processed if loop is true
         _destroy = false;
         _runAtEnd = null;
         _update = null;
@@ -254,7 +226,7 @@ public class Timer : Timers
                 {
                     _running = false; //stop
                     if (_destroyOnEnd)
-                        _timers.Remove(this);
+                        Timers.singleton._timers.Remove(this);
                 }
 
                 _timeElapsed = 0f; //reset
@@ -296,8 +268,9 @@ public class Timer : Timers
     /**
     <summary>if true timer will count down, not up</summary>
     */
-    public void Countdown(bool countdown)
+    public Timer Countdown(bool countdown)
     {
         this._countdown = countdown;
+        return this;
     }
 }

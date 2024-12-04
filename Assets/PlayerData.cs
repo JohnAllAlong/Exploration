@@ -23,7 +23,16 @@ namespace Player
         protected void Awake()
         {
             singleton = this;
+        }
+
+        private void Start()
+        {
             trapdoorCooldownTimer = new(trapdoorCooldownTime);
+        }
+
+        private void Update()
+        {
+            //trapdoorCooldownTimer.UpdateTimer();
         }
 
         public static SpriteRenderer GetScreenFader()
