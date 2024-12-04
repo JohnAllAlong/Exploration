@@ -44,12 +44,20 @@ public class Trapdoor : MonoBehaviour
                 return;
             }
 
-            playerTransform.position = targetDoor.transform.position;
 
-            PlayerData.singleton.trapdoorCooldownTimer.OnEnd(() => {
-                print("Cooldown ended");
-                PlayerData.singleton.trapdoorCooldownTimer = new(PlayerData.singleton.trapdoorCooldownTime);
-            }).StartTimer();
+            GUIUtilitys.FadeInSprite(PlayerData.GetScreenFader(), 0.500f, () =>
+            {
+                new Timer(0.2f).OnEnd(() => {
+                    playerTransform.position = targetDoor.transform.position;
+                    GUIUtilitys.FadeOutSprite(PlayerData.GetScreenFader(), 0.500f);
+                }).StartTimer();
+
+                PlayerData.singleton.trapdoorCooldownTimer.OnEnd(() =>
+                {
+                    print("Cooldown ended");
+                    PlayerData.singleton.trapdoorCooldownTimer = new(PlayerData.singleton.trapdoorCooldownTime);
+                }).StartTimer();
+            });
         }
     }
 

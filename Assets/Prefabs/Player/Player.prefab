@@ -53,8 +53,8 @@ MonoBehaviour:
   m_Color: {r: 0.9924528, g: 0.95418257, b: 0.3801281, a: 1}
   m_Intensity: 1.21
   m_LightVolumeIntensity: 0.17
-  m_LightVolumeIntensityEnabled: 1
-  m_ApplyToSortingLayers: 67798d7d00000000
+  m_LightVolumeIntensityEnabled: 0
+  m_ApplyToSortingLayers: 0000000067798d7d
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 20
@@ -63,7 +63,7 @@ MonoBehaviour:
   m_NormalMapDistance: 3
   m_NormalMapQuality: 1
   m_UseNormalMap: 0
-  m_ShadowIntensityEnabled: 1
+  m_ShadowIntensityEnabled: 0
   m_ShadowIntensity: 1
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.032
@@ -174,7 +174,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 1772353728, guid: 757ce77a35fc33e479ba06c3e5be9bdf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -681,6 +681,7 @@ MonoBehaviour:
     _countdown: 0
     _destroyOnEnd: 0
     _destroy: 0
+  screenFader: {fileID: 0}
 --- !u!1001 &5760775128168322838
 PrefabInstance:
   m_ObjectHideFlags: 0

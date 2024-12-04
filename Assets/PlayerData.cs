@@ -15,12 +15,20 @@ namespace Player
         public float trapdoorCooldownTime;
         public Timer trapdoorCooldownTimer;
 
+        [Header("Screen")]
+        public SpriteRenderer screenFader;
+
         public static PlayerData singleton;
 
         protected void Awake()
         {
             singleton = this;
             trapdoorCooldownTimer = new(trapdoorCooldownTime);
+        }
+
+        public static SpriteRenderer GetScreenFader()
+        {
+            return singleton.screenFader;
         }
 
         public static Transform GetTransform()
