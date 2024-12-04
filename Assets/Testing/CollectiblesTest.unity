@@ -762,6 +762,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1748887252517088888, guid: 5d04b4bcd535c4f4eae3d6d9f292ff67, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4119971672462113843, guid: 5d04b4bcd535c4f4eae3d6d9f292ff67, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -853,7 +857,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 5d04b4bcd535c4f4eae3d6d9f292ff67, type: 3}
 --- !u!1 &1251074614 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 1748887252517088888, guid: 5d04b4bcd535c4f4eae3d6d9f292ff67, type: 3}
+  m_CorrespondingSourceObject: {fileID: 5988027927256331728, guid: 5d04b4bcd535c4f4eae3d6d9f292ff67, type: 3}
   m_PrefabInstance: {fileID: 1251074613}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1362643044
