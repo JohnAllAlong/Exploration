@@ -221,7 +221,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -1375237595, guid: 694cba2e5f0cde1498ecfad3c147352a, type: 3}
+  m_Sprite: {fileID: -145987927, guid: 9ed9071a98b91ba43a7a560c59628358, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -279,7 +279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 703923daada97f14a892b00c2df9f301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bookPrefab: {fileID: 8530818421645737552, guid: bc95295d4f237e14f9d8f285d6bbe661, type: 3}
+  bookPrefab: {fileID: 2287821551412924167, guid: fbcb72b512c26f54c844586b329694d0, type: 3}
   bookOffset: {x: 0.96, y: 1.71, z: 0}
   bookGizmoSize: 0.19
   centerGizmoSize: 1
