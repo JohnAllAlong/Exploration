@@ -3,15 +3,7 @@ using UnityEngine;
 public class BossStateHandler : MonoBehaviour
 {
     [SerializeField] private Vector2 movementSpeed;
-    [SerializeField] private GameObject bookAimPrefab;
     [SerializeField] private float attackSpeed;
-    [SerializeField] private float destroyAttackTime;
-
-    private float attackingRange = 3f;
-
-    [SerializeField] private float centerGizmoSize;
-    [SerializeField] private Vector3 mantisOffsetCenter;
-    [SerializeField] private Vector3 playerOffsetCenter;
 
     protected enum bossState {
         Patrolling,
@@ -23,7 +15,8 @@ public class BossStateHandler : MonoBehaviour
     }
 
     protected bossState currentState;
-    private Animator mantisAnimator;
+    [SerializeField] private Animator mantisAnimator;
+    [SerializeField] private Animator slamAnimator;
 
     //Cache the player's Transform component
     protected Transform playerPos;
@@ -35,7 +28,6 @@ public class BossStateHandler : MonoBehaviour
         //Find the player on the scene, and get its Transform component
         playerPos = FindObjectOfType<PlayerMove>().GetComponent<Transform>();
         mantisPos = transform.parent;
-        mantisAnimator = GetComponentInChildren<Animator>();
         currentState = bossState.Chasing;
         currentTimer = 0f;
     }
@@ -76,34 +68,6 @@ public class BossStateHandler : MonoBehaviour
         }
 
 
-/*
-        if ((playerPos.position - transform.position).magnitude <= attackingRange) {
-            currentState = bossState.StaffSlam;
-        } else {
-            currentState = bossState.Chasing;
-        }*/
-
-
-/**
-        //STAFF SLAMMMMMMMMM
-        if (playerPos && currentState == bossState.StaffSlam) {
-            if (currentTimer >= 1f) {
-                mantisAnimator.SetTrigger("Slam");
-                
-                Quaternion toPlayer = new Quaternion();
-                toPlayer = Quaternion.FromToRotation(Vector3.up, (playerPos.position + playerOffsetCenter - (transform.position + mantisOffsetCenter)).normalized);
-                Debug.Log(toPlayer.eulerAngles);
-
-
-                GameObject areaAttack = Instantiate(areaAttackPrefab, transform.position + mantisOffsetCenter, toPlayer*areaAttackPrefab.transform.rotation);
-                
-
-                Destroy(areaAttack, destroyAttackTime);
-                
-                currentTimer = 0f;
-            }  
-            
-        }*/
     }
 
     protected bossState RetrieveState() {
@@ -124,6 +88,7 @@ public class BossStateHandler : MonoBehaviour
             case 1:
                 currentState = bossState.StaffSlam;
                 mantisAnimator.SetTrigger("Slam");
+                slamAnimator.SetTrigger("Slam");
                 break;
             case 2:
                 currentState = bossState.ThrowBook;
