@@ -54,7 +54,6 @@ public class Trapdoor : MonoBehaviour
 
                 PlayerData.singleton.trapdoorCooldownTimer.OnEnd(() =>
                 {
-                    print("Cooldown ended");
                     PlayerData.singleton.trapdoorCooldownTimer = new(PlayerData.singleton.trapdoorCooldownTime);
                 }).StartTimer();
             });
