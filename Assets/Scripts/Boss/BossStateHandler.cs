@@ -62,7 +62,7 @@ public class BossStateHandler : MonoBehaviour
                 mantisPos.Translate(new Vector2(0, directionY) * movementSpeed * Time.deltaTime);
             }
         
-        } else if (playerPos && !playerIsInRoom) {
+        } else if (playerPos && !playerIsInRoom && !mantisAnimator.GetCurrentAnimatorStateInfo(0).IsName("Jump") && !mantisAnimator.GetCurrentAnimatorStateInfo(0).IsName("Throw")) {
             
             //move to original spot
             float distanceToInit = (initialPos - mantisPos.position).magnitude;
