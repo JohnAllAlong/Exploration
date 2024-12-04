@@ -7,7 +7,6 @@ using CustomInput.Events;
 
 public class InputHandler : CustomInputEventManager
 {
-    private InputDevice currentDevice;
     [SerializeField] private PlayerMove _playerMove;
     [SerializeField] private GoGoGadgetGun _goGoGadgetGun;
     [SerializeField] private PlayerCollectibleController _collectibleController;
@@ -17,20 +16,15 @@ public class InputHandler : CustomInputEventManager
     public static bool isInteractingGamepad;
     public static Action<ReturnData> OnceBtnOnInteraction = (i) => { };
 
-    protected void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
         //set onDeviceChange
         InputSystem.onDeviceChange += OnDeviceChanged;
-        //set OnAnyCustomInput
-        OnAnyCustomInput += SwitchedInput;
-
-        //set the launch input device
-        currentDevice = GetNextAvailableInputDevice();
     }
 
-    protected override void Awake()
+    protected void Awake()
     {
-        base.Awake();
         InitGamepadEvents();
         InitKeyboardEvents();
     }
@@ -40,9 +34,6 @@ public class InputHandler : CustomInputEventManager
         //de-set onDeviceChange
         InputSystem.onDeviceChange -= OnDeviceChanged;
         OnceBtnOnInteraction = default;
-        //de-set OnAnyCustomInput
-        OnAnyCustomInput -= SwitchedInput;
-
         RemoveAllEvents();
     }
 
@@ -75,15 +66,6 @@ public class InputHandler : CustomInputEventManager
         }
 
         OnceBtnOnInteraction(input);
-    }
-
-    private void SwitchedInput(CustomInputEvent @event)
-    {
-        if (@event.eventData.action.activeControl == null) return;
-
-        if (@event.eventData.action.activeControl.device == currentDevice) return;
-
-        currentDevice = @event.eventData.action.activeControl.device;
     }
 
 

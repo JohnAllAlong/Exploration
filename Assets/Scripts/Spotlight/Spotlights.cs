@@ -5,11 +5,13 @@ public class Spotlights : MonoBehaviour
     [SerializeField] protected float alertRadius;
     [SerializeField] protected ContactFilter2D contactFilter2D;
     protected RaycastHit2D alertRange;
-    [SerializeField] protected RaycastHit2D[] results;
+    [SerializeField] protected RaycastHit2D[] results = new RaycastHit2D[20];
 
     protected int hits;
 
     protected void OnTriggerEnter2D(Collider2D collider2D){
+        if (results.Length == 0) return;
+
         foreach(var r in results){
             if(r.collider!=null){
                 Debug.Log(r.collider.name);

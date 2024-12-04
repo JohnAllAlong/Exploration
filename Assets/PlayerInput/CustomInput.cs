@@ -119,9 +119,7 @@ namespace CustomInput
         /// <returns>the current input device</returns>
         public static InputDevice GetCurrent()
         {
-
-            if (GetRawGamepad() != null) return GetRawGamepad();
-            else return GetKeyboard();
+           return singleton.currentDevice;
         }
     }
 }
@@ -259,17 +257,35 @@ namespace CustomInput.Events
     public class CustomInputEventManager : MonoBehaviour
     {
         public static CustomInputEventManager singleton;
+        [SerializeField]
+        public InputDevice currentDevice;
+
 
         [SerializeField] private PlayerInput _input;
-
         //custom events (main way of input)
         [SerializeField]
         protected List<CustomInputEvent> CustomInputEvents = new();
 
         //set singleton
-        protected virtual void Awake()
+
+        protected virtual void OnEnable()
         {
             singleton = this;
+            //set the launch input device
+            currentDevice = GetNextAvailableInputDevice();
+        }
+
+        /// <summary>
+        /// Checks on any input for an input device switch. Switches currentDevice if so.<br></br>Recommended to run base unless full override.
+        /// </summary>
+        /// <param name="event">event to check the device of</param>
+        protected virtual void CheckForInputSwitch(CustomInputEvent @event)
+        {
+            if (@event.eventData.action.activeControl == null) return;
+
+            if (@event.eventData.action.activeControl.device == currentDevice) return;
+
+            currentDevice = @event.eventData.action.activeControl.device;
         }
 
         /// <summary>
@@ -460,6 +476,8 @@ namespace CustomInput.Events
                         }
 
                         @event.eventData.owner.OnAnyCustomInput(@event);
+                        //check if input device is the same
+                        CheckForInputSwitch(@event);
                         @event.performed.Invoke(input);
                     }
                 }
