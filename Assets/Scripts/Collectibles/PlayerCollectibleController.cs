@@ -41,6 +41,9 @@ public class PlayerCollectibleController : MonoBehaviour
 
     private void OnceBtnInteraction(ReturnData input)
     {
+        //dont run if movement is paused
+        if (Events.IsPaused("KeyboardMove", "GamepadMove").Contains(true)) return;
+
         if (_nearestCollectible != null)
         {
             Destroy(_nearestCollectible.gameObject);
