@@ -28,6 +28,7 @@ namespace Player
 
         public static SpriteRenderer GetScreenFader()
         {
+            if (singleton.screenFader == null) return default;
             return singleton.screenFader;
         }
 
@@ -38,11 +39,13 @@ namespace Player
 
         public static PlayerMove GetPlayerMove()
         {
+            if (singleton.playerMoveScript == null) return default;
             return singleton.playerMoveScript;
         }
 
         public static GoGoGadgetGun GetPlayerWeapon()
         {
+            if (singleton.playerWeaponScript == null) return default;
             return singleton.playerWeaponScript;
         }
     }
