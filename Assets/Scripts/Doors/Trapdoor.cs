@@ -13,6 +13,13 @@ public class Trapdoor : MonoBehaviour
     [SerializeField] private Sprite hoverSprite;
     [SerializeField] private SpriteRenderer spriteRenderer;
 
+    [Header("Popup Settings")]
+    [SerializeField] private GameObject popup;
+    [SerializeField] private GameObject spawnedPopupObject;
+    [SerializeField] private bool spawnedPopup;
+    [SerializeField] private float popupVisibleRadius;
+
+
     [Header("Runtime Variables")]
     [SerializeField] private bool playerHoveringTrapdoor;
     [SerializeField] private Transform playerTransform;
@@ -29,11 +36,9 @@ public class Trapdoor : MonoBehaviour
 
     private void AttemptTeleport(ReturnData input)
     {
-        Timer cooldownTimer = PlayerData.GetTrapdoorCooldownTimer();
-
         if (playerHoveringTrapdoor)
         {
-            if (cooldownTimer.IsRunning())
+            if (PlayerData.singleton.trapdoorCooldownTimer.IsRunning())
             {
                 Debug.LogWarning("Trapdoor on cooldown!");
                 return;
@@ -41,24 +46,43 @@ public class Trapdoor : MonoBehaviour
 
             playerTransform.position = targetDoor.transform.position;
 
-            cooldownTimer.OnEnd(() => cooldownTimer.Reset(false)).StartTimer();
+            PlayerData.singleton.trapdoorCooldownTimer.OnEnd(() => {
+                print("Cooldown ended");
+                PlayerData.singleton.trapdoorCooldownTimer = new(PlayerData.singleton.trapdoorCooldownTime);
+            }).StartTimer();
         }
     }
 
     protected void Update()
     {
         RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position, spriteRenderer.bounds.size, 0, Vector2.zero);
-        RaycastHit2D playerhit = hits.ToList().Find(hits => hits.collider.CompareTag("Player"));
-        playerHoveringTrapdoor = playerhit;
+        RaycastHit2D playerHit = hits.ToList().Find(hits => hits.collider.CompareTag("Player"));
+        playerHoveringTrapdoor = playerHit;
 
         if (playerHoveringTrapdoor)
         {
-            playerTransform = playerhit.collider.transform;
+            playerTransform = playerHit.collider.transform;
             spriteRenderer.sprite = hoverSprite;
         }
         else
         {
             spriteRenderer.sprite = defaultSprite;
+        }
+
+        RaycastHit2D[] interactionHits = Physics2D.CircleCastAll(transform.position, popupVisibleRadius, Vector2.up);
+        RaycastHit2D playerInteractionHit = interactionHits.ToList().Find(hits => hits.collider.CompareTag("Player"));
+        bool hitPlayer = playerInteractionHit;
+
+        if (!spawnedPopup && hitPlayer)
+        {
+            spawnedPopup = true;
+            spawnedPopupObject = Instantiate(popup);
+            spawnedPopupObject.transform.position = transform.position + new Vector3(0, 1, 0);
+        }
+        else if (!hitPlayer)
+        {
+            Destroy(spawnedPopupObject);
+            spawnedPopup = false;
         }
     }
 }

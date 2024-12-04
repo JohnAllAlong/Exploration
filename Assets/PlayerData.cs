@@ -20,19 +20,8 @@ namespace Player
         protected void Awake()
         {
             singleton = this;
-            trapdoorCooldownTimer = new Timer(trapdoorCooldownTime).DestroyOnEnd(false);
+            trapdoorCooldownTimer = new(trapdoorCooldownTime);
         }
-
-
-        public static Timer GetTrapdoorCooldownTimer()
-        {
-            return singleton.trapdoorCooldownTimer;
-        }
-        public static float GetTrapdoorCooldownTime()
-        {
-            return singleton.trapdoorCooldownTime;
-        }
-
 
         public static Transform GetTransform()
         {

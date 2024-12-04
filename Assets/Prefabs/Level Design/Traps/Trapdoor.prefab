@@ -101,5 +101,8 @@ MonoBehaviour:
   defaultSprite: {fileID: -1117628525, guid: a3cdc3c57f62d014c9ae14fd8dc7daa7, type: 3}
   hoverSprite: {fileID: -118270794, guid: a3cdc3c57f62d014c9ae14fd8dc7daa7, type: 3}
   spriteRenderer: {fileID: 6726431014175271475}
+  popup: {fileID: 8230442341036029098, guid: a645f5bf92a890944a635d7a6f3e0ba4, type: 3}
+  spawnedPopupObject: {fileID: 0}
+  spawnedPopup: 0
   playerHoveringTrapdoor: 0
   playerTransform: {fileID: 0}
