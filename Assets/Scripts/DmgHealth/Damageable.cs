@@ -67,11 +67,6 @@ public class Damageable : MonoBehaviour
         {
             this.gameObject.GetComponentInChildren<PlayerAnimation>().SetState(5);
         }
-        // if not, deactivate game object
-        else
-        {
-            this.gameObject.SetActive(false);
-        }
         // Is this a bad way to do death animations for the player?
         // Probably, but i don't have time to do a cleaner implementation
     }
