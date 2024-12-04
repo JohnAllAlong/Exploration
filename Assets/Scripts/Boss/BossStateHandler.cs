@@ -113,16 +113,6 @@ public class BossStateHandler : MonoBehaviour
     }
 
 
-    private void OnDrawGizmos() {
-        Gizmos.color = Color.yellow;
-
-        if (mantisPos)
-            Gizmos.DrawWireSphere(mantisPos.position + mantisOffsetCenter, centerGizmoSize);
-
-        if (playerPos)
-            Gizmos.DrawWireSphere(playerPos.position + playerOffsetCenter, centerGizmoSize);
-    }
-
     private void ChooseRandomAttack() {
         int numAttacks = Random.Range(0, 3);
 

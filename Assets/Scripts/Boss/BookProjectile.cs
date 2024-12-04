@@ -15,4 +15,12 @@ public class BookProjectile : MonoBehaviour
     private void Update() {
         transform.Translate(targetDirection * projectileSpeed * Time.deltaTime);
     }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.CompareTag("Player")) {
+            //Apply damage to the player
+            Debug.Log("The book hit the Player");
+            Destroy(gameObject);
+        }
+    }
 }

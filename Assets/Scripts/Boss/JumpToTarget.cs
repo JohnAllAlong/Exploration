@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class JumpToTarget : MonoBehaviour
 {
-    [SerializeField] private float jumpDuration;
     [SerializeField] private float jumpPower;
     private Transform mantisPos;
     private bool isJumping;
@@ -13,7 +12,8 @@ public class JumpToTarget : MonoBehaviour
 
     private Transform defaultTarget;
 
-    private Vector2 directionToTarget;
+    private Vector3 targetPos;
+    private Vector3 initialPos;
 
     private Animator mantisAnimator;
 
@@ -28,23 +28,25 @@ public class JumpToTarget : MonoBehaviour
     }
 
     public void JumpEvent() {
-        isJumping = true;
-        Vector3 targetPos = defaultTarget.position;
+        targetPos = defaultTarget.position;
+        initialPos = mantisPos.transform.position;
+        currentTimer = 0f;
 
-        directionToTarget = (targetPos - mantisPos.position).normalized;
+        isJumping = true;
     }
 
     private void Update() {
-        if (isJumping && currentTimer < jumpDuration) {
-            currentTimer += Time.deltaTime;
-            mantisPos.Translate(directionToTarget * jumpPower * Time.deltaTime);
-            
-        } else if (isJumping && currentTimer >= jumpDuration) {
-            isJumping = false;
-            mantisAnimator.SetTrigger("Land");
-            currentTimer = 0;
+        //if the mantis is still jumping
+        if (isJumping) {
+            currentTimer += Time.deltaTime * jumpPower;
+
+            //move towards player            
+            if (currentTimer < 1) {
+                mantisPos.transform.position = Vector3.Lerp(initialPos, targetPos, currentTimer);
+            } else {
+                isJumping = false;
+                mantisAnimator.SetTrigger("Land");
+            }
         }
     }
-
-
 }
