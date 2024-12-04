@@ -21,6 +21,8 @@ public class BossStateHandler : MonoBehaviour
     //Cache the player's Transform component
     protected Transform playerPos;
     private Transform mantisPos;
+
+    [SerializeField] private float slamDistance;
     
     private float currentTimer;
 
@@ -78,21 +80,30 @@ public class BossStateHandler : MonoBehaviour
 
 
     private void ChooseRandomAttack() {
-        int numAttacks = Random.Range(0, 3);
+        int numAttacks = Random.Range(0, 2);
 
         switch (numAttacks) {
+
+            //Option 1: If the player is close enough, will slam. Otherwise, close the gap
             case 0:
-                currentState = bossState.Jump;
-                mantisAnimator.SetTrigger("Jump");
+                float distanceFromPlayer = (playerPos.position - mantisPos.position).magnitude;
+                
+                if (distanceFromPlayer <= slamDistance) {
+                    currentState = bossState.StaffSlam;
+                    mantisAnimator.SetTrigger("Slam");
+                    slamAnimator.SetTrigger("Slam");
+                } else { 
+                    currentState = bossState.Jump;
+                    mantisAnimator.SetTrigger("Jump");
+                }
+
                 break;
+
+            //Option 2: Throw a book at the player
             case 1:
-                currentState = bossState.StaffSlam;
-                mantisAnimator.SetTrigger("Slam");
-                slamAnimator.SetTrigger("Slam");
-                break;
-            case 2:
                 currentState = bossState.ThrowBook;
                 mantisAnimator.SetTrigger("Throw");
+
                 break;
         }
     }
