@@ -27,6 +27,7 @@ public class BossStateHandler : MonoBehaviour
     private float currentTimer;
     private bool playerIsInRoom;
     private Vector3 initialPos;
+    private bool withinSlamRange;
 
     protected virtual void Awake() {
         //Find the player on the scene, and get its Transform component
@@ -36,6 +37,7 @@ public class BossStateHandler : MonoBehaviour
         currentTimer = 0f;
         playerIsInRoom = false;
         initialPos = mantisPos.position;
+        withinSlamRange = false;
     }
 
     private void FixedUpdate() {
@@ -93,7 +95,7 @@ public class BossStateHandler : MonoBehaviour
             case 0:
                 float distanceFromPlayer = (playerPos.position - mantisPos.position).magnitude;
                 
-                if (distanceFromPlayer <= slamDistance) {
+                if (withinSlamRange) {
                     currentState = bossState.StaffSlam;
                     mantisAnimator.SetTrigger("Slam");
                     slamAnimator.SetTrigger("Slam");
@@ -116,4 +118,17 @@ public class BossStateHandler : MonoBehaviour
     public void ChangeToChasing() {
         currentState = bossState.Chasing;
     }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.CompareTag("Player")) {
+            withinSlamRange = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other) {
+        if (other.CompareTag("Player")) {
+            withinSlamRange = false;
+        }
+    }
+
 }
