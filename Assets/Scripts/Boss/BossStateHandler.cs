@@ -50,6 +50,12 @@ public class BossStateHandler : MonoBehaviour
 
             Vector2 distanceFromPlayer = playerPos.position - mantisPos.position;
 
+            if (distanceFromPlayer.magnitude > 1) {
+                mantisAnimator.SetBool("Walking", true);
+            } else {
+                mantisAnimator.SetBool("Walking", false);
+            }
+
             //If the player is further away from the Mantis on the X-axis
             if (Mathf.Abs(distanceFromPlayer.x) > Mathf.Abs(distanceFromPlayer.y)) {
 
@@ -72,7 +78,6 @@ public class BossStateHandler : MonoBehaviour
             if (distanceToInit > 0.3f)
                 mantisPos.Translate(toInitialArea * movementSpeed * Time.deltaTime);
         }
-
     }
 
     private void Update() {
@@ -81,8 +86,6 @@ public class BossStateHandler : MonoBehaviour
         if (currentTimer >= 1f && playerIsInRoom) {
             ChooseRandomAttack();
             currentTimer = 0f;
-        } else {
-            currentState = bossState.Patrolling;
         }
     }
 
