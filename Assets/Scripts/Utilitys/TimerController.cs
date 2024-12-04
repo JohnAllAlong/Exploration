@@ -173,6 +173,22 @@ public class Timer : Timers
     }
 
     /// <summary>
+    /// hard-resets the timer back to defaults
+    /// </summary>
+    public void Reset(bool destroyOnEnd)
+    {
+        _running = false;
+
+        _timeElapsed = 0f;
+        _loop = false;
+        _countdown = false;
+        _destroyOnEnd = destroyOnEnd; //not processed if loop is true
+        _destroy = false;
+        _runAtEnd = null;
+        _update = null;
+    }
+
+    /// <summary>
     /// is the timer runninng?
     /// </summary>
     /// <returns>bool</returns>
