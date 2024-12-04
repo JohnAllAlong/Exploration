@@ -25,6 +25,8 @@ public class BossStateHandler : MonoBehaviour
     [SerializeField] private float slamDistance;
     
     private float currentTimer;
+    private bool playerIsInRoom;
+    private Vector3 initialPos;
 
     protected virtual void Awake() {
         //Find the player on the scene, and get its Transform component
@@ -32,12 +34,14 @@ public class BossStateHandler : MonoBehaviour
         mantisPos = transform.parent;
         currentState = bossState.Chasing;
         currentTimer = 0f;
+        playerIsInRoom = false;
+        initialPos = mantisPos.position;
     }
 
     private void FixedUpdate() {
     
         //CHASING
-        if (playerPos && currentState == bossState.Chasing) {
+        if (playerPos && currentState == bossState.Chasing && playerIsInRoom) {
             //If the player is on the above the Mantis, set the directionY to 1. Else if they are below, set to -1;
             int directionY = mantisPos.position.y < playerPos.position.y ? 1 : -1;
 
@@ -57,19 +61,33 @@ public class BossStateHandler : MonoBehaviour
                 //Vertically move the Mantis toward the player
                 mantisPos.Translate(new Vector2(0, directionY) * movementSpeed * Time.deltaTime);
             }
+        
+        } else if (playerPos && !playerIsInRoom) {
+            
+            //move to original spot
+            float distanceToInit = (initialPos - mantisPos.position).magnitude;
+            Vector2 toInitialArea = (initialPos - mantisPos.position).normalized;
+
+            //if not within range of the initial area
+            if (distanceToInit > 0.3f)
+                mantisPos.Translate(toInitialArea * movementSpeed * Time.deltaTime);
         }
 
     }
 
     private void Update() {
         currentTimer += Time.deltaTime * attackSpeed;
-
-        if (currentTimer >= 1f) {
+        
+        if (currentTimer >= 1f && playerIsInRoom) {
             ChooseRandomAttack();
             currentTimer = 0f;
+        } else {
+            currentState = bossState.Patrolling;
         }
+    }
 
-
+    public void PlayerIsInRoom(bool checkPlayer) {
+        playerIsInRoom = checkPlayer;
     }
 
     protected bossState RetrieveState() {
