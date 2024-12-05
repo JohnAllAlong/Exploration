@@ -5,6 +5,7 @@ using UnityEngine;
 public class BookProjectile : MonoBehaviour
 {
     [SerializeField] private float projectileSpeed;
+    [SerializeField] private int damage;
 
 
     private const float MAX_LIFETIME = 5f;
@@ -23,7 +24,7 @@ public class BookProjectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Player")) {
-            //Apply damage to the player
+            other.GetComponent<Damageable>().TakeDamage(damage);
             Destroy(gameObject);
         }
     }
