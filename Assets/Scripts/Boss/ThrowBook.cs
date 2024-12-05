@@ -53,6 +53,7 @@ public class ThrowBook : MonoBehaviour
     private void Update() {
         if (arrowAim) {
             arrowAim.transform.rotation = Quaternion.FromToRotation(Vector3.up, (playerPos.position + playerOffsetCenter - (transform.position + mantisOffsetCenter)).normalized)*aimArrowPrefab.transform.rotation;
+            arrowAim.transform.parent = transform;
         }
     }
 
