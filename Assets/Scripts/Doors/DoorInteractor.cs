@@ -3,6 +3,7 @@ using CustomInput.Events;
 using Player;
 using TMPro;
 using UnityEngine;
+using System;
 
 public class DoorInteractor : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class DoorInteractor : MonoBehaviour
     [SerializeField] private bool _open;
     [SerializeField] private InventoryCanvasRenderer _inventoryRenderer;
     [SerializeField] private Collider2D _collider;
+    public Action<bool> onDoorInteraction = delegate { };
 
     private PlayerCollectibleController _cc;
     private bool _inRange;
@@ -52,6 +54,7 @@ public class DoorInteractor : MonoBehaviour
             Destroy(_spawnedOpenPopup);
             _spawnedPopup = false;
             _collider.enabled = !_open;
+            onDoorInteraction(_open);
         }
     }
 
