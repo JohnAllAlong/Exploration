@@ -10,6 +10,7 @@ public class InputHandler : CustomInputEventManager
     [SerializeField] private PlayerMove _playerMove;
     [SerializeField] private GoGoGadgetGun _goGoGadgetGun;
     [SerializeField] private PlayerCollectibleController _collectibleController;
+    [SerializeField] private InventoryCanvasRenderer _collectibleRenderer;
     [SerializeField] private PlayerFlip _flipper;
 
     public static bool isInteractingKeyboard;
@@ -210,7 +211,7 @@ public class InputHandler : CustomInputEventManager
                     once = true
                 }
             },
-            performed = InventoryCanvasRenderer.singleton.OnceBtnDropCollectible,
+            performed = _collectibleRenderer.OnceBtnDropCollectible,
         };
         gamepadEvents.Add(GamepadDropCollectible);
 
@@ -309,7 +310,7 @@ public class InputHandler : CustomInputEventManager
                     once = true
                 }
             },
-            performed = InventoryCanvasRenderer.singleton.OnceBtnDropCollectible,
+            performed = _collectibleRenderer.OnceBtnDropCollectible,
         };
         keyboardEvents.Add(KeyboardDropCollectible);
 

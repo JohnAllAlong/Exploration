@@ -1,100 +1,76 @@
+using System.Linq;
 using CustomInput.Events;
+using Player;
 using TMPro;
 using UnityEngine;
 
 public class DoorInteractor : MonoBehaviour
 {
-    [Header("System Set Variables")]
-    [SerializeField] private bool _hasKey = false;
-    [SerializeField] private bool _inRange = false;
 
-    [Header("Important")]
-    [SerializeField] private Vector2 _doorDirection = Vector2.zero;
+    [Header("Settings")]
+    [SerializeField] private float _detectionRadius = 3;
     [SerializeField] private int _keyCollectibleID = 0;
-    [SerializeField] private string _playerDoesntHaveKeyText;
-    [SerializeField] private string _playerHasKeyText;
+    [SerializeField] private GameObject _openPopup;
+    [SerializeField] private Animator _animator;
+    [SerializeField] private bool _removeFromInventoryAfterUse;
+    [SerializeField] private bool _open;
+    [SerializeField] private InventoryCanvasRenderer _inventoryRenderer;
+    [SerializeField] private Collider2D _collider;
 
+    private PlayerCollectibleController _cc;
+    private bool _inRange;
+    private bool _showPopup = true;
+    private bool _spawnedPopup;
+    private GameObject _spawnedOpenPopup;
 
-    [Header("Manually Set Variables")]
-    [SerializeField] private LineRenderer _lineRenderer;
-    [SerializeField] private TextMeshProUGUI _alertText;
-    [SerializeField] private Transform _playerTransform;
-    [SerializeField] private GameObject _doorObject;
-    [SerializeField] private PlayerCollectibleController _playerCollectibleController;
-
-
-    private void OnEnable()
+    protected void OnEnable()
     {
-        //InputHandler.OnceBtnOnInteractionUse += TryOpenDoor;
+        InputHandler.OnceBtnOnInteraction += TryOpenDoor;
     }
 
-    private void OnDisable()
+    protected void OnDisable()
     {
-        //InputHandler.OnceBtnOnInteractionUse -= TryOpenDoor;
+        InputHandler.OnceBtnOnInteraction -= TryOpenDoor;
+    }
+
+    protected void Start()
+    {
+        _cc = PlayerData.GetCollectibleController();
     }
 
     public void TryOpenDoor(ReturnData input)
     {
-        if (!_doorObject.activeInHierarchy || !_hasKey) return;
-
-        //_playerCollectibleController.UseCollectable(_keyCollectibleID);
-        _doorObject.SetActive(false);
-        _lineRenderer.enabled = false;
-        _alertText.text = "";
-
-        //disable this script
-        enabled = false;
-    }
-
-    private void Update()
-    {
-        if (!_doorObject.activeInHierarchy) return;
-
-        //check each frame if the player has the key
-        if (_playerCollectibleController.HasCollectable(_keyCollectibleID) && !_hasKey)
+        if (_cc.HasCollectable(_keyCollectibleID) && _cc.CollectibleInHotbar(_keyCollectibleID) && _inRange)
         {
-            _hasKey = true;
-        } else
-        {
-            _hasKey = false;
-        }
+            _open = !_open;
+            _animator.SetBool("open", _open);
 
-        if (_inRange)
-        {
-            _lineRenderer.enabled = true;
-            _lineRenderer.SetPosition(0, _playerTransform.position);
-            LayerMask mask = LayerMask.NameToLayer("Door");
-            RaycastHit2D hit = Physics2D.Raycast(_playerTransform.position, _doorDirection, Mathf.Infinity, mask);
-            Debug.DrawRay(_playerTransform.position, _doorDirection, Color.blue);
-            if (hit)
-            {
-                _lineRenderer.SetPosition(1, hit.point);
-            }
+            if (_removeFromInventoryAfterUse)
+                _inventoryRenderer.RemoveCollectible(_cc.GetCollectibleInHotbar(_keyCollectibleID));
+
+            _showPopup = !_open;
+            Destroy(_spawnedOpenPopup);
+            _spawnedPopup = false;
+            _collider.enabled = !_open;
         }
     }
 
-    public void OnTriggerEnter2D(Collider2D collider)
+    protected void Update()
     {
-        if (!_doorObject.activeInHierarchy) return;
-        if (collider.CompareTag("Player") && _hasKey)
+        RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, _detectionRadius, Vector2.up);
+        if (hits.ToList().Find(h => h.collider.CompareTag("Player")))
         {
             _inRange = true;
-            _alertText.text = _playerHasKeyText;
-        }
-        else if (collider.CompareTag("Player"))
+            if (!_spawnedPopup && _showPopup)
+            {
+                _spawnedPopup = true;
+                _spawnedOpenPopup = Instantiate(_openPopup);
+                _spawnedOpenPopup.transform.position = transform.position + new Vector3(0, -2.5f, 0);
+            }
+        } else if (_spawnedPopup)
         {
-            _alertText.text = _playerDoesntHaveKeyText;
-        }
-    }
-
-    public void OnTriggerExit2D(Collider2D collider)
-    {
-        if (!_doorObject.activeInHierarchy) return;
-        if (collider.CompareTag("Player"))
-        {
-            _inRange = false;
-            _lineRenderer.enabled = false;
-            _alertText.text = "";
+            Destroy(_spawnedOpenPopup);
+            _spawnedPopup = false;
         }
     }
 }
