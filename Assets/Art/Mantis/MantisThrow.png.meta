@@ -159,6 +159,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: MantisThrow_3
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c376355f214efce4193d74a3d158b609
+      internalID: -1299235402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -173,6 +194,7 @@ TextureImporter:
       MantisThrow_0: -942129817
       MantisThrow_1: 2048382046
       MantisThrow_2: 1353877852
+      MantisThrow_3: -1299235402
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
