@@ -313,7 +313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20d28c26d3a6c1d4b8dee43c90ac943f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupRadius: 4
+  pickupRadius: 2
   defaultEmptySlotImage: {fileID: 0}
   _inventory: []
   _hotbar: []
@@ -605,6 +605,7 @@ MonoBehaviour:
   _playerMove: {fileID: 9211888785150070678}
   _goGoGadgetGun: {fileID: 2930885169671391476}
   _collectibleController: {fileID: 382809842640590531}
+  _collectibleRenderer: {fileID: 0}
   _flipper: {fileID: 7687355805860440817}
 --- !u!114 &9211888785150070678
 MonoBehaviour:
@@ -634,7 +635,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bullet: {fileID: 2509055158162251948, guid: dbb4740c9bfe4a843b52b6e3e70cf09a, type: 3}
+  _cooldownTime: 0.6
+  _cooldownTimer:
+    timerName: 
+    _time: 0
+    _timeElapsed: 0
+    _running: 0
+    _loop: 0
+    _countdown: 0
+    _destroyOnEnd: 0
+    _destroy: 0
   _bulletSpeed: 150
+  _playerHasGun: 0
 --- !u!114 &6707554557875511930
 MonoBehaviour:
   m_ObjectHideFlags: 0

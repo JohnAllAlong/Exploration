@@ -188,6 +188,23 @@ public class PlayerCollectibleController : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// gets an item in the hotbar by its ID
+    /// </summary>
+    /// <param name="collectibleID">collectible to find</param>
+    public CollectibleSlot GetCollectibleInHotbar(int collectibleID)
+    {
+        foreach (CollectibleSlot slot in GetListOfSlotType(SlotType.belt))
+        {
+            if (slot.occupation != null)
+                if (slot.occupation.collectibleID == collectibleID)
+                {
+                    return slot;
+                }
+        }
+        return null;
+    }
+
     public void SetActiveSlot(CollectibleSlot slot)
     {
         _currentSelectedSlot = slot;

@@ -11,12 +11,6 @@ public class InventoryCanvasRenderer : MonoBehaviour
     [SerializeField] private bool _openedInv;
     [SerializeField] private CollectibleSlot _transferingItem;
     private PlayerCollectibleController _collectibleController;
-    public static InventoryCanvasRenderer singleton;
-
-    protected void Awake()
-    {
-        singleton = this;
-    }
 
     protected void Start()
     {
@@ -30,7 +24,21 @@ public class InventoryCanvasRenderer : MonoBehaviour
         _collectibleController.onInventoryAddition -= InventoryAddition;
     }
 
+    public void RemoveCollectible(CollectibleSlot slot)
+    {
+        Transform dropPoint = _collectibleController.GetDropPoint();
+        List<CollectibleSlot> hotbarSlots = _collectibleController.GetHotbar();
 
+        Destroy(slot.occupation.gameObject);
+        slot.WipeSlotContents();
+
+        //clear htobar if neccesary
+        if (slot.type == SlotType.belt)
+        {
+            CollectibleSlot foundHotbarSlot = hotbarSlots.Find(s => s.id == slot.id);
+            foundHotbarSlot.ReplaceSlotContents(slot);
+        }
+    }
     public void OnceBtnDropCollectible(ReturnData _)
     {
         if (Events.IsPaused("KeyboardMove", "GamepadMove").Contains(false)) return;
@@ -149,6 +157,8 @@ public class InventoryCanvasRenderer : MonoBehaviour
                     CollectibleSlot foundHotbarSlot = hotbarSlots.Find(s => s.id == _transferingItem.id);
                     foundHotbarSlot.WipeSlotContents();
                 }
+
+                Destroy(cachedSlot);
             }
             else
             {
