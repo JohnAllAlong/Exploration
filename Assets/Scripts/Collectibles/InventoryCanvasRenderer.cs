@@ -4,6 +4,7 @@ using CustomInput.Events;
 using Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class InventoryCanvasRenderer : MonoBehaviour
 {
@@ -66,7 +67,7 @@ public class InventoryCanvasRenderer : MonoBehaviour
         _transferingItem.occupation.gameObject.transform.position = dropPoint.position;
         _transferingItem.occupation.gameObject.SetActive(true);
         _transferingItem.WipeSlotContents();
-        
+
         //clear hotbar if neccesary
         if (_transferingItem.type == SlotType.belt)
         {
@@ -103,6 +104,16 @@ public class InventoryCanvasRenderer : MonoBehaviour
             return;
         }
 
+        //dont allow movement in the belt (covers up a bug i couldnt fix :/)
+        if (_transferingItem != null)
+            if (slot.type == SlotType.belt && _transferingItem.type == SlotType.belt)
+            {
+                slot.toggle.SetIsOnWithoutNotify(true);
+                _transferingItem.toggle.SetIsOnWithoutNotify(true);
+                _transferingItem = null;
+            };
+
+
         if (_transferingItem == null && slot.occupied)
         {
             //item has been picked up and is transfering
@@ -110,20 +121,27 @@ public class InventoryCanvasRenderer : MonoBehaviour
         }
         else if (_transferingItem != null)
         {
-            //item has been dropped from transfering
+            //item has been dropped from transfering int another slot
             if (slot.occupied)
             {
                 //slot has item in it, move to old spot
-                CollectibleSlot cacheOldSlot = slot;
+
+                CollectibleSlot cachedSlot = Instantiate(slot);
+                bool cacheOldSlotOccupied = cachedSlot.IsOccupied();
+                Collectible cacheOldSlotOcupation = cachedSlot.GetOccupation();
+                Image cacheOldSlotImage = cachedSlot.GetImage();
+
                 slot.ReplaceSlotContents(_transferingItem);
-                _transferingItem.ReplaceSlotContents(cacheOldSlot, false);
+                _transferingItem.ReplaceSlotContents(cacheOldSlotOcupation, cacheOldSlotOcupation, cacheOldSlotImage);
+
+                //hotbar support
                 List<CollectibleSlot> hotbarSlots = _collectibleController.GetHotbar();
 
                 //check if hotbar
                 if (slot.type == SlotType.belt)
                 {
                     CollectibleSlot foundHotbarSlot = hotbarSlots.Find(s => s.id == slot.id);
-                    foundHotbarSlot.ReplaceSlotContents(cacheOldSlot);
+                    foundHotbarSlot.ReplaceSlotContents(cacheOldSlotOccupied, cacheOldSlotOcupation, cacheOldSlotImage);
                 }
 
                 if (_transferingItem.type == SlotType.belt)
@@ -165,10 +183,11 @@ public class InventoryCanvasRenderer : MonoBehaviour
 
     protected void Update()
     {
-        if (_collectibleController.IsInventoryOpen() && Devices.GetCurrent() as Gamepad != null && !_openedInv)
+        if (_collectibleController.IsInventoryOpen()  && !_openedInv)
         {
             _openedInv = true;
-            _collectibleController.GetActiveSlot().toggle.Select();
+            if (Devices.GetCurrent() as Gamepad != null)
+                _collectibleController.GetActiveSlot().toggle.Select();
         }
         else if (!_collectibleController.IsInventoryOpen())
         {

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class CollectibleSlot : MonoBehaviour, ISelectHandler
+public class CollectibleSlot : MonoBehaviour, ISelectHandler, IPointerEnterHandler
 {
     private PlayerCollectibleController _collectibleController;
 
@@ -21,7 +21,7 @@ public class CollectibleSlot : MonoBehaviour, ISelectHandler
         SetImage(_collectibleController.defaultEmptySlotImage);
     }
 
-    private void OnEnable()
+    protected void OnEnable()
     {
         toggle = GetComponent<Toggle>();
         toggle.onValueChanged.AddListener(isOn => { Toggled(); });
@@ -37,15 +37,30 @@ public class CollectibleSlot : MonoBehaviour, ISelectHandler
         _collectibleController.onSlotToggle(this);
     }
 
-    public void OnSelect(BaseEventData eventData)
+
+    public void OnSelect(BaseEventData _)
     {
         _collectibleController.SetActiveSlot(this);
     }
+
+    public void OnPointerEnter(PointerEventData _)
+    {
+        _collectibleController.SetActiveSlot(this);
+    }
+
 
     public void ReplaceSlotContents(CollectibleSlot newSlotContents, bool occupied = true)
     {
         SetImage(newSlotContents.collectibleImage.sprite);
         occupation = newSlotContents.occupation;
+        this.occupied = occupied;
+        toggle.SetIsOnWithoutNotify(true);
+    }
+
+    public void ReplaceSlotContents(bool occupied, Collectible occupation, Image image)
+    {
+        SetImage(image.sprite);
+        this.occupation = occupation;
         this.occupied = occupied;
         toggle.SetIsOnWithoutNotify(true);
     }
@@ -68,6 +83,21 @@ public class CollectibleSlot : MonoBehaviour, ISelectHandler
     public void SetImage(Sprite newImage)
     {
         collectibleImage.sprite = newImage;
+    }
+
+    public Image GetImage()
+    {
+        return collectibleImage;
+    }
+
+    public Collectible GetOccupation()
+    {
+        return occupation;
+    }
+
+    public bool IsOccupied()
+    {
+        return occupied;
     }
 
     public void SetTempImage(Sprite newImage)
