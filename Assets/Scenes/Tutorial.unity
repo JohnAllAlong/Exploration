@@ -403,7 +403,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1724533133780425507, guid: 96d62325cef04b04ea687d293f62b6c5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 540
+      value: 629
       objectReference: {fileID: 0}
     - target: {fileID: 1724533133780425507, guid: 96d62325cef04b04ea687d293f62b6c5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -417,6 +417,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2051598574296280391, guid: 96d62325cef04b04ea687d293f62b6c5, type: 3}
+      propertyPath: defaultFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 743813b856ee3e64db11d8e17f68a584, type: 3}
     - target: {fileID: 2051598574296280391, guid: 96d62325cef04b04ea687d293f62b6c5, type: 3}
       propertyPath: delayBetweenDialogues
       value: 2
@@ -13528,7 +13532,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1724533133780425507, guid: 96d62325cef04b04ea687d293f62b6c5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 540
+      value: 629
       objectReference: {fileID: 0}
     - target: {fileID: 1724533133780425507, guid: 96d62325cef04b04ea687d293f62b6c5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -13543,21 +13547,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2051598574296280391, guid: 96d62325cef04b04ea687d293f62b6c5, type: 3}
+      propertyPath: defaultFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 743813b856ee3e64db11d8e17f68a584, type: 3}
+    - target: {fileID: 2051598574296280391, guid: 96d62325cef04b04ea687d293f62b6c5, type: 3}
       propertyPath: delayBetweenDialogues
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2051598574296280391, guid: 96d62325cef04b04ea687d293f62b6c5, type: 3}
       propertyPath: dialogueTexts.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2051598574296280391, guid: 96d62325cef04b04ea687d293f62b6c5, type: 3}
       propertyPath: dialogueTexts.Array.data[0]
-      value: Good, now try shooting that red square. Use left mouse button or right
-        trigger to shoot
+      value: 'Good, now try shooting that red square. '
       objectReference: {fileID: 0}
     - target: {fileID: 2051598574296280391, guid: 96d62325cef04b04ea687d293f62b6c5, type: 3}
       propertyPath: dialogueTexts.Array.data[1]
-      value: Good, now try shooting that red square
+      value: Use left mouse button or right trigger to shoot.
       objectReference: {fileID: 0}
     - target: {fileID: 2051598574296280391, guid: 96d62325cef04b04ea687d293f62b6c5, type: 3}
       propertyPath: dialogueTexts.Array.data[2]
@@ -13916,7 +13923,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1724533133780425507, guid: 96d62325cef04b04ea687d293f62b6c5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 540
+      value: 629
       objectReference: {fileID: 0}
     - target: {fileID: 1724533133780425507, guid: 96d62325cef04b04ea687d293f62b6c5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -13930,6 +13937,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2051598574296280391, guid: 96d62325cef04b04ea687d293f62b6c5, type: 3}
+      propertyPath: defaultFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 743813b856ee3e64db11d8e17f68a584, type: 3}
     - target: {fileID: 2051598574296280391, guid: 96d62325cef04b04ea687d293f62b6c5, type: 3}
       propertyPath: delayBetweenDialogues
       value: 2
@@ -14331,7 +14342,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1724533133780425507, guid: 96d62325cef04b04ea687d293f62b6c5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 540
+      value: 629
       objectReference: {fileID: 0}
     - target: {fileID: 1724533133780425507, guid: 96d62325cef04b04ea687d293f62b6c5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -14346,6 +14357,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2051598574296280391, guid: 96d62325cef04b04ea687d293f62b6c5, type: 3}
+      propertyPath: defaultFont
+      value: 
+      objectReference: {fileID: 12800000, guid: 743813b856ee3e64db11d8e17f68a584, type: 3}
+    - target: {fileID: 2051598574296280391, guid: 96d62325cef04b04ea687d293f62b6c5, type: 3}
       propertyPath: delayBetweenDialogues
       value: 2
       objectReference: {fileID: 0}
@@ -14359,8 +14374,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2051598574296280391, guid: 96d62325cef04b04ea687d293f62b6c5, type: 3}
       propertyPath: dialogueTexts.Array.data[2]
-      value: in your inventory, select the gun and then select one of your belt slots
-        to put it in your belt
+      value: in your inventory, select the gun and then select one of your belt slots.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
