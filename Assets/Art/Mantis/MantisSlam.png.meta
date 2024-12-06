@@ -159,6 +159,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: MantisSlam_3
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71d34c92c4fbfc94790305115edcebf4
+      internalID: -2130940327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -173,6 +194,7 @@ TextureImporter:
       MantisSlam_0: -1926352818
       MantisSlam_1: 1315784788
       MantisSlam_2: -448239802
+      MantisSlam_3: -2130940327
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

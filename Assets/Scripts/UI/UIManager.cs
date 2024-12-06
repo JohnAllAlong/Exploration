@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using System;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -82,6 +83,30 @@ public static class GUIUtilitys
         t.StartTimer();
     }
 
+    public static void FadeOutSprite(Image image, float time, Action callback = null)
+    {
+
+        //using fancy await utils wait for provided time
+        Timer t = new(time, image.sprite.GetInstanceID().ToString() + UnityEngine.Random.Range(0, 9999999));
+        t.Countdown(true);
+        t.OnEnd(() =>
+        {
+            //ran once sprite has been faded
+            if (callback != null)
+                callback(); //callback to invoker script
+            t.Destroy();
+
+        });
+
+        t.OnUpdate((elapsed) =>
+        {
+            //runs every update frame, allowing us to use the elapsed time as t.
+            Color spriteColor = image.color;
+            image.color = new Color(spriteColor.r, spriteColor.b, spriteColor.g, elapsed / time);
+        });
+        t.StartTimer();
+    }
+
     public static void FadeInSprite(SpriteRenderer sprite, float time, Action callback = null)
     {
 
@@ -101,6 +126,29 @@ public static class GUIUtilitys
             //runs every update frame, allowing us to use the elapsed time as t.
             Color spriteColor = sprite.color;
             sprite.color = new Color(spriteColor.r, spriteColor.b, spriteColor.g, elapsed / time);
+        });
+        t.StartTimer();
+    }
+
+    public static void FadeInSprite(Image image, float time, Action callback = null)
+    {
+
+        //using fancy await utils wait for provided time
+        Timer t = new(time, image.sprite.GetInstanceID().ToString() + UnityEngine.Random.Range(0, 9999999));
+        t.Countdown(false);
+        t.OnEnd(() =>
+        {
+            //ran once sprite has been faded
+            if (callback != null)
+                callback(); //callback to invoker script
+            t.Destroy();
+        });
+
+        t.OnUpdate((elapsed) =>
+        {
+            //runs every update frame, allowing us to use the elapsed time as t.
+            Color spriteColor = image.color;
+            image.color = new Color(spriteColor.r, spriteColor.b, spriteColor.g, elapsed / time);
         });
         t.StartTimer();
     }
