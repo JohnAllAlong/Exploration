@@ -454,7 +454,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -172, y: -422}
+  m_AnchoredPosition: {x: -135, y: -463}
   m_SizeDelta: {x: 263.3734, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &508040585
@@ -520,6 +520,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc853b3c0e9857142896b2bf0394e7a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ammoSlider: {fileID: 508040585}
 --- !u!1 &539555453
 GameObject:
   m_ObjectHideFlags: 0

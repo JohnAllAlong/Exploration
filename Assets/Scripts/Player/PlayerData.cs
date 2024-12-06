@@ -10,6 +10,7 @@ namespace Player
         [Header("Script Refrences")]
         public PlayerMove playerMoveScript;
         public GoGoGadgetGun playerWeaponScript;
+        public PlayerCollectibleController playerInventoryScript;
 
         [Header("Trapdoor Cooldown")]
         public float trapdoorCooldownTime;
@@ -33,6 +34,12 @@ namespace Player
         private void Update()
         {
             //trapdoorCooldownTimer.UpdateTimer();
+        }
+
+        public static PlayerCollectibleController GetCollectibleController()
+        {
+            if (singleton.playerInventoryScript == null) return default;
+            return singleton.playerInventoryScript;
         }
 
         public static SpriteRenderer GetScreenFader()
