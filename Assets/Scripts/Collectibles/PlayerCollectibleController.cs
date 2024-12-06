@@ -38,6 +38,11 @@ public class PlayerCollectibleController : MonoBehaviour
     private bool _spawnedPopup = false;
     private GameObject _spawnedPopupObject;
 
+    protected void Start()
+    {
+        _fullInventory.SetActive(false);
+    }
+
     protected void OnEnable()
     {
         InputHandler.OnceBtnOnInteraction += OnceBtnInteraction;
@@ -66,7 +71,8 @@ public class PlayerCollectibleController : MonoBehaviour
     public CollectibleSlot GetNextFreeSlot()
     {
         List<CollectibleSlot> sorted = SortSlots();
-        foreach (CollectibleSlot slot in sorted) {
+        foreach (CollectibleSlot slot in sorted)
+        {
             if (slot.occupied == false) return slot;
         }
         return null;
@@ -125,7 +131,8 @@ public class PlayerCollectibleController : MonoBehaviour
                 _nearestCollectible.gameObject.SetActive(false);
                 _inventory.Add(_nearestCollectible);
                 onInventoryAddition(_nearestCollectible);
-            } else
+            }
+            else
             {
                 //no slots are free dont do anything
                 Debug.LogWarning("Inventory Full");
@@ -140,7 +147,8 @@ public class PlayerCollectibleController : MonoBehaviour
         if (_fullInventory.activeInHierarchy)
         {
             Events.Pause("KeyboardMove", "GamepadMove");
-        } else
+        }
+        else
         {
             Events.Resume("KeyboardMove", "GamepadMove");
         }
@@ -158,6 +166,23 @@ public class PlayerCollectibleController : MonoBehaviour
             {
                 return true;
             }
+        }
+        return false;
+    }
+
+    /// <summary>
+    /// Checks if the hotbar has a collectible by its ID
+    /// </summary>
+    /// <param name="collectibleID">collectible to find</param>
+    public bool CollectibleInHotbar(int collectibleID)
+    {
+        foreach (CollectibleSlot slot in _hotbar)
+        {
+            if (slot.occupation != null)
+                if (slot.occupation.collectibleID == collectibleID)
+                {
+                    return true;
+                }
         }
         return false;
     }
@@ -187,7 +212,8 @@ public class PlayerCollectibleController : MonoBehaviour
         RaycastHit2D[] hits = Physics2D.CircleCastAll(_playerTransform.position, pickupRadius, Vector2.up);
         List<Collectible> _cache = new List<Collectible>();
 
-        for (int i = 0; i < hits.Length; i++) {
+        for (int i = 0; i < hits.Length; i++)
+        {
             RaycastHit2D hit = hits[i];
             if (hit.collider.gameObject.TryGetComponent(out Collectible col))
             {
@@ -203,7 +229,8 @@ public class PlayerCollectibleController : MonoBehaviour
             _spawnedPopup = true;
             _spawnedPopupObject = Instantiate(_pickupCollectiblePopup);
             _spawnedPopupObject.transform.position = _nearestCollectible.transform.position + new Vector3(0, 1, 0);
-        } else if (_nearestCollectible == null || _nearestCollectible != _lastNearestCollectible)
+        }
+        else if (_nearestCollectible == null || _nearestCollectible != _lastNearestCollectible)
         {
             Destroy(_spawnedPopupObject);
             _spawnedPopup = false;

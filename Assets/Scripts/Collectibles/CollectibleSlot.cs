@@ -40,7 +40,6 @@ public class CollectibleSlot : MonoBehaviour, ISelectHandler
     public void OnSelect(BaseEventData eventData)
     {
         _collectibleController.SetActiveSlot(this);
-        _collectibleController.onSlotSelect(this);
     }
 
     public void ReplaceSlotContents(CollectibleSlot newSlotContents, bool occupied = true)
