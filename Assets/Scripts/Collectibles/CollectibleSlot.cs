@@ -1,4 +1,5 @@
 using Player;
+using Saveables;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -19,7 +20,6 @@ public class CollectibleSlot : MonoBehaviour, ISelectHandler, IPointerEnterHandl
             _collectibleController.GetHotbar().Add(this);
 
         SetImage(_collectibleController.defaultEmptySlotImage);
-
     }
 
     protected void OnEnable()

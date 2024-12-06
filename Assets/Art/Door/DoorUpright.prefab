@@ -287,6 +287,8 @@ MonoBehaviour:
   _openPopup: {fileID: 8230442341036029098, guid: c8831fa786a799542adac87d375535e3, type: 3}
   _animator: {fileID: 6756229553217548737}
   _removeFromInventoryAfterUse: 0
-  _open: 0
   _inventoryRenderer: {fileID: 0}
   _collider: {fileID: 2186562951208533341}
+  _gameHandler: {fileID: 0}
+  open: 0
+  doorID: 0

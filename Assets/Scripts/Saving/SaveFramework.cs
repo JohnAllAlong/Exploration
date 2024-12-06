@@ -42,7 +42,7 @@ namespace Saveables
      all saveable types must be added here to save properly
      */
 
-
+    [Obsolete]
     public struct SaveableGameProgression
     {
         public bool tutorialCompleted;
@@ -59,7 +59,8 @@ namespace Saveables
         }
     }
 
-    [Serializable]
+
+    [Obsolete]
     public struct SaveableEnemies
     {
         public int enemyId;

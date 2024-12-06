@@ -5,30 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/Title Screen.unity
-    guid: 9fc6abffc9ff22f4b8488410ee438f16
-  - enabled: 0
-    path: Assets/Scenes/Main Scene.unity
-    guid: 07241b3d35d4a2f4f9e4b7cd7363e0a8
-  - enabled: 0
-    path: Assets/Scenes/Gameplay Testing.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 0
-    path: Assets/Testing/FullSavingTest/SaveTestMenu.unity
-    guid: 706284c6b847d9445955b00af7627259
-  - enabled: 0
-    path: Assets/Testing/SavingTest/SaveTestLevel2.unity
-    guid: b65970a0cdc83e949b97dd5e780af6c3
-  - enabled: 0
-    path: Assets/Testing/FullSavingTest/SaveTestLevel.unity
-    guid: 9b68c4b477bc94f499c4e13aa7659447
-  - enabled: 0
-    path: Assets/Testing/FullSavingTest/SaveTestLevel2.unity
-    guid: 6d8529d906343184b8c301a0c81bc02b
   - enabled: 1
-    path: Assets/Scenes/TitleScreenPlaytest.unity
-    guid: 4c39fe526a331ab438b58e933084a716
+    path: Assets/Scenes/Main Scenes/Title.unity
+    guid: 0a6ea90e4a49a1d428c6a551d7a947ff
+  - enabled: 1
+    path: Assets/Scenes/Main Scenes/Tutorial.unity
+    guid: a951e730dab944a478feaf13883d4f95
   - enabled: 1
     path: Assets/Scenes/Main Scenes/Game.unity
     guid: 8c8eed4e902406f4aaaf5a0bdc45b73f
