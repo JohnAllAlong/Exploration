@@ -122,7 +122,8 @@ public class PlayerCollectibleController : MonoBehaviour
     private void OnceBtnInteraction(ReturnData input)
     {
         //dont run if movement is paused
-        if (Events.IsPaused("KeyboardMove", "GamepadMove").Contains(true)) return;
+        if (Events.IsPaused("KeyboardMove", "GamepadMove", "GamepadFire", "MouseFire").Contains(true)) return;
+        if (InvOpen()) return;
 
         if (_nearestCollectible != null)
         {
@@ -141,17 +142,22 @@ public class PlayerCollectibleController : MonoBehaviour
         }
     }
 
+    public bool InvOpen()
+    {
+        return _fullInventory.activeInHierarchy;
+    }
+
     public void OnceBtnOpenInv(ReturnData input)
     {
         _fullInventory.SetActive(!_fullInventory.activeInHierarchy);
 
         if (_fullInventory.activeInHierarchy)
         {
-            Events.Pause("KeyboardMove", "GamepadMove");
+            Events.Pause("KeyboardMove", "GamepadMove", "GamepadFire", "MouseFire");
         }
         else
         {
-            Events.Resume("KeyboardMove", "GamepadMove");
+            Events.Resume("KeyboardMove", "GamepadMove", "GamepadFire", "MouseFire");
         }
     }
 

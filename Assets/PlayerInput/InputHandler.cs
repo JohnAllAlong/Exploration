@@ -12,6 +12,7 @@ public class InputHandler : CustomInputEventManager
     [SerializeField] private PlayerCollectibleController _collectibleController;
     [SerializeField] private InventoryCanvasRenderer _collectibleRenderer;
     [SerializeField] private PlayerFlip _flipper;
+    [SerializeField] private UIMenuController _menu;
 
     public static bool isInteractingKeyboard;
     public static bool isInteractingGamepad;
@@ -45,7 +46,8 @@ public class InputHandler : CustomInputEventManager
         if (input.pressed)
         {
             isInteractingGamepad = true;
-        } else
+        }
+        else
         {
             isInteractingGamepad = false;
         }
@@ -215,6 +217,24 @@ public class InputHandler : CustomInputEventManager
         };
         gamepadEvents.Add(GamepadDropCollectible);
 
+        if (_menu != null)
+        {
+            CustomInputEvent GamepadPause = new()
+            {
+                eventData = new()
+                {
+                    actionName = "GamepadPause",
+                    modifier = new()
+                    {
+                        isButton = true,
+                        once = true
+                    }
+                },
+                performed = _menu.OnceBtnPause,
+            };
+            gamepadEvents.Add(GamepadPause);
+        }
+
         AddCustomInputEvents(gamepadEvents, this);
         Debugger.Print($"<color=#03d7fc>[InputHandler]</color>\n<color=#aaff00>Loaded gamepad events!</color>");
     }
@@ -236,7 +256,7 @@ public class InputHandler : CustomInputEventManager
             performed = _playerMove.AxisKeyboardMove,
             canceled = _playerMove.AxisMovementCancled
         };
-        
+
         keyboardEvents.Add(keyboardMove);
 
         CustomInputEvent MouseFire = new()
@@ -287,14 +307,15 @@ public class InputHandler : CustomInputEventManager
 
         CustomInputEvent KeyboardOpenInv = new()
         {
-            eventData = new() {
+            eventData = new()
+            {
                 actionName = "KeyboardOpenInv",
                 modifier = new()
                 {
                     isButton = true,
                     once = true
                 }
-            }, 
+            },
             performed = _collectibleController.OnceBtnOpenInv,
         };
         keyboardEvents.Add(KeyboardOpenInv);
@@ -313,6 +334,24 @@ public class InputHandler : CustomInputEventManager
             performed = _collectibleRenderer.OnceBtnDropCollectible,
         };
         keyboardEvents.Add(KeyboardDropCollectible);
+
+        if (_menu != null)
+        {
+            CustomInputEvent KeyboardPause = new()
+            {
+                eventData = new()
+                {
+                    actionName = "KeyboardPause",
+                    modifier = new()
+                    {
+                        isButton = true,
+                        once = true
+                    }
+                },
+                performed = _menu.OnceBtnPause,
+            };
+            keyboardEvents.Add(KeyboardPause);
+        }
 
         AddCustomInputEvents(keyboardEvents, this);
         Debugger.Print($"<color=#03d7fc>[InputHandler]</color>\n<color=#aaff00>Loaded keyboard events!</color>");

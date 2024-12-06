@@ -13255,7 +13255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 483a65a70235ed647805a09c1284d64d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doTutorial: 0
+  completedTutorial: 0
   saveFileName: GameSave
 --- !u!4 &753335364
 Transform:
@@ -13772,6 +13772,10 @@ PrefabInstance:
       propertyPath: _fullInventory
       value: 
       objectReference: {fileID: 1392397982}
+    - target: {fileID: 382809842640590531, guid: 74f1562d79f9a164282f6ebfede13012, type: 3}
+      propertyPath: _currentSelectedSlot
+      value: 
+      objectReference: {fileID: 1392397984}
     - target: {fileID: 2048758178666876460, guid: 74f1562d79f9a164282f6ebfede13012, type: 3}
       propertyPath: _collectibleRenderer
       value: 

@@ -607,6 +607,7 @@ MonoBehaviour:
   _collectibleController: {fileID: 382809842640590531}
   _collectibleRenderer: {fileID: 0}
   _flipper: {fileID: 7687355805860440817}
+  _menu: {fileID: 0}
 --- !u!114 &9211888785150070678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -635,7 +636,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bullet: {fileID: 2509055158162251948, guid: dbb4740c9bfe4a843b52b6e3e70cf09a, type: 3}
-  _cooldownTime: 0.6
+  _cooldownTime: 0.2
   _cooldownTimer:
     timerName: 
     _time: 0

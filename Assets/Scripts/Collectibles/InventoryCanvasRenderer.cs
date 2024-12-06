@@ -197,7 +197,8 @@ public class InventoryCanvasRenderer : MonoBehaviour
         {
             _openedInv = true;
             if (Devices.GetCurrent() as Gamepad != null)
-                _collectibleController.GetActiveSlot().toggle.Select();
+                if (_collectibleController.GetActiveSlot() != null )
+                    _collectibleController.GetActiveSlot().toggle.Select();
         }
         else if (!_collectibleController.IsInventoryOpen())
         {

@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Saving;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 // Represents a damageable entity with health.
@@ -38,7 +41,8 @@ public class Damageable : MonoBehaviour
             //healthBar.fillAmount = health / Maxhealth;
             onHealthChanged?.Invoke();
             print("damage taken " + gameObject.name);
-            timeElapsed = 0.0f;
+            timeElapsed = 0.0f;  
+
 
             if (currentHealth <= 0)
             {
@@ -66,6 +70,10 @@ public class Damageable : MonoBehaviour
         if(this.gameObject.tag == "Player")
         {
             this.gameObject.GetComponentInChildren<PlayerAnimation>().SetState(5);
+            new Timer(2).OnEnd(() => {
+                SaveFramework.DestroySaveData();
+                SceneManager.LoadScene("Title"); 
+            }).StartTimer();
         }
         // Is this a bad way to do death animations for the player?
         // Probably, but i don't have time to do a cleaner implementation
