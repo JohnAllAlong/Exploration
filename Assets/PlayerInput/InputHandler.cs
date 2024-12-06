@@ -199,6 +199,21 @@ public class InputHandler : CustomInputEventManager
         };
         gamepadEvents.Add(GamepadOpenInv);
 
+        CustomInputEvent GamepadDropCollectible = new()
+        {
+            eventData = new()
+            {
+                actionName = "DropCollectibleGamepad",
+                modifier = new()
+                {
+                    isButton = true,
+                    once = true
+                }
+            },
+            performed = InventoryCanvasRenderer.singleton.OnceBtnDropCollectible,
+        };
+        gamepadEvents.Add(GamepadDropCollectible);
+
         AddCustomInputEvents(gamepadEvents, this);
         Debugger.Print($"<color=#03d7fc>[InputHandler]</color>\n<color=#aaff00>Loaded gamepad events!</color>");
     }
@@ -282,6 +297,21 @@ public class InputHandler : CustomInputEventManager
             performed = _collectibleController.OnceBtnOpenInv,
         };
         keyboardEvents.Add(KeyboardOpenInv);
+
+        CustomInputEvent KeyboardDropCollectible = new()
+        {
+            eventData = new()
+            {
+                actionName = "DropCollectibleKeyboard",
+                modifier = new()
+                {
+                    isButton = true,
+                    once = true
+                }
+            },
+            performed = InventoryCanvasRenderer.singleton.OnceBtnDropCollectible,
+        };
+        keyboardEvents.Add(KeyboardDropCollectible);
 
         AddCustomInputEvents(keyboardEvents, this);
         Debugger.Print($"<color=#03d7fc>[InputHandler]</color>\n<color=#aaff00>Loaded keyboard events!</color>");
