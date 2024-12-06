@@ -19,6 +19,7 @@ public class CollectibleSlot : MonoBehaviour, ISelectHandler, IPointerEnterHandl
             _collectibleController.GetHotbar().Add(this);
 
         SetImage(_collectibleController.defaultEmptySlotImage);
+
     }
 
     protected void OnEnable()
