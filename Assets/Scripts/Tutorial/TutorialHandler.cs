@@ -15,6 +15,7 @@ public class TutorialHandler : MonoBehaviour
     [SerializeField] private GameObject _tutorialTarget;
     [SerializeField] private DoorInteractor _doorInteractor;
     [SerializeField] private Image _fader;
+    [SerializeField] private SaveDataLoader _saveLoader;
     public string loadScene;
 
     private void Start()
@@ -50,6 +51,7 @@ public class TutorialHandler : MonoBehaviour
     private void DoorInteraction(bool _)
     {
         _fader.enabled = true;
+        _saveLoader.HasCompletedTutorial();
         GUIUtilitys.FadeInSprite(_fader, 2, delegate { 
             SceneManager.LoadScene(loadScene);
         });
