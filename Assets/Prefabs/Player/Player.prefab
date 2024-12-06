@@ -314,16 +314,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupRadius: 4
-  _maxSlots: 27
+  defaultEmptySlotImage: {fileID: 0}
   _inventory: []
-  slots:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  _hotbar: []
+  slots: []
   _nearbyCollectibles: []
   _nearestCollectible: {fileID: 0}
   _lastNearestCollectible: {fileID: 0}
+  _currentSelectedSlot: {fileID: 0}
   _dropTransform: {fileID: 2424035552808437871}
   _playerTransform: {fileID: 4333843902148263952}
   _pickupCollectiblePopup: {fileID: 8230442341036029098, guid: 3feb2d8c5e10d834292da299029668e8, type: 3}
@@ -672,9 +670,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMoveScript: {fileID: 9211888785150070678}
   playerWeaponScript: {fileID: 2930885169671391476}
+  playerInventoryScript: {fileID: 382809842640590531}
   trapdoorCooldownTime: 2
   trapdoorCooldownTimer:
     timerName: 
+    _time: 0
     _timeElapsed: 0
     _running: 0
     _loop: 0

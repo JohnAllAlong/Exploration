@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using CustomInput.Events;
 using UnityEngine;
@@ -5,15 +6,23 @@ using UnityEngine;
 public class PlayerCollectibleController : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] private float pickupRadius;
-    [SerializeField] private int _maxSlots = 4;
+    public float pickupRadius;
+    public Sprite defaultEmptySlotImage;
+
+    [Header("Inventory Management")]
+    [SerializeField] private List<Collectible> _inventory = new();
+    [SerializeField] private List<CollectibleSlot> _hotbar = new();
+    public List<CollectibleSlot> slots = new();
 
     [Header("System")]
-    [SerializeField] private List<Collectible> _inventory = new();
-    public List<CollectibleSlot> slots = new();
     [SerializeField] private List<Collectible> _nearbyCollectibles = new();
     [SerializeField] private Collectible _nearestCollectible;
     [SerializeField] private Collectible _lastNearestCollectible;
+    [SerializeField] private CollectibleSlot _currentSelectedSlot;
+
+    public Action<CollectibleSlot> onSlotToggle;
+    public Action<Collectible> onInventoryAddition;
+    public Action<CollectibleSlot> onSlotSelect;
 
     [Header("Transforms")]
     [SerializeField] private Transform _dropTransform;
@@ -39,6 +48,70 @@ public class PlayerCollectibleController : MonoBehaviour
         InputHandler.OnceBtnOnInteraction -= OnceBtnInteraction;
     }
 
+    public CollectibleSlot GetSelectedSlot()
+    {
+        return _currentSelectedSlot;
+    }
+
+    public Transform GetDropPoint()
+    {
+        return _dropTransform;
+    }
+
+    public List<CollectibleSlot> GetHotbar()
+    {
+        return _hotbar;
+    }
+
+    public CollectibleSlot GetNextFreeSlot()
+    {
+        List<CollectibleSlot> sorted = SortSlots();
+        foreach (CollectibleSlot slot in sorted) {
+            if (slot.occupied == false) return slot;
+        }
+        return null;
+    }
+
+    public List<CollectibleSlot> SortSlots()
+    {
+        List<CollectibleSlot> backpack = GetListOfSlotType(SlotType.backpack);
+        List<CollectibleSlot> keyItems = GetListOfSlotType(SlotType.keyItems);
+        List<CollectibleSlot> belt = GetListOfSlotType(SlotType.belt);
+
+        List<CollectibleSlot> sortedBackpack = new();
+        List<CollectibleSlot> sortedKeyItems = new();
+        List<CollectibleSlot> sortedBelt = new();
+
+        for (int i = 0; i < backpack.Count; i++)
+        {
+            backpack.Find(s => s.id == i);
+            sortedBackpack.Add(backpack[i]);
+        }
+
+        sortedBackpack.Reverse();
+
+        for (int i = 0; i < keyItems.Count; i++)
+        {
+            keyItems.Find(s => s.id == i);
+            sortedKeyItems.Add(keyItems[i]);
+        }
+
+        sortedKeyItems.Reverse();
+
+        for (int i = 0; i < belt.Count; i++)
+        {
+            belt.Find(s => s.id == i);
+            sortedBelt.Add(belt[i]);
+        }
+
+        sortedBelt.Reverse();
+
+        sortedBackpack.AddRange(sortedKeyItems);
+        sortedBackpack.AddRange(sortedBelt);
+        return sortedBackpack;
+    }
+
+
     private void OnceBtnInteraction(ReturnData input)
     {
         //dont run if movement is paused
@@ -46,8 +119,17 @@ public class PlayerCollectibleController : MonoBehaviour
 
         if (_nearestCollectible != null)
         {
-            Destroy(_nearestCollectible.gameObject);
-            _inventory.Add(_nearestCollectible);
+            //check if slot is free in the inventory
+            if (GetNextFreeSlot() != null)
+            {
+                _nearestCollectible.gameObject.SetActive(false);
+                _inventory.Add(_nearestCollectible);
+                onInventoryAddition(_nearestCollectible);
+            } else
+            {
+                //no slots are free dont do anything
+                Debug.LogWarning("Inventory Full");
+            }
         }
     }
 
@@ -78,6 +160,26 @@ public class PlayerCollectibleController : MonoBehaviour
             }
         }
         return false;
+    }
+
+    public void SetActiveSlot(CollectibleSlot slot)
+    {
+        _currentSelectedSlot = slot;
+    }
+
+    public CollectibleSlot GetActiveSlot()
+    {
+        return _currentSelectedSlot;
+    }
+
+    public bool IsInventoryOpen()
+    {
+        return _fullInventory.activeInHierarchy;
+    }
+
+    public List<CollectibleSlot> GetListOfSlotType(SlotType type)
+    {
+        return slots.FindAll(s => s.type == type);
     }
 
     protected void Update()
