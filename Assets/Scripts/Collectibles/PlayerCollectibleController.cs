@@ -40,7 +40,8 @@ public class PlayerCollectibleController : MonoBehaviour
 
     protected void Start()
     {
-        _fullInventory.SetActive(false);
+        //LateStart
+        new Timer(0.5f).OnEnd(delegate { _fullInventory.SetActive(false); }).StartTimer();
     }
 
     protected void OnEnable()
