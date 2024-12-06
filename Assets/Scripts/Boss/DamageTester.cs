@@ -8,7 +8,7 @@ public class DamageTester : MonoBehaviour
     [SerializeField] private int damageAmount;
     private void Update() {
         if (Input.GetKeyDown(KeyCode.O)) {
-            entityDamageable.TakeDamage(damageAmount);
+            //entityDamageable.TakeDamage(damageAmount);
         }
     }
 }

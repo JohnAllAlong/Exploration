@@ -41,9 +41,12 @@ public class CameraController : MonoBehaviour
 
     public void SetActiveCamera(CinemachineVirtualCamera activeCam)
     {
-        closeFollowCam.gameObject.SetActive(false);
-        farFollowCam.gameObject.SetActive(false);
-        bigRoomCam.gameObject.SetActive(false);
+        if (closeFollowCam != null)
+            closeFollowCam.gameObject.SetActive(false);
+        if (farFollowCam != null)
+            farFollowCam.gameObject.SetActive(false);
+        if (bigRoomCam != null)
+            bigRoomCam.gameObject.SetActive(false);
 
         activeCam.gameObject.SetActive(true);
 

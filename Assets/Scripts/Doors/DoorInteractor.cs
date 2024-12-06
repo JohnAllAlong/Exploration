@@ -15,6 +15,7 @@ public class DoorInteractor : MonoBehaviour
     [SerializeField] private Animator _animator;
     [SerializeField] private bool _removeFromInventoryAfterUse;
     [SerializeField] private InventoryCanvasRenderer _inventoryRenderer;
+
     [SerializeField] private Collider2D _collider;
     [SerializeField] private GameHandler _gameHandler;
     public bool open;
@@ -40,17 +41,22 @@ public class DoorInteractor : MonoBehaviour
 
     protected void Start()
     {
-        open = _gameHandler.loader.GetDoor(doorID);
-        _animator.SetBool("open", open);
-        _collider.enabled = !open;
-        _showPopup = !open;
+        if (_gameHandler != null)
+        {
+            open = _gameHandler.loader.GetDoor(doorID);
+            _animator.SetBool("open", open);
+            _collider.enabled = !open;
+            _showPopup = !open;
 
-        _gameHandler.doors.Add(this);
+            _gameHandler.doors.Add(this);
+        }
         _cc = PlayerData.GetCollectibleController();
     }
 
     public void TryOpenDoor(ReturnData input)
     {
+        if (_cc.InvOpen()) return;
+
         if (_cc.HasCollectable(_keyCollectibleID) && _cc.CollectibleInHotbar(_keyCollectibleID) && _inRange)
         {
             open = !open;

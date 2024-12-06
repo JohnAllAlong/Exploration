@@ -2,11 +2,13 @@ using System.Linq;
 using UnityEngine;
 using CustomInput.Events;
 using Player;
+using UnityEngine.SceneManagement;
 
 public class Trapdoor : MonoBehaviour
 {
-    [Header("Target Teleportation Door")]
+    [Header("Target")]
     [SerializeField] private GameObject targetDoor;
+    [SerializeField] private string targetScene = "";
 
     [Header("Trapdoor Sprites")]
     [SerializeField] private Sprite defaultSprite;
@@ -48,6 +50,11 @@ public class Trapdoor : MonoBehaviour
             GUIUtilitys.FadeInSprite(PlayerData.GetScreenFader(), 0.500f, () =>
             {
                 new Timer(0.2f).OnEnd(() => {
+                    if (targetScene != "")
+                    {
+                        SceneManager.LoadScene(targetScene);
+                        return;
+                    }
                     playerTransform.position = targetDoor.transform.position;
                     GUIUtilitys.FadeOutSprite(PlayerData.GetScreenFader(), 0.500f);
                 }).StartTimer();
